@@ -10,9 +10,50 @@ plugins {
   id("pl.zalas.structurizr-cli") version "1.1.1"
 }
 
+repositories {
+    mavenCentral()
+}
+
+val plantuml by configurations.creating
+
+dependencies {
+    plantuml("net.sourceforge.plantuml:plantuml:1.2021.10")
+}
+
 structurizrCli {
     export {
         format = "plantuml"
         workspace = "src/structurizr/workspace.dsl"
     }
+}
+
+tasks.register<Copy>("copyWorkspacePlantUML") {
+    from("src/structurizr")
+    include("*.puml")
+    into(layout.buildDirectory.dir("workspace"))
+}
+
+tasks.register<JavaExec>("execPlantUml") {
+    dependsOn("copyWorkspacePlantUML")
+    val srcFiles = "$buildDir/workspace/structurizr-*.puml"
+    val outDir = "$buildDir/images"
+    group = "plantuml"
+    classpath = configurations["plantuml"]
+    args(listOf(srcFiles, "-o", outDir, "-tsvg"))
+}
+
+tasks.register("buildImages") {
+    dependsOn("execPlantUml")
+}
+
+tasks.register<Delete>("cleanStructurizr"){
+    delete(files("src/structurizr/structurizr-*.puml"))
+}
+
+tasks.register<Delete>("cleanImages"){
+    delete(layout.buildDirectory.dir("images"))
+}
+
+tasks.register<Delete>("cleanWorkspace"){
+    delete(layout.buildDirectory.dir("workspace"))
 }
