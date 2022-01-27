@@ -7,3 +7,4 @@ build
 # artifact of structurizr plugin 
 src/**/*.puml
 
+node_modules
