@@ -15,9 +15,12 @@ repositories {
 }
 
 val plantuml by configurations.creating
+val workspace by configurations.creating
+val workspacepuml by configurations.creating
 
 dependencies {
-    plantuml("net.sourceforge.plantuml:plantuml:1.2021.10")
+    "plantuml"("net.sourceforge.plantuml:plantuml:1.2021.10")
+    "workspace"(files("src/structurizr/workspace.dsl"))
 }
 
 structurizrCli {
@@ -26,8 +29,10 @@ structurizrCli {
         workspace = "src/structurizr/workspace.dsl"
     }
 }
+tasks.named("structurizrCliExport") { dependsOn(configurations["workspace"])}
 
 tasks.register<Copy>("copyWorkspacePlantUML") {
+    dependsOn("structurizrCliExport")
     from("src/structurizr")
     include("*.puml")
     into(layout.buildDirectory.dir("workspace"))
@@ -44,6 +49,10 @@ tasks.register<JavaExec>("execPlantUml") {
 
 tasks.register("buildImages") {
     dependsOn("execPlantUml")
+}
+
+tasks.register("build") {
+    dependsOn("buildImages")
 }
 
 tasks.register<Delete>("cleanStructurizr"){
