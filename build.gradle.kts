@@ -33,12 +33,13 @@ tasks.named("structurizrCliExport") { dependsOn(configurations["workspace"])}
 
 tasks.register<Copy>("copyWorkspacePlantUML") {
     dependsOn("structurizrCliExport")
-    from("src/structurizr")
-    include("*.puml")
+    from("src/structurizr") {
+        include("*.puml")
+    }
     into(layout.buildDirectory.dir("workspace"))
 }
 
-tasks.register<JavaExec>("execPlantUml") {
+tasks.register<JavaExec>("buildImages") {
     dependsOn("copyWorkspacePlantUML")
     val srcFiles = "$buildDir/workspace/structurizr-*.puml"
     val outDir = "$buildDir/images"
@@ -47,14 +48,57 @@ tasks.register<JavaExec>("execPlantUml") {
     args(listOf(srcFiles, "-o", outDir, "-tsvg"))
 }
 
-tasks.register("buildImages") {
-    dependsOn("execPlantUml")
+tasks.register("buildDocs") {
+    doLast {
+        val baseDir = "$buildDir/markdown"
+        mkdir(baseDir)
+        val sourceFiles = fileTree("src/markdown") {
+            include("**/*.md")
+        }
+        sourceFiles.visit( Action<FileVisitDetails> {
+            val srcFile = this.getFile()
+            val fileName = this.getName()
+
+            exec {
+                commandLine("./node_modules/.bin/mmdc", "-p", "puppeteer-config.json", "-i", "${srcFile}", "-o", "$baseDir/${fileName}")
+            }
+        })
+    }
 }
 
 tasks.register("build") {
     dependsOn("buildImages")
+    dependsOn("buildDocs")
 }
 
+/*
+    Publish Tasks
+*/
+tasks.register<Copy>("publishDocs"){
+    dependsOn("buildDocs")
+    val baseDir = layout.buildDirectory.dir("markdown")
+    from(baseDir) {
+        include("**/*.md", "**/*.svg")
+    }
+    into("docs")
+}
+
+tasks.register<Copy>("publishImages") {
+    dependsOn("buildImages")
+    from(layout.buildDirectory.dir("images")) {
+        include("**/*.svg")
+    }
+    into("docs/images")
+}
+
+tasks.register("publish") {
+    dependsOn("publishDocs")
+    dependsOn("publishImages")
+}
+
+/*
+    Clean tasks
+*/
 tasks.register<Delete>("cleanStructurizr"){
     delete(files("src/structurizr/structurizr-*.puml"))
 }
@@ -65,4 +109,8 @@ tasks.register<Delete>("cleanImages"){
 
 tasks.register<Delete>("cleanWorkspace"){
     delete(layout.buildDirectory.dir("workspace"))
+}
+
+tasks.register<Delete>("cleanDocs"){
+    delete(layout.buildDirectory.dir("markdown"))
 }
