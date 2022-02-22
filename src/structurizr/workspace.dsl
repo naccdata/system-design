@@ -1,151 +1,132 @@
 workspace {
-    # attach markdown documentation from docs directory
-    #!docs docs/architecture
-    #
-    #!adrs docs/decisions
-
     model {
-        externalUser = person "External User" "ADRC, NIA, or other external user" "External User"
-        adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User"
-        adrcAdminUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User"
-        researchUser = person "Research User" "User accessing NACC data for research" "External User"
+
 
         enterprise "NACC" {
-            adminUser = person "Center Ops Specialist" "Administers center operations" "NACC Staff"
-            commsUser = person "Communication Specialist" "Manages external center communications" "NACC Staff"
-            formsUser = person "Forms Specialist" "Creates and manages data aquisition instruments" "NACC Staff"
-            querySpecialist = person "Data Query Specialist" "Performs complex queries requiring detailed knowledge" "NACC Staff"
-            # supportUser = person "Support Specialist"
+            authorizationSystem = softwareSystem "Authorization Service" "Authentication and Authorization to Access Systems"
 
-
-            naccDataRepositorySystem = softwareSystem "Data Repository System" "Allows acquisition, management and queries of data sets" {
-                # container takes name, description, technology, tags
-                webPortal = container "Web Portal" "Investigator interface to center tools" "Next.js"
-                api = container "API"
-                uploadAPI = container "Upload API"
-                validator = container "Validator" "Validates forms"
-                rds = container "UDS Database" "stores UDS data" "mysql" "Database"
-                objectStore = container "Object Store"
-                leaf = container "Leaf" "Supports self service queries over repository data sets" "Existing System"
-                redcap = container "REDCap" "Supports entry and upload of survey responses" "Existing System"
-                internalSpecializedDataRepository = container "<<stereotype>> Specialized Data Repository" "Represents linked internal repository of specialized data."
-
-                api -> rds "Uses"
-                api -> internalSpecializedDataRepository "Uses"
-
-                webPortal -> uploadAPI "upload form data"
-                uploadAPI -> validator "check visit"
-                uploadAPI -> redcap "upload visit"
-
-                validator -> rds "pulls historical data"
-
-
-                webPortal -> api "Calls"
-                webPortal -> objectStore "Uses"
+            dataRepostorySystem = softwareSystem "NACC Data Repository" "Allows acquisition, management and queries of data sets" {
+                dataWarehouse = container "Data Warehouse" "Subsystem for managing study data"
+                formDefinitionDatabase = container "Form Definitions" "Database of form definitions and quality rules"
+                studyDefinitionDatabase = container "Study Metadata" "Database of study meta-data"
+                dataValidator = container "Data Validator" "API for validation of forms data" {
+                    -> formDefinitionDatabase "Get form definitions" "JSON/HTTPS"
+                    -> studyDefinitionDatabase "Get completenes criteria" "JSON/HTTPS"
+                }
+                dataSubmissionAPI = container "Data Submission API" "API for submission of data" {
+                    fileSubmissionController = component "(Non-form/Non-image) File Submission Controller" "Accept general file submissions"
+                    formSubmissionController = component "Form Submission Controller" "Accept form submissions" {
+                        -> dataValidator "form data to be validated aginst study rules" "JSON/HTTPS"
+                        -> dataWarehouse "validated data" "JSON/HTTPS"
+                    }
+                    imageSubmissionController = component "Image Submission Controller" "Accept image submissions"
+                }
+                dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
+                    -> dataWarehouse
+                }
+                dataReporting = container "Reporting System" "Subsystem to generate reports about data" {
+                    -> dataWarehouse
+                }
             }
 
-            naccCommunicationsSystem = softwareSystem "Communications System" "Supports marketing and communication" {
-                webSite = container "Web Site"
-                customerRelationshipManagement = container "CRM System" "Supports external communication"
+            directory = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated study staff with roles"
+
+            researchTracking = softwareSystem "Research Tracking" "Directory of research activity using NACC managed data"
+
+            website = softwareSystem "Website" "NACC website serving as entry to NACC information and data resources" {
+                accessRequestInterface = container "Access Request" "User access requests to change authorizations" {
+                    -> authorizationSystem
+                }
+                directoryManagementInterface = container "Directory Management" "Single page interface for managing directory entries" {
+                    -> directory
+                    -> authorizationSystem
+                }
+                submissionInterface = container "Data Submission" "Single page interface for submission of all types of data" {
+                    -> dataSubmissionAPI
+                }
+                searchInterface = container "Data Search" "Single page interface for search across all types of data" {
+                    -> dataIndexing
+                }
+                reportingInterface = container "Data Reporting" "Single page interface for reporting on data submissions" {
+                    -> dataReporting
+                }
+                studyManagementInterface = container "Study Management" "Single page interface for managing studies within repository" {
+                    -> directory
+                    -> studyDefinitionDatabase
+                }
+                formManagementInterface = container "Form Management" "Single page interface for managing form definitions and versions" {
+                    -> formDefinitionDatabase
+                }
+                projectIntake = container "Project Intake" "Single page interface for requestin new projects/studies"
+                researchTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
+                    -> researchTracking
+                }
             }
-
-            naccAdministrativeSystem = softwareSystem "Center Administration System" "Supports managing center users and authorization, and reporting" {
-                authorizationManager = container "Authorization Manager"
-                personnelDirectory = container "Personnel Directory System" "Manages directory of NACC, ADRC and unaffiliated staff and researchers" "Existing System"
-                reportingSystem = container "Center Report Generation"
-            }
-
-            # 
-
+            
         }
 
-        authSystem = softwareSystem "Authorization Service" "Authentication and Authorization to access systems" "Existing System"
+        externalUser = person "External User" "ADRC, NIA, or other external user" "External User"{
+            -> website "Accesses website for information about NACC, data, and events"
+        }
+        adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User" {
+            -> submissionInterface "Uploads data and corrects errors" "HTTPS"
+        }
+        adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
+            -> directoryManagementInterface "Adds/Removes members of ADRC" "HTTPS"
+            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+        }
 
-        externalDataCenterSystem = softwareSystem "<<stereotype>> Specialized Data Repository" "Represents linked repository of specialized data." "Existing System"
+        studyInvestigator = person "Study Investigator" "PI for external study" "External User" {
+            -> projectIntake "Requests a new study or project" "REDCap"
+        }
+        studyAdmin = person "Study Manager" "Manages study meta data including forms and other collected data" "External User"{
+            -> studyManagementInterface "Update study meta-data" "HTTPS"
+        }
+        formManager = person "Forms Manager" "Manages forms and form versions" "External User" {
+            -> formManagementInterface "Modify form definitions and versions" "HTTPS"
+        }
 
+        researchUser = person "Researcher" "Research user of NACC managed data" "External User" {
+            -> searchInterface "Search for data relevant to research project" "HTTPS"
+            -> researchTrackingInterface "Report publication" "REDCap"
+        }
 
-        ##
-        # Relationships
-        #
-        # Users
-        adminUser -> personnelDirectory "Manage users"
-        adminUser -> reportingSystem "Generate reports"
-        #
-        commsUser -> webSite "Update content"
-        commsUser -> customerRelationshipManagement "Send announcements, newsletters, etc."
-        #
-        externalUser -> webSite "Uses"
-        externalUser -> webPortal "Uses"        
-        researchUser -> leaf "Queries data"
-        externalUser -> redcap "Enters/Uploads reponses"
-        externalUser -> objectStore "Uploads/Downloads"
-        #
-        adrcDataUser -> webPortal "upload/review data"
+        #externalDataCenterSystem = softwareSystem "<<stereotype>> Specialized Data Repository" "Represents linked repository of specialized data." "Existing System"
+        adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System" {
+            -> formSubmissionController "Submit forms data" "JSON/HTTPS"
+        }
+        group "Data Centers" {
+            ncradSystem = softwareSystem "NCRAD" "Data systems of collaborating site" "External System" {
+                -> fileSubmissionController "Genomic data for transfer to ADRCs" 
+            }
+            niagadsSystem = softwareSystem "NIAGADS" "Data systems of collaborating site" "External System" {
+                -> fileSubmissionController "Genotype data for transfer to ADRCs"
+            }
+            loniSystem = softwareSystem "LONI" "LONI data system supporting SCAN project" "External System" {
+                -> fileSubmissionController "Computed SCAN image metadata" 
+            }
+            dataReporting -> loniSystem "Request SCAN image status" "JSON/HTTPS"
+        }
 
-        #
-        formsUser -> redcap "Create/manage Instruments"
-        #
-        querySpecialist -> naccDataRepositorySystem
-        #
-        
+        atriSystem = softwareSystem "ATRI" "ATRI data system supporting LEADS project" "External System"
+        dataReporting -> atriSystem "Request LEADS participants" "JSON/HTTPS"
 
-
-
-
-        reportingSystem -> api "Request report"
-        webSite -> api "Request metrics"
-
-
-
-        # naccDataRepositorySystem -> internalSpecializedDataRepository "links to data"
-        # internalSpecializedDataRepository -> naccDataRepositorySystem "registers data"
-
- 
-        # external relationships
-        authorizationManager -> authSystem "authenticate and authorize user"
-        authorizationManager -> authSystem "create, update users and authorizations"
-        authorizationManager -> personnelDirectory "pulls users and roles"
-        #
-        customerRelationshipManagement -> personnelDirectory "pulls contact information"
-        #
-        webPortal -> authSystem "authenticate and authorize user"
-        redcap -> authSystem "authorize user"
-        leaf -> authSystem "authorize user"
-        # 
-        naccDataRepositorySystem -> externalDataCenterSystem "links to data"
-        externalDataCenterSystem -> naccDataRepositorySystem "registers data"
-
-
+        gaainSystem = softwareSystem "GAAIN" "GAAIN data system" "External System"
+        dataRepostorySystem -> gaainSystem "UDS data?"
     }
 
     views {
-
         systemlandscape "SystemLandscape" {
             include *
-            exclude adminUser
-            exclude commsUser
-            exclude formsUser
-            exclude querySpecialist
             autoLayout
         }
 
-        systemContext naccDataRepositorySystem "RepositoryContext" {
+        systemContext dataRepostorySystem "RepositoryContext" {
             include *
             autoLayout
         }
 
-
-        container naccDataRepositorySystem "RepositoryContainers" {
-            include *
-            autoLayout
-        }
-
-        container naccCommunicationsSystem "CommunicationsContainers" {
-            include *
-            autoLayout
-        }
-
-        container naccAdministrativeSystem "AdministrationContainers" {
+        container dataRepostorySystem "RepositoryContainers" {
             include *
             autoLayout
         }
@@ -159,26 +140,17 @@ workspace {
             element "External User" {
                 background #08427b
             }
-            element "NACC Staff" {
-                background #999999
-            }
             element "Software System" {
                 background #1168bd
                 color #ffffff
             }
-            element "Existing System" {
-                background #999999
+            element "External System" {
+                background #08427b
                 color #ffffff
             }
             element "Container" {
                 background #438dd5
                 color #ffffff
-            }
-            element "Web Browser" {
-                shape WebBrowser
-            }
-            element "Mobile App" {
-                shape MobileDeviceLandscape
             }
             element "Database" {
                 shape Cylinder
@@ -187,10 +159,6 @@ workspace {
                 background #85bbf0
                 color #000000
             }
-            element "Failover" {
-                opacity 25
-            }
         }
     }
-
 }
