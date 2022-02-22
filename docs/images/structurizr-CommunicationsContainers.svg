@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="874px" preserveAspectRatio="none" style="width:542px;height:874px;background:#FFFFFF;" version="1.1" viewBox="0 0 542 874" width="542px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="331" x="99.25" y="16.708">Communications System - Containers</text><!--MD5=[3e9d4625a7e183df62695e1cf5f7790b]
+cluster Communications System\n[Software System]--><polygon fill="#FFFFFF" points="152,289.9531,351,289.9531,358,328.5469,465,328.5469,465,455.9531,152,455.9531,152,289.9531" style="stroke:#444444;stroke-width:1.5;"/><line style="stroke:#444444;stroke-width:1.5;" x1="152" x2="358" y1="328.5469" y2="328.5469"/><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="193" x="156" y="304.9482">Communications System</text><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="179" y="321.2451">[Software System]</text><!--MD5=[6b3b472be8363a7aad673c91b54c495d]
+entity CommunicationsSystem.WebSite--><rect fill="#438DD5" height="50.2656" style="stroke:#2E6295;stroke-width:1.5;" width="100" x="168" y="365.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="80" x="178" y="390.3047">Web Site</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="190" y="403.3604">[Container]</text><!--MD5=[1f2b3ee69098ccd3f537112cfac32071]
+entity CommunicationsSystem.CRMSystem--><rect fill="#438DD5" height="99.1563" style="stroke:#2E6295;stroke-width:1.5;" width="146" x="303" y="340.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="112" x="320" y="365.8047">CRM System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="348" y="378.8604">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="378" y="394.2139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="313" y="410.5107">Supports external</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="106" x="323" y="426.8076">communication</text><!--MD5=[95bd41042c2188f5d8ee383e3991ef25]
+entity ExternalUser--><ellipse cx="115" cy="67.6862" fill="#08427B" rx="30.7331" ry="30.7331" style="stroke:#052E56;stroke-width:1.5;"/><rect fill="#08427B" height="99.1563" rx="30.7331" ry="30.7331" style="stroke:#052E56;stroke-width:1.5;" width="216" x="7" y="98.4193"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="119" x="55.5" y="123.2709">External User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="94" y="136.3265">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="117" y="151.68"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="192" x="17" y="167.9769">ADRC, NIA, or other external</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="31" x="99.5" y="184.2738">user</text><!--MD5=[399aa7b4e2fb5916bc3673a824497fca]
+entity CommunicationSpecialist--><ellipse cx="356" cy="58.7786" fill="#999999" rx="31.8255" ry="31.8255" style="stroke:#6B6B6B;stroke-width:1.5;"/><rect fill="#999999" height="117.7813" rx="31.8255" ry="31.8255" style="stroke:#6B6B6B;stroke-width:1.5;" width="195" x="258.5" y="90.604"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="135" x="285.5" y="115.4556">Communication</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="83" x="314.5" y="134.0806">Specialist</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="335" y="147.1363">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="358" y="162.4898"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="171" x="268.5" y="178.7867">Manages external center</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="299" y="195.0835">communications</text><!--MD5=[e4735490a885e1cc4d865c40bb6dd4f4]
+entity DataRepositorySystem--><rect fill="#1168BD" height="134.0781" style="stroke:#0B4884;stroke-width:1.5;" width="219" x="93.5" y="733.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="143" x="128.5" y="758.8047">Data Repository</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="66" x="170" y="777.4297">System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="156" y="790.4854">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="205" y="805.8389"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="138.5" y="822.1357">Allows acquisition,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="195" x="103.5" y="838.4326">management and queries of</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="64" x="171" y="854.7295">data sets</text><!--MD5=[45c5e817d971b8dd1f0409fdc32d96e3]
+entity CenterAdministrationSystem--><rect fill="#1168BD" height="134.0781" style="stroke:#0B4884;stroke-width:1.5;" width="217" x="319.5" y="526.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="195" x="330.5" y="551.8047">Center Administration</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="66" x="395" y="570.4297">System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="381" y="583.4854">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="430" y="598.8389"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="184" x="334" y="615.1357">Supports managing center</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="197" x="329.5" y="631.4326">users and authorization, and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="63" x="396.5" y="647.7295">reporting</text><!--MD5=[77c041387d59a67a4f35333de8f8b31a]
+link CommunicationSpecialist to CommunicationsSystem.WebSite--><path d="M295.7,208.0731 C289.79,218.0031 284.1,228.0931 279,237.9531 C257.72,279.0631 238.77,329.3631 227.84,360.4031 " fill="none" id="CommunicationSpecialist-to-CommunicationsSystem.WebSite" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="226.15,365.2131,232.9015,358.0425,227.8037,360.4945,225.3517,355.3967,226.15,365.2131" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="76" x="280" y="259.7354">Update content</text><!--MD5=[f5244da6bad07a54de21431f1f009e21]
+link CommunicationSpecialist to CommunicationsSystem.CRMSystem--><path d="M362.63,208.3131 C365.74,250.4631 369.35,299.2831 372.03,335.6031 " fill="none" id="CommunicationSpecialist-to-CommunicationsSystem.CRMSystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="372.41,340.8731,375.7567,331.6103,372.0527,335.8859,367.7772,332.1819,372.41,340.8731" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="25" x="396" y="248.2354">Send</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="81" x="368" y="259.876">announcements,</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="80" x="370" y="271.5166">newsletters, etc.</text><!--MD5=[59a99ac605730b69ec3242fc5d6d0c10]
+link ExternalUser to CommunicationsSystem.WebSite--><path d="M145.35,198.2931 C166.07,252.8331 192.34,321.9331 206.93,360.3431 " fill="none" id="ExternalUser-to-CommunicationsSystem.WebSite" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="208.83,365.3231,209.3527,355.4881,207.0447,360.6527,201.8801,358.3447,208.83,365.3231" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="24" x="173" y="259.7354">Uses</text><!--MD5=[699bad065d3910c60a30609c997fe41f]
+link ExternalUser to DataRepositorySystem--><path d="M122.53,198.1631 C129.4,268.2631 140.24,373.0131 152,463.9531 C163.84,555.4831 180.25,660.6031 191.23,728.5431 " fill="none" id="ExternalUser-to-DataRepositorySystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="192.08,733.7731,194.5863,724.2485,191.2789,728.8377,186.6897,725.5303,192.08,733.7731" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="24" x="157" y="488.2354">Uses</text><!--MD5=[aa34e331a6cb9a09073c615fc13fe50e]
+link CenterAdministrationSystem to DataRepositorySystem--><path d="M355.26,661.2231 C331.01,683.3231 303.93,708.0031 279.4,730.3431 " fill="none" id="CenterAdministrationSystem-to-DataRepositorySystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="275.49,733.9031,284.8431,730.8178,279.1929,730.5433,279.4674,724.8931,275.49,733.9031" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="73" x="323" y="701.2354">Request report</text><!--MD5=[75d3da3a7b8ade1fb20eee209aaffcc5]
+link CommunicationsSystem.WebSite to DataRepositorySystem--><path d="M217.12,415.4831 C214.91,475.7431 209.05,635.1331 205.62,728.6931 " fill="none" id="CommunicationsSystem.WebSite-to-DataRepositorySystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="205.42,733.9231,209.7513,725.0778,205.6056,728.9266,201.7568,724.7809,205.42,733.9231" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="79" x="213" y="597.7354">Request metrics</text><!--MD5=[77a95a20443ffc83dde9cac7ab0584ca]
+link CommunicationsSystem.CRMSystem to CenterAdministrationSystem--><path d="M388.52,439.9731 C394.83,464.4231 402.6,494.5431 409.58,521.5731 " fill="none" id="CommunicationsSystem.CRMSystem-to-CenterAdministrationSystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="410.87,526.5731,412.5072,516.8613,409.6271,521.7301,404.7583,518.85,410.87,526.5731" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="60" x="403" y="482.2354">pulls contact</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="406.5" y="493.876">information</text><!--MD5=[29714315c42f837cced0e5e1abec30f8]
+@startuml
+title Communications System - Containers
+
+top to bottom direction
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<CommunicationsSystem.CRMSystem>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<CenterAdministrationSystem>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam person<<CommunicationSpecialist>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+}
+skinparam rectangle<<DataRepositorySystem>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam person<<ExternalUser>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<CommunicationsSystem.WebSite>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+
+person "==External User\n<size:10>[Person]</size>\n\nADRC, NIA, or other external user" <<ExternalUser>> as ExternalUser
+person "==Communication Specialist\n<size:10>[Person]</size>\n\nManages external center communications" <<CommunicationSpecialist>> as CommunicationSpecialist
+rectangle "==Data Repository System\n<size:10>[Software System]</size>\n\nAllows acquisition, management and queries of data sets" <<DataRepositorySystem>> as DataRepositorySystem
+rectangle "==Center Administration System\n<size:10>[Software System]</size>\n\nSupports managing center users and authorization, and reporting" <<CenterAdministrationSystem>> as CenterAdministrationSystem
+
+package "Communications System\n[Software System]" <<CommunicationsSystem>> {
+  skinparam PackageBorderColor<<CommunicationsSystem>> #444444
+  skinparam PackageFontColor<<CommunicationsSystem>> #444444
+
+  rectangle "==Web Site\n<size:10>[Container]</size>" <<CommunicationsSystem.WebSite>> as CommunicationsSystem.WebSite
+  rectangle "==CRM System\n<size:10>[Container]</size>\n\nSupports external communication" <<CommunicationsSystem.CRMSystem>> as CommunicationsSystem.CRMSystem
+}
+
+CommunicationSpecialist .[#707070,thickness=2].> CommunicationsSystem.WebSite : "<color:#707070>Update content"
+CommunicationSpecialist .[#707070,thickness=2].> CommunicationsSystem.CRMSystem : "<color:#707070>Send announcements, newsletters, etc."
+ExternalUser .[#707070,thickness=2].> CommunicationsSystem.WebSite : "<color:#707070>Uses"
+ExternalUser .[#707070,thickness=2].> DataRepositorySystem : "<color:#707070>Uses"
+CenterAdministrationSystem .[#707070,thickness=2].> DataRepositorySystem : "<color:#707070>Request report"
+CommunicationsSystem.WebSite .[#707070,thickness=2].> DataRepositorySystem : "<color:#707070>Request metrics"
+CommunicationsSystem.CRMSystem .[#707070,thickness=2].> CenterAdministrationSystem : "<color:#707070>pulls contact information"
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 13:43:48 UTC 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
