@@ -1,6 +1,6 @@
-# NACC data repository
+# NACC Data Repository
 
-## Repository Context 
+## Context 
 
 this is the description of the NACC system context
 
@@ -8,6 +8,6 @@ this is the description of the NACC system context
 
 
 
-## Repository Architecture
+## Architecture
 
-![Repository-Component-Diagram](images/structurizr-RepositoryContainers.svg)
+![Repository-Container-Diagram](images/structurizr-RepositoryContainers.svg)
