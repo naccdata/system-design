@@ -1,6 +1,8 @@
 # NACC System Landscape
 
 This document describes a model of the software systems supporting the National Alzheimer's Coordinating Center (NACC).
+## Document Purpose
+
 
 ## About NACC
 The National Alzheimer’s Coordinating Center (NACC) is home to one of the largest, oldest (20+ years), and most powerful Alzheimer’s datasets in the world and facilitates impactful research across 37 Alzheimer’s Disease Research Centers (ADRCs) throughout the US.
