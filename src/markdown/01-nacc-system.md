@@ -10,18 +10,18 @@ NACC facilitates collaborative research across NIA-funded ADRCs managing data se
 
 The primary data set is Uniform Data Set (UDS), consisting of longitudinal data for participants.
 Additional data sets are the Neuropathology Data Set (NP), and the Minimum Data Set which is a retrospective data for participants prior to the UDS.
-Several small affliated studies either use ADRC data with other phenotyping data sets, or UDS survey questions for non-ADRC participants.
+Several small affiliated studies either use ADRC data with other phenotyping data sets, or UDS survey questions for non-ADRC participants.
 These additional studies may include non-ADRC centers where data is collected.
 
-The NACC data sets are integrated with data from mutliple collaborating centers including
+The NACC data sets are integrated with data from multiple collaborating centers including
 the Alzheimer's Disease Genetics Consortium (ADGC), 
 the NIA Genetics of AD Data Storage Site (NIAGADS), 
-the National Centralized Repository for AD and Related Dimentias (NCRAD) and 
-the Standardized Centralized Alzheimer's and Related Dimentias Neuroimaging (SCAN) project.
+the National Centralized Repository for AD and Related Dementias (NCRAD) and 
+the Standardized Centralized Alzheimer's and Related Dementias Neuroimaging (SCAN) project.
 
 ## Landscape model
 
-We focus on three primary interal functions that are accessed by the website:
+We focus on three primary internal functions that are accessed by the website:
 
 1. Managing a directory of NACC users – determining who can use NACC systems and for what.
 2. Managing data for UDS and affiliated studies.
@@ -38,7 +38,7 @@ As this model shows, the website serves as the interface for external users of t
     1. ADRC Administrative user – an administrative user manages the ADRC relationship with NACC, determining which staff are users of NACC systems and in what role.
     2. ADRC Data user – 
 2. Study Users – Study users are responsible for the metadata that defines a study and how it is managed within NACC.
-    1. Study Admnistrative user – manages the study relationship with NACC, determines what data the study collects, and which centers can contribute data.
+    1. Study Administrative user – manages the study relationship with NACC, determines what data the study collects, and which centers can contribute data.
     2. Study Investigator - initiates the creation of a study within NACC by making an intake request. Provides initial definition of the study.
 3. Forms manager - a user that is responsible for the definition and maintenance of a set of forms including questions and data validations.
 4. Researcher - a user who is using NACC managed data for research.
@@ -52,7 +52,7 @@ The external systems that integrate with NACC systems include the following:
    Data submitted by an ADRC may include form responses, EHR records, images (MRI/PET), and files from digital or other phenotyping capture.
 2. NCRAD – NCRAD provides data to be distributed to ADRCs based on the processing of samples submitted.
    Additionally, NACC centralized search capabilities would link to NCRAD records for UDS participants.
-3. NIAGADS – NIAGADS provides genotype data from the ADGC to be distributed to ADRCS based on genotyping of samples submitted to NCRAD.
+3. NIAGADS – NIAGADS provides genotype data from the ADGC to be distributed to ADRCs based on genotyping of samples submitted to NCRAD.
    Additionally, NACC centralized search capabilities would link to NIAGADS records for UDS participants.
 4. LONI – LONI supports the SCAN project by collecting MRI/PET images, which are then analyzed by SCAN computational teams.
    LONI provides NACC with status data for uploads and results of SCAN computational results.

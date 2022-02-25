@@ -1,12 +1,4 @@
-# NACC data repository
-
-## Repository Context 
-
-this is the description of the NACC system context
-
-![Repository-Context-Diagram](images/structurizr-RepositoryContext.svg)
-
-## Domain model 
+# Domain model 
 
 The repository captures data for for a study the goal of which is to capture (longitudinal) standardized observations for the enrolled participants.
 A study consists of centers that enroll and observe participants, and a design which determines the observations that will be made.
@@ -85,7 +77,3 @@ classDiagram
 
     FormResponses --> "1" Form
 ```
-
-## Repository Architecture
-
-![Repository-Component-Diagram](images/structurizr-RepositoryContainers.svg)
