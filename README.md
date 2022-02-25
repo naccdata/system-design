@@ -13,8 +13,50 @@ The source for all documents are stored within the `src` directory, and the fina
 ## Managing documents
 
 
-Documents should be edited in the src directory. 
-The primary documents are in `src/markdown`
+Documents should be edited in the `src` directory.
+This directory is organized in a Gradle-like fashion determined by the type of file or tool used to process them.
 
+```bash
+src
+├── markdown
+│   ├── 01-nacc-system.md
+│   ├── 02-domain-model.md
+│   ├── 03-data-repository.md
+│   ├── 04-directory.md
+│   ├── 05-research-tracking.md
+│   ├── 06-communications.md
+│   ├── 14-decision-log.md
+│   └── index.md
+└── structurizr
+    └── workspace.dsl
+```
+
+The Markdown documents are split by subsystem, with the system landscape and domain models as special cases to provide background.
+The numbering of the markdown documents corresponds to the order they are included into `index.md`, but is not significant otherwise.
+
+New markdown documents should be added to the `markdown` directory.
+These documents may include Mermaid diagrams.
+Any reference to C4 models needs to use links of the form
+```markdown
+![Label-Text](images/structurizr-DiagramName.svg)
+```
+where `Label-Text` is a text tag for the description, and `DiagramName` is the name for the diagram in the `workspace.dsl` file.
+When published the diagrams are moved into `docs/images` so this is a direct reference in that context.
+
+The C4 Models are generated from the `structurizr/workspace.dsl` file.
+Additional model details should be added to this file, which is written using the [Structurizr DSL](https://structurizr.com/dsl).
+
+Note that the Gradle plugin used to run the Structurizr-cli places files into the `structurizr` directory.
+These are copied into the `build` directory and shouldn't be included in the repository files.
 
 ## Publishing documents
+
+The document generation is done using Gradle with the build described in `./build.gradle.kts`.
+
+The documents are published to the `docs` directory by running the command
+
+```bash
+./gradlew publish
+```
+
+
