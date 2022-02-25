@@ -34,5 +34,5 @@ They are deployed to the web using GitHub Pages and are only accessible to membe
 
 ## Document Maintenance
 
-Information about maintaining these documents is given in the README of the [naccdata/system-design](https://github.com/naccdata/system-design) repository.
+Information about maintaining these documents is given in the [README](https://github.com/naccdata/system-design/blob/main/README.md) of the [naccdata/system-design](https://github.com/naccdata/system-design) repository.
 
