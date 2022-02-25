@@ -29,16 +29,20 @@ workspace {
                 }
             }
 
-            directory = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated study staff with roles"
+            directorySystem = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated study staff with roles"
 
-            researchTracking = softwareSystem "Research Tracking" "Directory of research activity using NACC managed data"
+            communicationsSystem = softwareSystem "NACC Communications" "Subsystem to support external communications" {
+                -> directorySystem
+            }
+
+            researchTrackingSystem = softwareSystem "Research Tracking" "Directory of research activity using NACC managed data"
 
             website = softwareSystem "Website" "NACC website serving as entry to NACC information and data resources" {
                 accessRequestInterface = container "Access Request" "User access requests to change authorizations" {
                     -> authorizationSystem
                 }
                 directoryManagementInterface = container "Directory Management" "Single page interface for managing directory entries" {
-                    -> directory
+                    -> directorySystem
                     -> authorizationSystem
                 }
                 submissionInterface = container "Data Submission" "Single page interface for submission of all types of data" {
@@ -51,7 +55,7 @@ workspace {
                     -> dataReporting
                 }
                 studyManagementInterface = container "Study Management" "Single page interface for managing studies within repository" {
-                    -> directory
+                    -> directorySystem
                     -> studyDefinitionDatabase
                 }
                 formManagementInterface = container "Form Management" "Single page interface for managing form definitions and versions" {
@@ -59,7 +63,7 @@ workspace {
                 }
                 projectIntake = container "Project Intake" "Single page interface for requestin new projects/studies"
                 researchTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
-                    -> researchTracking
+                    -> researchTrackingSystem
                 }
             }
             
@@ -127,6 +131,36 @@ workspace {
         }
 
         container dataRepostorySystem "RepositoryContainers" {
+            include *
+            autoLayout
+        }
+
+        systemContext directorySystem "DirectoryContext" {
+            include *
+            autoLayout
+        }
+
+        container directorySystem "DirectoryContainers" {
+            include *
+            autoLayout
+        }
+
+        systemContext researchTrackingSystem "ResearchTrackingContext" {
+            include *
+            autoLayout
+        }
+
+        container researchTrackingSystem "ResearchTrackingContainers" {
+            include *
+            autoLayout
+        }
+
+        systemContext communicationsSystem "CommunicationsContext" {
+            include *
+            autoLayout
+        }
+
+        container communicationsSystem "CommunicationsContainers" {
             include *
             autoLayout
         }
