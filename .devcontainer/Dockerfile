@@ -19,7 +19,9 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
- && apt-get -y install --no-install-recommends graphviz \
+ && apt-get -y install --no-install-recommends \
+                          graphviz \
+                          tree \
  && apt-get install -y gconf-service libxext6 libxfixes3 libxi6 \
                           libxrandr2 libxrender1 libcairo2 libcups2 \
                           libdbus-1-3 libexpat1 libfontconfig1 libgcc1 \
