@@ -25,7 +25,8 @@
 	"extensions": [
 		"vscjava.vscode-java-pack",
 		"ciarant.vscode-structurizr",
-		"yzhang.markdown-all-in-one"
+		"yzhang.markdown-all-in-one",
+		"streetsidesoftware.code-spell-checker"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

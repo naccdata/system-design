@@ -1,3 +1,23 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cSpell.words": [
+        "ADGC",
+        "ADRC",
+        "ATRI",
+        "Biospecimen",
+        "biospecimens",
+        "ciarant",
+        "GAAIN",
+        "genotyping",
+        "LONI",
+        "NACC",
+        "NCRAD",
+        "Neuroimaging",
+        "Neuropathology",
+        "NIAGADS",
+        "phenotyping",
+        "structurizr",
+        "vscjava",
+        "yzhang"
+    ]
 }
