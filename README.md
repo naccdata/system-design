@@ -59,4 +59,38 @@ The documents are published to the `docs` directory by running the command
 ./gradlew publish
 ```
 
+The script will populate the `docs` folder in a way that allows them to be viewed using GitHub Pages.
+
+This will look something like this
+
+```bash
+docs
+├── 01-nacc-system.md
+├── 02-data-repository-1.svg
+├── 02-data-repository-2.svg
+├── 02-data-repository-3.svg
+├── 02-data-repository-4.svg
+├── 02-data-repository-5.svg
+├── 02-data-repository.md
+├── 02-domain-model-1.svg
+├── 02-domain-model-2.svg
+├── 02-domain-model-3.svg
+├── 02-domain-model-4.svg
+├── 02-domain-model-5.svg
+├── 02-domain-model.md
+├── 03-data-repository.md
+├── 03-directory.md
+├── 04-directory.md
+├── 05-research-tracking.md
+├── 06-communications.md
+├── 14-decision-log.md
+├── images
+│   ├── structurizr-AdministrationContainers.svg
+│   ├── structurizr-CommunicationsContainers.svg
+│   ├── structurizr-RepositoryContainers.svg
+│   ├── structurizr-RepositoryContext.svg
+│   └── structurizr-SystemLandscape.svg
+└── index.md
+```
+
 
