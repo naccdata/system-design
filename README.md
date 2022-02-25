@@ -1,6 +1,7 @@
 # NACC Architecture Documents
 
 This directory contains the source for documenting NACC system architecture along with the configuration of tools to generate the files as Markdown plus images.
+These documents are published as the [NACC Architecture Documents](https://naccdata.github.io/system-design).
 
 Three forms of documentation are supported here:
 
