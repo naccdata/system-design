@@ -50,6 +50,8 @@ Additional model details should be added to this file, which is written using th
 Note that the Gradle plugin used to run the Structurizr-cli places files into the `structurizr` directory.
 These are copied into the `build` directory and shouldn't be included in the repository files.
 
+<!-- TODO: Add text about architecture decision records -->
+
 ## Publishing documents
 
 The document generation is done using Gradle with the build described in `./build.gradle.kts`.
