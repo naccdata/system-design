@@ -13,13 +13,18 @@ workspace {
                     -> formDefinitionDatabase "Get form definitions" "JSON/HTTPS"
                     -> studyDefinitionDatabase "Get completenes criteria" "JSON/HTTPS"
                 }
+                imagePipeline = container "Image Pipeline" "Validates and transforms image headers" {
+                    -> dataWarehouse
+                }
                 dataSubmissionAPI = container "Data Submission API" "API for submission of data" {
                     fileSubmissionController = component "(Non-form/Non-image) File Submission Controller" "Accept general file submissions"
                     formSubmissionController = component "Form Submission Controller" "Accept form submissions" {
                         -> dataValidator "form data to be validated aginst study rules" "JSON/HTTPS"
                         -> dataWarehouse "validated data" "JSON/HTTPS"
                     }
-                    imageSubmissionController = component "Image Submission Controller" "Accept image submissions"
+                    imageSubmissionController = component "Image Submission Controller" "Accept image submissions" {
+                        -> imagePipeline
+                    }
                 }
                 dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
                     -> dataWarehouse
@@ -164,6 +169,17 @@ workspace {
             include *
             autoLayout
         }
+
+        systemContext website "WebsiteContext" {
+            include *
+            autoLayout
+        }
+
+        container website "WebsiteContainers" {
+            include *
+            autoLayout
+        }
+
 
         styles {
             element "Person" {
