@@ -42,7 +42,10 @@ workspace {
                 -> directorySystem
             }
 
-            researchTrackingSystem = softwareSystem "Research Tracking" "Directory of research activity using NACC managed data"
+            researchTrackingSystem = softwareSystem "Research Tracking" "Directory of research activity using NACC managed data" {
+                requestDatabase = container "Data Request Database" "Stores history of data requests"
+                publicationDatabase = container "Publication Database" "Stores publication history"
+            }
 
             website = softwareSystem "Website" "NACC website serving as entry to NACC information and data resources" {
                 accessRequestInterface = container "Access Request" "User access requests to change authorizations" {
@@ -69,9 +72,19 @@ workspace {
                     -> formDefinitionDatabase
                 }
                 projectIntake = container "Project Intake" "Single page interface for requestin new projects/studies"
-                researchTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
-                    -> researchTrackingSystem
+                publicationTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
+                    -> publicationDatabase
                 }
+                duaInterface = container "DUA Approval Interface" "Sign DUA" {
+                    -> authorizationSystem 
+                }
+                dataRequestInterface = container "Data Request Interface" "Interface to make and view custom data requests" {
+                    -> requestDatabase "Update/get request history"
+                }
+                quickAccessInterface = container "Quick Access Interface" "Provides access to quick access data sets" {
+                    -> requestDatabase "Update request history"
+                }
+
             }
             
         }
@@ -98,8 +111,11 @@ workspace {
         }
 
         researchUser = person "Researcher" "Research user of NACC managed data" "External User" {
-            -> searchInterface "Search for data relevant to research project" "HTTPS"
-            -> researchTrackingInterface "Report publication" "REDCap"
+            -> searchInterface "Search for data/resources relevant to query" "HTTPS"
+            -> publicationTrackingInterface "Submit publication" "REDCap"
+            -> duaInterface "Sign Data Use Agreement" "REDCap"
+            -> dataRequestInterface "Make and update customized requests; view history of requests" "HTTPS"
+            -> quickAccessInterface "Access to quick access data sets" "HTTPS"
         }
 
         #externalDataCenterSystem = softwareSystem "<<stereotype>> Specialized Data Repository" "Represents linked repository of specialized data." "Existing System"

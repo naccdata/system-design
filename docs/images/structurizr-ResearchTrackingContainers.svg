@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="25px" preserveAspectRatio="none" style="width:286px;height:25px;background:#FFFFFF;" version="1.1" viewBox="0 0 286 25" width="286px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="277" x="2" y="16.708">Research Tracking - Containers</text><!--MD5=[45a7cd1d95817fb7c6b86993d607876a]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="405px" preserveAspectRatio="none" style="width:475px;height:405px;background:#FFFFFF;" version="1.1" viewBox="0 0 475 405" width="475px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="277" x="92.5" y="16.708">Research Tracking - Containers</text><!--MD5=[e79758a93fba41fd8865293ebbb9741e]
+cluster Research Tracking\n[Software System]--><polygon fill="#FFFFFF" points="16,213.9531,169,213.9531,176,252.5469,458,252.5469,458,398.9531,16,398.9531,16,213.9531" style="stroke:#444444;stroke-width:1.5;"/><line style="stroke:#444444;stroke-width:1.5;" x1="16" x2="176" y1="252.5469" y2="252.5469"/><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="20" y="228.9482">Research Tracking</text><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="20" y="245.2451">[Software System]</text><!--MD5=[a91de511a5522c53be54d560254dd12f]
+entity ResearchTracking.DataRequestDatabase--><rect fill="#438DD5" height="117.7813" style="stroke:#2E6295;stroke-width:1.5;" width="170" x="32" y="264.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="121" x="53.5" y="289.8047">Data Request</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="83" x="75.5" y="308.4297">Database</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="89" y="321.4854">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="119" y="336.8389"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="146" x="42" y="353.1357">Stores history of data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="62" x="86" y="369.4326">requests</text><!--MD5=[144f1cc5880ebfeb2fa00042bbbc23ae]
+entity ResearchTracking.PublicationDatabase--><rect fill="#438DD5" height="82.8594" style="stroke:#2E6295;stroke-width:1.5;" width="205" x="237.5" y="282.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="185" x="247.5" y="307.3047">Publication Database</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="312" y="320.3604">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="342" y="335.7139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="253" y="352.0107">Stores publication history</text><!--MD5=[267c1c121543e29b214c7e2be8e6d7c3]
+entity Website--><rect fill="#1168BD" height="115.4531" style="stroke:#0B4884;stroke-width:1.5;" width="201" x="127.5" y="27.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="73" x="191.5" y="52.8047">Website</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="181" y="65.8604">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="230" y="81.2139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="171" x="140.5" y="97.5107">NACC website serving as</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="137.5" y="113.8076">entry to NACC information</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="161" y="130.1045">and data resources</text><!--MD5=[767ee894793a0244d3e723dfe6bd8b32]
+link Website to ResearchTracking.PublicationDatabase--><path d="M263.73,142.9531 C269.45,152.8031 275.09,163.0631 280,172.9531 C296.99,207.1731 312.89,247.4431 324.04,277.6331 " fill="none" id="Website-to-ResearchTracking.PublicationDatabase" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="325.79,282.3931,326.4279,272.5649,324.0595,277.7021,318.9223,275.3338,325.79,282.3931" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="0" x="295" y="189.2354"/><!--MD5=[af0947380ada685aec80956db5a1f65d]
+link Website to ResearchTracking.DataRequestDatabase--><path d="M191.95,143.4031 C186.33,153.1131 180.8,163.2131 176,172.9531 C162.31,200.7131 149.44,232.4931 139.23,259.6331 " fill="none" id="Website-to-ResearchTracking.DataRequestDatabase" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="137.36,264.6431,144.2654,257.6207,139.1156,259.9615,136.7748,254.8117,137.36,264.6431" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="95" x="177" y="183.2354">Update/get request</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="33" x="209.5" y="194.876">history</text><!--MD5=[ce17f4211726401ede80823ea928fecd]
 @startuml
 title Research Tracking - Containers
 
@@ -14,7 +20,34 @@ skinparam {
 
 hide stereotype
 
+skinparam rectangle<<ResearchTracking.DataRequestDatabase>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<ResearchTracking.PublicationDatabase>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<Website>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
 
+rectangle "==Website\n<size:10>[Software System]</size>\n\nNACC website serving as entry to NACC information and data resources" <<Website>> as Website
+
+package "Research Tracking\n[Software System]" <<ResearchTracking>> {
+  skinparam PackageBorderColor<<ResearchTracking>> #444444
+  skinparam PackageFontColor<<ResearchTracking>> #444444
+
+  rectangle "==Data Request Database\n<size:10>[Container]</size>\n\nStores history of data requests" <<ResearchTracking.DataRequestDatabase>> as ResearchTracking.DataRequestDatabase
+  rectangle "==Publication Database\n<size:10>[Container]</size>\n\nStores publication history" <<ResearchTracking.PublicationDatabase>> as ResearchTracking.PublicationDatabase
+}
+
+Website .[#707070,thickness=2].> ResearchTracking.PublicationDatabase : "<color:#707070>"
+Website .[#707070,thickness=2].> ResearchTracking.DataRequestDatabase : "<color:#707070>Update/get request history"
 @enduml
 
 PlantUML version 1.2021.10(Mon Aug 30 13:43:48 UTC 2021)
