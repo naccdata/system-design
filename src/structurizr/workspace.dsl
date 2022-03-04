@@ -51,6 +51,7 @@ workspace {
                 accessRequestInterface = container "Access Request" "User access requests to change authorizations" {
                     -> authorizationSystem
                 }
+                calculatorInterface = container "Calculators" "User access to calculators used in form completion"
                 directoryManagementInterface = container "Directory Management" "Single page interface for managing directory entries" {
                     -> directorySystem
                     -> authorizationSystem
@@ -61,7 +62,7 @@ workspace {
                 searchInterface = container "Data Search" "Single page interface for search across all types of data" {
                     -> dataIndexing
                 }
-                reportingInterface = container "Data Reporting" "Single page interface for reporting on data submissions" {
+                reportingInterface = container "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
                     -> dataReporting
                 }
                 studyManagementInterface = container "Study Management" "Single page interface for managing studies within repository" {
@@ -84,7 +85,8 @@ workspace {
                 quickAccessInterface = container "Quick Access Interface" "Provides access to quick access data sets" {
                     -> requestDatabase "Update request history"
                 }
-
+                trainingInterface = container "Training Interface" "Provide access to training about forms and NACC systems"
+                documentationInterface = container "Documentation Interface" "Provide access to form and center documentation"
             }
             
         }
@@ -92,18 +94,30 @@ workspace {
         externalUser = person "External User" "ADRC, NIA, or other external user" "External User"{
             -> website "Accesses website for information about NACC, data, and events"
         }
+
         adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User" {
             -> submissionInterface "Uploads data and corrects errors" "HTTPS"
+            -> calculatorInterface
+            -> documentationInterface
+            -> reportingInterface
         }
         adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
             -> directoryManagementInterface "Adds/Removes members of ADRC" "HTTPS"
             -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
         }
+        adrcClinicalUser = person "ADRC Clinical User" "ADRC user responsible for data collection" "External User" {
+            -> trainingInterface "Learn about using forms"
+            -> calculatorInterface
+            -> documentationInterface
+        }
+        adrcLeader = person "ADRC Leader" "ADRC leadership member" "External User" {
+            -> reportingInterface
+        }
 
-        studyInvestigator = person "Study Investigator" "PI for external study" "External User" {
+        studyInstigator = person "Study Instigator" "Initiates request for external study" "External User" {
             -> projectIntake "Requests a new study or project" "REDCap"
         }
-        studyAdmin = person "Study Manager" "Manages study meta data including forms and other collected data" "External User"{
+        studyAdmin = person "Study Coordinator" "Manages study meta data including forms and other collected data" "External User"{
             -> studyManagementInterface "Update study meta-data" "HTTPS"
         }
         formManager = person "Forms Manager" "Manages forms and form versions" "External User" {
