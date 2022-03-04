@@ -1,33 +1,20 @@
 # NACC System Landscape
 
 This document describes a model of the software systems supporting the National Alzheimer's Coordinating Center (NACC).
+
 ## Document Purpose
 
-
-## About NACC
-The National Alzheimer’s Coordinating Center (NACC) is home to one of the largest, oldest (20+ years), and most powerful Alzheimer’s datasets in the world and facilitates impactful research across 37 Alzheimer’s Disease Research Centers (ADRCs) throughout the US.
-NACC has been funded by the National Institute of Aging since 1999 and is based at the University of Washington.
-
-NACC facilitates collaborative research across NIA-funded ADRCs managing data sets and serving as a hub between ADRCs and specialized research consortia and centers.
-
-The primary data set is Uniform Data Set (UDS), consisting of longitudinal data for participants.
-Additional data sets are the Neuropathology Data Set (NP), and the Minimum Data Set which is a retrospective data for participants prior to the UDS.
-Several small affiliated studies either use ADRC data with other phenotyping data sets, or UDS survey questions for non-ADRC participants.
-These additional studies may include non-ADRC centers where data is collected.
-
-The NACC data sets are integrated with data from multiple collaborating centers including
-the Alzheimer's Disease Genetics Consortium (ADGC), 
-the NIA Genetics of AD Data Storage Site (NIAGADS), 
-the National Centralized Repository for AD and Related Dementias (NCRAD) and 
-the Standardized Centralized Alzheimer's and Related Dementias Neuroimaging (SCAN) project.
+The goal of this document is to help the reader understand what NACC is and the environment in which NACC operates.
+The models include a desired state of software systems, moving from the *ad hoc* or "one-off" solutions that have grown organically with NACC.
 
 ## Landscape model
 
-We focus on three primary internal functions that are accessed by the website:
+The following are the internal activities supported by software within NACC:
 
 1. Managing a directory of NACC users – determining who can use NACC systems and for what.
 2. Managing data for UDS and affiliated studies.
 3. Tracking research done with NACC managed data.
+4. Communication with external users and the public.
 
 Interfaces with external users and systems are shown in the following diagram.
 
@@ -60,7 +47,9 @@ The external systems that integrate with NACC systems include the following:
    LONI provides NACC with status data for uploads and results of SCAN computational results.
    Additionally, NACC centralized search capabilities would link to LONI records for SCAN images.
 5. ATRI – ATRI supports the LEADS study, and NACC pulls a participant list from ATRI to create a report for LEADS for UDS submissions.
-6. GAAIN - GAAIN is a meta-database and *NEED MORE DETAILS*
+6. GAAIN - [GAAIN](http://www.gaain.org/) is a meta-database of Alzheimer's Disease data to which UDS data is contributed.
+7. Rush – Rush university supports the DVCID study
 
 
+## Abstracting external interactions
 

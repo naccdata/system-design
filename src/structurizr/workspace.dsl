@@ -16,7 +16,7 @@ workspace {
                 imagePipeline = container "Image Pipeline" "Validates and transforms image headers" {
                     -> dataWarehouse
                 }
-                dataSubmissionAPI = container "Data Submission API" "API for submission of data" {
+                dataWarehouseAPI = container "Data Warehouse API" "API for data submission and access" {
                     fileSubmissionController = component "(Non-form/Non-image) File Submission Controller" "Accept general file submissions"
                     formSubmissionController = component "Form Submission Controller" "Accept form submissions" {
                         -> dataValidator "form data to be validated aginst study rules" "JSON/HTTPS"
@@ -25,6 +25,8 @@ workspace {
                     imageSubmissionController = component "Image Submission Controller" "Accept image submissions" {
                         -> imagePipeline
                     }
+                    identifiersController = component "Identifier Mapping Controller" "Provide/provision identifiers for participants"
+                    dataController = component "Data Access Controller" "Provide data requested for participants"
                 }
                 dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
                     -> dataWarehouse
@@ -51,7 +53,7 @@ workspace {
                     -> authorizationSystem
                 }
                 submissionInterface = container "Data Submission" "Single page interface for submission of all types of data" {
-                    -> dataSubmissionAPI
+                    -> dataWarehouseAPI
                 }
                 searchInterface = container "Data Search" "Single page interface for search across all types of data" {
                     -> dataIndexing
@@ -113,12 +115,21 @@ workspace {
             }
             loniSystem = softwareSystem "LONI" "LONI data system supporting SCAN project" "External System" {
                 -> fileSubmissionController "Computed SCAN image metadata" 
+                -> identifiersController "Request NACC ID for SCAN participant"
             }
             dataReporting -> loniSystem "Request SCAN image status" "JSON/HTTPS"
         }
 
-        atriSystem = softwareSystem "ATRI" "ATRI data system supporting LEADS project" "External System"
-        dataReporting -> atriSystem "Request LEADS participants" "JSON/HTTPS"
+        group "Study Centers" {
+            atriSystem = softwareSystem "ATRI" "ATRI data system supporting LEADS project" "External System"
+            dataReporting -> atriSystem "Request LEADS participants" "JSON/HTTPS"
+
+            rushSystem = softwareSystem "Rush/DVCID" "Rush data system supporting DVCID project" "External System" {
+                -> identifiersController "Request NACC ID for DVCID participant"
+                -> dataController "Request UDS data for DVCID participant"
+            }
+            
+        }
 
         gaainSystem = softwareSystem "GAAIN" "GAAIN data system" "External System"
         dataRepostorySystem -> gaainSystem "UDS data?"
