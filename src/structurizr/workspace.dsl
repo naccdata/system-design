@@ -10,8 +10,16 @@ workspace {
                 formDefinitionDatabase = container "Form Definitions" "Database of form definitions and quality rules"
                 studyDefinitionDatabase = container "Study Metadata" "Database of study meta-data"
                 dataValidator = container "Data Validator" "API for validation of forms data" {
-                    -> formDefinitionDatabase "Get form definitions" "JSON/HTTPS"
-                    -> studyDefinitionDatabase "Get completenes criteria" "JSON/HTTPS"
+                    formVariableIndex = component "Form Definition Index" "Index of form definitions in the validator" {
+                        -> formDefinitionDatabase "Get form definitions" "JSON/HTTPS"
+                    }
+                    studyDefinitionIndex = component "Index of Study Definitions" "Index of study metadata for validation" {
+                        -> studyDefinitionDatabase "Get completenes criteria" "JSON/HTTPS"
+                    }
+                    validateController = component "Validation Controller" "Accepts forms for validation" {
+                        -> formVariableIndex "look up constraints on variables"
+                        -> studyDefinitionIndex "look up completeness criteria"
+                    }
                 }
                 imagePipeline = container "Image Pipeline" "Validates and transforms image headers" {
                     -> dataWarehouse
@@ -177,6 +185,11 @@ workspace {
         }
 
         container dataRepostorySystem "RepositoryContainers" {
+            include *
+            autoLayout
+        }
+
+        component dataValidator "ValidatorComponent" {
             include *
             autoLayout
         }

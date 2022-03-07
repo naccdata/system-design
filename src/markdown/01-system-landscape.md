@@ -25,7 +25,8 @@ As this model shows, the website serves as the interface for external users of t
 1. ADRC Users - The NIA Alzheimer's Disease Research Centers provide UDS data to NACC. 
    There are two user roles that we describe in this model.
     1. ADRC Administrative user – an administrative user manages the ADRC relationship with NACC, determining which staff are users of NACC systems and in what role.
-    2. ADRC Data user – 
+    2. ADRC Clinical user - a clinical user interacts with participants and is responsible for capture of data ultimately stored at NACC.
+    3. ADRC Data user – a data user 
 2. Study Users – Study users are responsible for the metadata that defines a study and how it is managed within NACC.
     1. Study Administrative user – manages the study relationship with NACC, determines what data the study collects, and which centers can contribute data.
     2. Study Investigator - initiates the creation of a study within NACC by making an intake request. Provides initial definition of the study.
