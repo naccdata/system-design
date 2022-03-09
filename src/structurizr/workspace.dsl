@@ -1,24 +1,22 @@
 workspace {
     model {
-
-
         enterprise "NACC" {
             authorizationSystem = softwareSystem "Authorization Service" "Authentication and Authorization to Access Systems"
 
             dataRepostorySystem = softwareSystem "NACC Data Repository" "Allows acquisition, management and queries of data sets" {
-                dataWarehouse = container "Data Warehouse" "Subsystem for managing study data"
+                dataWarehouse = container "Data Warehouse" "Subsystem for managing project data"
                 formDefinitionDatabase = container "Form Definitions" "Database of form definitions and quality rules"
-                studyDefinitionDatabase = container "Study Metadata" "Database of study meta-data"
+                projectDefinitionDatabase = container "Project Metadata" "Database of project meta-data"
                 dataValidator = container "Data Validator" "API for validation of forms data" {
                     formVariableIndex = component "Form Definition Index" "Index of form definitions in the validator" {
                         -> formDefinitionDatabase "Get form definitions" "JSON/HTTPS"
                     }
-                    studyDefinitionIndex = component "Index of Study Definitions" "Index of study metadata for validation" {
-                        -> studyDefinitionDatabase "Get completenes criteria" "JSON/HTTPS"
+                    projectDefinitionIndex = component "Index of Project Definitions" "Index of project metadata for validation" {
+                        -> projectDefinitionDatabase "Get completenes criteria" "JSON/HTTPS"
                     }
                     validateController = component "Validation Controller" "Accepts forms for validation" {
                         -> formVariableIndex "look up constraints on variables"
-                        -> studyDefinitionIndex "look up completeness criteria"
+                        -> projectDefinitionIndex "look up completeness criteria"
                     }
                 }
                 imagePipeline = container "Image Pipeline" "Validates and transforms image headers" {
@@ -27,7 +25,7 @@ workspace {
                 dataWarehouseAPI = container "Data Warehouse API" "API for data submission and access" {
                     fileSubmissionController = component "(Non-form/Non-image) File Submission Controller" "Accept general file submissions"
                     formSubmissionController = component "Form Submission Controller" "Accept form submissions" {
-                        -> dataValidator "form data to be validated aginst study rules" "JSON/HTTPS"
+                        -> dataValidator "form data to be validated aginst project rules" "JSON/HTTPS"
                         -> dataWarehouse "validated data" "JSON/HTTPS"
                     }
                     imageSubmissionController = component "Image Submission Controller" "Accept image submissions" {
@@ -44,7 +42,7 @@ workspace {
                 }
             }
 
-            directorySystem = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated study staff with roles"
+            directorySystem = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated project staff with roles"
 
             communicationsSystem = softwareSystem "NACC Communications" "Subsystem to support external communications" {
                 -> directorySystem
@@ -73,14 +71,14 @@ workspace {
                 reportingInterface = container "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
                     -> dataReporting
                 }
-                studyManagementInterface = container "Study Management" "Single page interface for managing studies within repository" {
+                projectManagementInterface = container "Project Management" "Single page interface for managing projects within repository" {
                     -> directorySystem
-                    -> studyDefinitionDatabase
+                    -> projectDefinitionDatabase
                 }
                 formManagementInterface = container "Form Management" "Single page interface for managing form definitions and versions" {
                     -> formDefinitionDatabase
                 }
-                projectIntake = container "Project Intake" "Single page interface for requestin new projects/studies"
+                projectIntake = container "Project Intake" "Single page interface for requestin new projects"
                 publicationTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
                     -> publicationDatabase
                 }
@@ -122,11 +120,11 @@ workspace {
             -> reportingInterface
         }
 
-        studyInstigator = person "Study Instigator" "Initiates request for external study" "External User" {
-            -> projectIntake "Requests a new study or project" "REDCap"
+        projectInstigator = person "Project Instigator" "Initiates request for external project" "External User" {
+            -> projectIntake "Requests a new project" "REDCap"
         }
-        studyAdmin = person "Study Coordinator" "Manages study meta data including forms and other collected data" "External User"{
-            -> studyManagementInterface "Update study meta-data" "HTTPS"
+        projectAdmin = person "Project Coordinator" "Manages project meta data including forms and other collected data" "External User"{
+            -> projectManagementInterface "Update project meta-data" "HTTPS"
         }
         formManager = person "Forms Manager" "Manages forms and form versions" "External User" {
             -> formManagementInterface "Modify form definitions and versions" "HTTPS"
@@ -140,9 +138,23 @@ workspace {
             -> quickAccessInterface "Access to quick access data sets" "HTTPS"
         }
 
-        #externalDataCenterSystem = softwareSystem "<<stereotype>> Specialized Data Repository" "Represents linked repository of specialized data." "Existing System"
+        externalDataCenterSystem = softwareSystem "<<stereotype>> External Data Center" "Represents linked repository of specialized data." "External System" {
+            -> fileSubmissionController "Submit specialized data" "JSON/HTTPS"
+            -> identifiersController "Request NACC ID for ADRC participant" "JSON/HTTPS"
+            -> dataController "Request data for participant" "JSON/HTTPS"
+        }
+        dataReporting -> externalDataCenterSystem "Request data for reporting" "JSON/HTTPS"
+        dataRepostorySystem -> externalDataCenterSystem "Scheduled data transfer" "JSON/HTTPS"
+
         adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System" {
             -> formSubmissionController "Submit forms data" "JSON/HTTPS"
+            -> imageSubmissionController "Submit image data" "JSON/HTTPS"
+            -> fileSubmissionController "Submit file data" "JSON/HTTPS"
+        }
+        centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System" {
+            -> formSubmissionController "Submit forms data" "JSON/HTTPS"
+            -> imageSubmissionController "Submit image data" "JSON/HTTPS"
+            -> fileSubmissionController "Submit file data" "JSON/HTTPS"
         }
         group "Data Centers" {
             ncradSystem = softwareSystem "NCRAD" "Data systems of collaborating site" "External System" {
@@ -158,7 +170,7 @@ workspace {
             dataReporting -> loniSystem "Request SCAN image status" "JSON/HTTPS"
         }
 
-        group "Study Centers" {
+        group "Project Centers" {
             atriSystem = softwareSystem "ATRI" "ATRI data system supporting LEADS project" "External System"
             dataReporting -> atriSystem "Request LEADS participants" "JSON/HTTPS"
 
@@ -176,16 +188,43 @@ workspace {
     views {
         systemlandscape "SystemLandscape" {
             include *
+            exclude externalDataCenterSystem
+            autoLayout
+        }
+
+        systemlandscape "GeneralizedSystemLandscape" {
+            include *
+            exclude adrcDataSystem
+            exclude ncradSystem
+            exclude niagadsSystem
+            exclude loniSystem
+            exclude atriSystem
+            exclude rushSystem
+            exclude gaainSystem
             autoLayout
         }
 
         systemContext dataRepostorySystem "RepositoryContext" {
             include *
+            exclude adrcDataSystem
+            exclude ncradSystem
+            exclude niagadsSystem
+            exclude loniSystem
+            exclude atriSystem
+            exclude rushSystem
+            exclude gaainSystem
             autoLayout
         }
 
         container dataRepostorySystem "RepositoryContainers" {
             include *
+            exclude adrcDataSystem
+            exclude ncradSystem
+            exclude niagadsSystem
+            exclude loniSystem
+            exclude atriSystem
+            exclude rushSystem
+            exclude gaainSystem
             autoLayout
         }
 
