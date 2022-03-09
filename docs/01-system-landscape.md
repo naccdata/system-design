@@ -12,7 +12,7 @@ The models include a desired state of software systems, moving from the *ad hoc*
 The following are the internal activities supported by software within NACC:
 
 1. Managing a directory of NACC users – determining who can use NACC systems and for what.
-2. Managing data for UDS and affiliated studies.
+2. Managing data for UDS and affiliated projects.
 3. Tracking research done with NACC managed data.
 4. Communication with external users and the public.
 
@@ -27,9 +27,9 @@ As this model shows, the website serves as the interface for external users of t
     1. ADRC Administrative user – an administrative user manages the ADRC relationship with NACC, determining which staff are users of NACC systems and in what role.
     2. ADRC Clinical user - a clinical user interacts with participants and is responsible for capture of data ultimately stored at NACC.
     3. ADRC Data user – a data user 
-2. Study Users – Study users are responsible for the metadata that defines a study and how it is managed within NACC.
-    1. Study Administrative user – manages the study relationship with NACC, determines what data the study collects, and which centers can contribute data.
-    2. Study Investigator - initiates the creation of a study within NACC by making an intake request. Provides initial definition of the study.
+2. Project Users – Project users are responsible for the metadata that defines a project and how it is managed within NACC.
+    1. Project Administrative user – manages the project relationship with NACC, determines what data the project collects, and which centers can contribute data.
+    2. Project Investigator - initiates the creation of a project within NACC by making an intake request. Provides initial definition of the project.
 3. Forms manager - a user that is responsible for the definition and maintenance of a set of forms including questions and data validations.
 4. Researcher - a user who is using NACC managed data for research.
 5. Other external users include members of the public, staff from NIA, ADRCs, NACC, or legislatures who are interested in information, events or resources provided by NACC.
@@ -47,10 +47,12 @@ The external systems that integrate with NACC systems include the following:
 4. LONI – LONI supports the SCAN project by collecting MRI/PET images, which are then analyzed by SCAN computational teams.
    LONI provides NACC with status data for uploads and results of SCAN computational results.
    Additionally, NACC centralized search capabilities would link to LONI records for SCAN images.
-5. ATRI – ATRI supports the LEADS study, and NACC pulls a participant list from ATRI to create a report for LEADS for UDS submissions.
+5. ATRI – ATRI supports the LEADS project, and NACC pulls a participant list from ATRI to create a report for LEADS for UDS submissions.
 6. GAAIN - [GAAIN](http://www.gaain.org/) is a meta-database of Alzheimer's Disease data to which UDS data is contributed.
-7. Rush – Rush university supports the DVCID study
+7. Rush – Rush university supports the DVCID project
 
 
 ## Abstracting external interactions
 
+
+![Generalized-System-Landscape-Diagram](images/structurizr-GeneralizedSystemLandscape.svg)
