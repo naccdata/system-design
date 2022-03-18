@@ -1,12 +1,29 @@
 workspace {
     model {
-        enterprise "NACC" {
-            authorizationSystem = softwareSystem "Authorization Service" "Authentication and Authorization to Access Systems"
+        authorizationSystem = softwareSystem "Authorization Service" "Authentication and Authorization to Access Systems" "External System"
 
+        enterprise "NACC" {
+            directorySystem = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated project staff with roles" {
+                directoryManagementInterface = container "Directory Management" "Single page interface for managing directory entries" {
+                    -> authorizationSystem
+                }
+            }
+            formManagementSystem = softwareSystem "Form Management System" "Manages form definitions" {
+                formDefinitionDatabase = container "Form Definitions" "Database of form definitions and quality rules"
+                formManagementInterface = container "Form Management" "Single page interface for managing form definitions and versions" {
+                    -> formDefinitionDatabase
+                } 
+            }
+            projectManagementSystem = softwareSystem "Project Management System" "Manage project definitions" {
+                projectDefinitionDatabase = container "Project Metadata" "Database of project meta-data"
+                projectIntake = container "Project Intake" "Single page interface for requestin new projects"                
+                projectManagementInterface = container "Project Management" "Single page interface for managing projects within repository" {
+                    -> directorySystem
+                    -> projectDefinitionDatabase
+                }
+            }
             dataRepostorySystem = softwareSystem "NACC Data Repository" "Allows acquisition, management and queries of data sets" {
                 dataWarehouse = container "Data Warehouse" "Subsystem for managing project data"
-                formDefinitionDatabase = container "Form Definitions" "Database of form definitions and quality rules"
-                projectDefinitionDatabase = container "Project Metadata" "Database of project meta-data"
                 dataValidator = container "Data Validator" "API for validation of forms data" {
                     formVariableIndex = component "Form Definition Index" "Index of form definitions in the validator" {
                         -> formDefinitionDatabase "Get form definitions" "JSON/HTTPS"
@@ -34,15 +51,28 @@ workspace {
                     identifiersController = component "Identifier Mapping Controller" "Provide/provision identifiers for participants"
                     dataController = component "Data Access Controller" "Provide data requested for participants"
                 }
-                dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
-                    -> dataWarehouse
-                }
-                dataReporting = container "Reporting System" "Subsystem to generate reports about data" {
-                    -> dataWarehouse
+                submissionInterface = container "Data Submission" "Single page interface for submission of all types of data" {
+                    -> dataWarehouseAPI
                 }
             }
 
-            directorySystem = softwareSystem "NACC Directory" "Directory of NACC, ADRC, and affiliated project staff with roles"
+            searchSystem =  softwareSystem "Search System" "Supports search across NACC and data from other sites" {
+                dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
+                    -> dataWarehouse
+                }
+                searchInterface = container "Data Search" "Single page interface for search across all types of data" {
+                    -> dataIndexing
+                }
+            }
+
+            reportingSystem = softwareSystem "Reporting System" "Supports generation and presentation of reports" {
+                dataReporting = container "Reporting System" "Subsystem to generate reports about data" {
+                    -> dataWarehouse
+                }
+                reportingInterface = container "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
+                    -> dataReporting
+                }
+            }
 
             communicationsSystem = softwareSystem "NACC Communications" "Subsystem to support external communications" {
                 -> directorySystem
@@ -50,7 +80,23 @@ workspace {
 
             researchTrackingSystem = softwareSystem "Research Tracking" "Directory of research activity using NACC managed data" {
                 requestDatabase = container "Data Request Database" "Stores history of data requests"
+                dataRequestInterface = container "Data Request Interface" "Interface to make and view custom data requests" {
+                    -> requestDatabase "Update/get request history"
+                }    
+                quickAccessInterface = container "Quick Access Interface" "Provides access to quick access data sets" {
+                    -> requestDatabase "Update request history"
+                }            
                 publicationDatabase = container "Publication Database" "Stores publication history"
+                publicationTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
+                    -> publicationDatabase
+                }
+                duaInterface = container "DUA Approval Interface" "Sign DUA" {
+                    -> authorizationSystem 
+                }
+            }
+
+            trainingSystem = softwareSystem "Training System" "Learning management system providing training materials" {
+                trainingInterface = container "Training Interface" "Provide access to training about forms and NACC systems"
             }
 
             website = softwareSystem "Website" "NACC website serving as entry to NACC information and data resources" {
@@ -58,43 +104,25 @@ workspace {
                     -> authorizationSystem
                 }
                 calculatorInterface = container "Calculators" "User access to calculators used in form completion"
-                directoryManagementInterface = container "Directory Management" "Single page interface for managing directory entries" {
-                    -> directorySystem
-                    -> authorizationSystem
-                }
-                submissionInterface = container "Data Submission" "Single page interface for submission of all types of data" {
-                    -> dataWarehouseAPI
-                }
-                searchInterface = container "Data Search" "Single page interface for search across all types of data" {
-                    -> dataIndexing
-                }
-                reportingInterface = container "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
-                    -> dataReporting
-                }
-                projectManagementInterface = container "Project Management" "Single page interface for managing projects within repository" {
-                    -> directorySystem
-                    -> projectDefinitionDatabase
-                }
-                formManagementInterface = container "Form Management" "Single page interface for managing form definitions and versions" {
-                    -> formDefinitionDatabase
-                }
-                projectIntake = container "Project Intake" "Single page interface for requestin new projects"
-                publicationTrackingInterface = container "Tracking Interface" "Interface for submitting publications using NACC managed data" {
-                    -> publicationDatabase
-                }
-                duaInterface = container "DUA Approval Interface" "Sign DUA" {
-                    -> authorizationSystem 
-                }
-                dataRequestInterface = container "Data Request Interface" "Interface to make and view custom data requests" {
-                    -> requestDatabase "Update/get request history"
-                }
-                quickAccessInterface = container "Quick Access Interface" "Provides access to quick access data sets" {
-                    -> requestDatabase "Update request history"
-                }
-                trainingInterface = container "Training Interface" "Provide access to training about forms and NACC systems"
                 documentationInterface = container "Documentation Interface" "Provide access to form and center documentation"
+                landingPage = container "Landing Page" "Landing page for website with routing to subsystems" {
+                    -> accessRequestInterface
+                    -> authorizationSystem
+                    -> calculatorInterface
+                    -> documentationInterface
+                    -> trainingInterface
+                    -> dataRequestInterface
+                    -> quickAccessInterface
+                    -> publicationTrackingInterface
+                    -> duaInterface
+                    -> reportingInterface
+                    -> searchInterface
+                    -> submissionInterface
+                    -> projectManagementInterface
+                    -> formManagementInterface
+                    -> directoryManagementInterface
+                }
             }
-            
         }
 
         externalUser = person "External User" "ADRC, NIA, or other external user" "External User"{
