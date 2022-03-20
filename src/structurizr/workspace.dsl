@@ -8,21 +8,22 @@ workspace {
                     -> authorizationSystem
                 }
             }
-            formManagementSystem = softwareSystem "Form Management System" "Manages form definitions" {
-                formDefinitionDatabase = container "Form Definitions" "Database of form definitions and quality rules"
-                formManagementInterface = container "Form Management" "Single page interface for managing form definitions and versions" {
-                    -> formDefinitionDatabase
-                } 
-            }
-            projectManagementSystem = softwareSystem "Project Management System" "Manage project definitions" {
-                projectDefinitionDatabase = container "Project Metadata" "Database of project meta-data"
-                projectIntake = container "Project Intake" "Single page interface for requestin new projects"                
-                projectManagementInterface = container "Project Management" "Single page interface for managing projects within repository" {
-                    -> directorySystem
-                    -> projectDefinitionDatabase
-                }
-            }
+
             dataRepostorySystem = softwareSystem "NACC Data Repository" "Allows acquisition, management and queries of data sets" {
+                formManagementSystem = container "Form Management System" "Manages form definitions" {
+                    formDefinitionDatabase = component "Form Definitions" "Database of form definitions and quality rules"
+                    formManagementInterface = component "Form Management" "Single page interface for managing form definitions and versions" {
+                        -> formDefinitionDatabase
+                    } 
+                }
+                projectManagementSystem = container "Project Management System" "Manage project definitions" {
+                    projectDefinitionDatabase = component "Project Metadata" "Database of project meta-data"
+                    projectIntake = component "Project Intake" "Single page interface for requestin new projects"                
+                    projectManagementInterface = component "Project Management" "Single page interface for managing projects within repository" {
+                        -> directorySystem
+                        -> projectDefinitionDatabase
+                    }
+                }
                 dataWarehouse = container "Data Warehouse" "Subsystem for managing project data"
                 dataValidator = container "Data Validator" "API for validation of forms data" {
                     formVariableIndex = component "Form Definition Index" "Index of form definitions in the validator" {
@@ -54,23 +55,23 @@ workspace {
                 submissionInterface = container "Data Submission" "Single page interface for submission of all types of data" {
                     -> dataWarehouseAPI
                 }
-            }
 
-            searchSystem =  softwareSystem "Search System" "Supports search across NACC and data from other sites" {
-                dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
-                    -> dataWarehouse
+                searchSystem =  container "Search System" "Supports search across NACC and data from other sites" {
+                    dataIndexing = component "Data Index" "Subsystem to support search across all data resources" "ElasticSearch" {
+                        -> dataWarehouse
+                    }
+                    searchInterface = component "Data Search" "Single page interface for search across all types of data" {
+                        -> dataIndexing
+                    }
                 }
-                searchInterface = container "Data Search" "Single page interface for search across all types of data" {
-                    -> dataIndexing
-                }
-            }
 
-            reportingSystem = softwareSystem "Reporting System" "Supports generation and presentation of reports" {
-                dataReporting = container "Reporting System" "Subsystem to generate reports about data" {
-                    -> dataWarehouse
-                }
-                reportingInterface = container "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
-                    -> dataReporting
+                reportingSystem = container "Reporting System" "Supports generation and presentation of reports" {
+                    dataReporting = component "Reporting System" "Subsystem to generate reports about data" {
+                        -> dataWarehouse
+                    }
+                    reportingInterface = component "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
+                        -> dataReporting
+                    }
                 }
             }
 
@@ -129,15 +130,25 @@ workspace {
             -> website "Accesses website for information about NACC, data, and events"
         }
 
+        researchCenterUser = person "Research Center User" "User at ADRC or other research center" "External User" {
+            -> calculatorInterface
+            -> directoryManagementInterface
+            -> documentationInterface
+            -> reportingInterface
+            -> submissionInterface
+            -> trainingInterface
+        }
         adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User" {
             -> submissionInterface "Uploads data and corrects errors" "HTTPS"
             -> calculatorInterface
             -> documentationInterface
             -> reportingInterface
+            -> trainingInterface
         }
         adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
             -> directoryManagementInterface "Adds/Removes members of ADRC" "HTTPS"
             -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+            -> trainingInterface
         }
         adrcClinicalUser = person "ADRC Clinical User" "ADRC user responsible for data collection" "External User" {
             -> trainingInterface "Learn about using forms"
@@ -146,15 +157,20 @@ workspace {
         }
         adrcLeader = person "ADRC Leader" "ADRC leadership member" "External User" {
             -> reportingInterface
+            -> trainingInterface
         }
 
-        projectInstigator = person "Project Instigator" "Initiates request for external project" "External User" {
+        projectUser = person "Project User" "Member of project" "External User" {
+            -> projectIntake
+            -> projectManagementInterface
+        }
+        projectInstigatorUser = person "Project Instigator" "Initiates request for external project" "External User" {
             -> projectIntake "Requests a new project" "REDCap"
         }
-        projectAdmin = person "Project Coordinator" "Manages project meta data including forms and other collected data" "External User"{
+        projectAdminUser = person "Project Coordinator" "Manages project meta data including forms and other collected data" "External User"{
             -> projectManagementInterface "Update project meta-data" "HTTPS"
         }
-        formManager = person "Forms Manager" "Manages forms and form versions" "External User" {
+        formManagerUser = person "Forms Manager" "Manages forms and form versions" "External User" {
             -> formManagementInterface "Modify form definitions and versions" "HTTPS"
         }
 
@@ -217,6 +233,8 @@ workspace {
         systemlandscape "SystemLandscape" {
             include *
             exclude externalDataCenterSystem
+            exclude researchCenterUser
+            exclude projectUser
             autoLayout
         }
 
@@ -229,6 +247,12 @@ workspace {
             exclude atriSystem
             exclude rushSystem
             exclude gaainSystem
+            exclude adrcClinicalUser
+            exclude adrcDataUser
+            exclude adrcLeader
+            exclude adrcOpsUser
+            exclude projectAdminUser
+            exclude projectInstigatorUser
             autoLayout
         }
 
