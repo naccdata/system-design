@@ -116,7 +116,7 @@ workspace {
                     -> quickAccessInterface
                     -> publicationTrackingInterface
                     -> duaInterface
-                    -> reportingInterface
+                    -> reportingInterface 
                     -> searchInterface
                     -> submissionInterface
                     -> projectManagementInterface
@@ -131,38 +131,39 @@ workspace {
         }
 
         researchCenterUser = person "Research Center User" "User at ADRC or other research center" "External User" {
-            -> calculatorInterface
-            -> directoryManagementInterface
-            -> documentationInterface
-            -> reportingInterface
-            -> submissionInterface
-            -> trainingInterface
+            -> calculatorInterface "Use calculators for completing forms" "HTTPS"
+            -> directoryManagementInterface  "Adds/Removes Members Of Adrc" "HTTPS"
+            -> documentationInterface "Get information about NACC resources" "HTTPS"
+            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+            -> submissionInterface "Uploads data and corrects errors" "HTTPS"
+            -> trainingInterface "Learn about using NACC resources" "HTTPS"
         }
         adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User" {
             -> submissionInterface "Uploads data and corrects errors" "HTTPS"
-            -> calculatorInterface
-            -> documentationInterface
-            -> reportingInterface
-            -> trainingInterface
+            -> calculatorInterface  "Use calculators for completing forms" "HTTPS"
+            -> documentationInterface "Get information about NACC resources" "HTTPS"
+            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+            -> trainingInterface "Learn about usng NACC resources" "HTTPS"
         }
         adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
-            -> directoryManagementInterface "Adds/Removes members of ADRC" "HTTPS"
+            -> directoryManagementInterface "Adds/Removes Members Of Adrc" "HTTPS"
             -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-            -> trainingInterface
+            -> trainingInterface "Learn about usng NACC resources" "HTTPS"
         }
         adrcClinicalUser = person "ADRC Clinical User" "ADRC user responsible for data collection" "External User" {
-            -> trainingInterface "Learn about using forms"
-            -> calculatorInterface
-            -> documentationInterface
+            -> trainingInterface "Learn about using forms" "HTTPS"
+            -> calculatorInterface "Use calculators for completing forms" "HTTPS"
+            -> documentationInterface "Get information about use of forms"  "HTTPS"
         }
         adrcLeader = person "ADRC Leader" "ADRC leadership member" "External User" {
-            -> reportingInterface
-            -> trainingInterface
+            -> documentationInterface "Get information about ADRC use of NACC" "HTTPS"
+            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+            -> trainingInterface "Learn about using NACC resources" "HTTPS"
         }
 
         projectUser = person "Project User" "Member of project" "External User" {
-            -> projectIntake
-            -> projectManagementInterface
+            -> projectIntake "Request new project" "REDCAP"
+            -> projectManagementInterface "Update project meta-data" "HTTPS"
         }
         projectInstigatorUser = person "Project Instigator" "Initiates request for external project" "External User" {
             -> projectIntake "Requests a new project" "REDCap"
