@@ -21,7 +21,7 @@ Interfaces with external users and systems are shown in the following diagram.
 
 ![Generalized-System-Landscape-Diagram](images/structurizr-GeneralizedSystemLandscape.svg)
 
-As this model shows, the website serves as the interface for external users of the system, which include the following
+As this model shows, the system provides interfaces for external users of the system, which include the following
 
 1. Research center users - Research centers provide data to NACC. 
    Specifically, the NIA Alzheimer's Disease Research Centers (ADRCs) provide UDS data to NACC. 
@@ -38,7 +38,7 @@ As this model shows, the website serves as the interface for external users of t
 4. Researcher - a user who is using NACC managed data for research.
 5. Other external users include members of the public, staff from NIA, ADRCs, NACC, or legislatures who are interested in information, events or resources provided by NACC.
 
-The external systems that integrate with NACC systems include the following:
+There are also several external systems that integrate with NACC systems that include the following:
 
 1. ADRC Data System – some ADRC manage their own data management systems that they would like to have interact directly with NACC APIs. 
    These systems typically involve some form of Electronic Data Capture that populates a database. 
