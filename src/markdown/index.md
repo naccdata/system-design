@@ -49,7 +49,7 @@ the Standardized Centralized Alzheimer's and Related Dementias Neuroimaging (SCA
 ## Document Access
 
 These documents are managed on the UW Enterprise GitHub in the [naccdata](https://github.com/naccdata) organization.
-They are deployed to the web using GitHub Pages and are only accessible to members of the naccdata organization.
+They are deployed to the web using GitHub Pages and are only accessible to members of the naccdata organization or users explicitly given access.
 
 ## Document Maintenance
 
