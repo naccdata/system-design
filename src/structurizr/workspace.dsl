@@ -266,6 +266,12 @@ workspace {
             exclude atriSystem
             exclude rushSystem
             exclude gaainSystem
+            exclude adrcClinicalUser
+            exclude adrcDataUser
+            exclude adrcLeader
+            exclude adrcOpsUser
+            exclude projectAdminUser
+            exclude projectInstigatorUser
             autoLayout
         }
 
@@ -278,6 +284,12 @@ workspace {
             exclude atriSystem
             exclude rushSystem
             exclude gaainSystem
+            exclude adrcClinicalUser
+            exclude adrcDataUser
+            exclude adrcLeader
+            exclude adrcOpsUser
+            exclude projectAdminUser
+            exclude projectInstigatorUser
             autoLayout
         }
 
