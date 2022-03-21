@@ -21,7 +21,7 @@ the Standardized Centralized Alzheimer's and Related Dementias Neuroimaging (SCA
 
 ## Documents
 
-1. [NACC System](01-system-landscape.md) – 
+1. [NACC System Landscape](01-system-landscape.md) – 
    describes the NACC software system and the landscape in which it exists.
    It is meant for a general audience.
 
