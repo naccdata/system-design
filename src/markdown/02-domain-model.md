@@ -3,6 +3,7 @@
 The repository captures data for for a study the goal of which is to capture (longitudinal) standardized observations for the enrolled participants.
 A study consists of centers that enroll and observe participants, and a design which determines the observations that will be made.
 
+<div class="center">
 ```mermaid
 classDiagram
     class Center {
@@ -17,9 +18,11 @@ classDiagram
     Study --> "1..n" Design
     Study --> "0..n" Observation : dataset
 ```
+</div>
 
 Observations are captured at a study center where the participant is enrolled within the study.
 
+<div class="center">
 ```mermaid
 classDiagram
     class Center
@@ -32,11 +35,13 @@ classDiagram
     Visit --> "1" Center
     Visit *-- "1..n" Observation
 ```
+</div>
 
 *note: need to represent participant enrollment at a center being time dependent*
 
 As determined by the study design, observations may be form responses, images, other forms of digital data, or biospecimens captured during the visit.
 
+<div class="center">
 ```mermaid
 classDiagram
     Observation <|-- FormResponses
@@ -44,16 +49,19 @@ classDiagram
     Observation <|-- Biospecimen
     Observation <|-- Digital Data
 ```
+</div>
 
 All but biospecimens can be storied as files or other structured data.
 In the context of NACC, a biospecimen may be represented as a reference to a sample at a tissue repository (e.g., NCRAD).
 
 The data set for a study includes any files capturing observations, and *variables*, each of which is a value extracted or derived from an observation.
 
+<div class="center">
 ```mermaid
 classDiagram
     Variable --> "1" Observation : derived_from
 ```
+</div>
 
 Examples include
 
@@ -64,6 +72,7 @@ Examples include
 
 Observations must meet the study design
 
+<div class="center">
 ```mermaid
 classDiagram
     class FormSet {
@@ -77,3 +86,4 @@ classDiagram
 
     FormResponses --> "1" Form
 ```
+</div>
