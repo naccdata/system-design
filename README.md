@@ -20,12 +20,13 @@ This directory is organized in a Gradle-like fashion determined by the type of f
 ```bash
 src
 ├── markdown
-│   ├── 01-nacc-system.md
+│   ├── 01-system-landscape.md
 │   ├── 02-domain-model.md
 │   ├── 03-data-repository.md
 │   ├── 04-directory.md
 │   ├── 05-research-tracking.md
 │   ├── 06-communications.md
+│   ├── 07-website.md
 │   ├── 14-decision-log.md
 │   └── index.md
 └── structurizr
@@ -68,31 +69,35 @@ This will look something like this
 
 ```bash
 docs
-├── 01-nacc-system.md
-├── 02-data-repository-1.svg
-├── 02-data-repository-2.svg
-├── 02-data-repository-3.svg
-├── 02-data-repository-4.svg
-├── 02-data-repository-5.svg
-├── 02-data-repository.md
+├── 01-system-landscape.md
 ├── 02-domain-model-1.svg
 ├── 02-domain-model-2.svg
 ├── 02-domain-model-3.svg
 ├── 02-domain-model-4.svg
 ├── 02-domain-model-5.svg
 ├── 02-domain-model.md
+├── 03-data-repository-1.svg
 ├── 03-data-repository.md
-├── 03-directory.md
 ├── 04-directory.md
 ├── 05-research-tracking.md
 ├── 06-communications.md
+├── 07-website.md
 ├── 14-decision-log.md
 ├── images
 │   ├── structurizr-AdministrationContainers.svg
 │   ├── structurizr-CommunicationsContainers.svg
+│   ├── structurizr-CommunicationsContext.svg
+│   ├── structurizr-DirectoryContainers.svg
+│   ├── structurizr-DirectoryContext.svg
+│   ├── structurizr-GeneralizedSystemLandscape.svg
 │   ├── structurizr-RepositoryContainers.svg
 │   ├── structurizr-RepositoryContext.svg
-│   └── structurizr-SystemLandscape.svg
+│   ├── structurizr-ResearchTrackingContainers.svg
+│   ├── structurizr-ResearchTrackingContext.svg
+│   ├── structurizr-SystemLandscape.svg
+│   ├── structurizr-ValidatorComponent.svg
+│   ├── structurizr-WebsiteContainers.svg
+│   └── structurizr-WebsiteContext.svg
 └── index.md
 ```
 
