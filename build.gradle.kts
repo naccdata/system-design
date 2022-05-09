@@ -114,3 +114,10 @@ tasks.register<Delete>("cleanWorkspace"){
 tasks.register<Delete>("cleanDocs"){
     delete(layout.buildDirectory.dir("markdown"))
 }
+
+tasks.register("clean") {
+    dependsOn("cleanStructurizr")
+    dependsOn("cleanImages")
+    dependsOn("cleanWorkspace")
+    dependsOn("cleanDocs")
+}
