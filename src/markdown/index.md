@@ -30,16 +30,16 @@ the Standardized Centralized Alzheimer's and Related Dementias Neuroimaging (SCA
    This document uses UML class diagram notation, but should be accessible to most readers.
 
 3. Subsystems - the initial sections of these documents are meant to be accessible to a general audience, but most of the content is meant for a technical audience.
-   1. [NACC Data Repository](03-data-repository.md) -
-      describes a model of the data repository subsystem.
+   1. [Data Submission](03-submission.md) -
+      describes data submission system.
 
-   2. [NACC Directory](04-directory.md) –
-       describes a model of the system for tracking NACC-affiliated organizations and memberships needed in NACC operations and communication.
+   2. [Data Warehouse](04-warehouse.md) –
+       describes the system for managing data.
 
-   3. [Research Tracking](05-research-tracking.md) -
+   3. [Data Transfer](05-transfer.md) -
       describes the subsystem for tracking research using NACC-managed data.
 
-   4. [Communications](06-communications.md) –
+   4. [Reporting](06-reporting.md) –
       describes the subsystem for NACC communications
 
    5. [Website](07-website.md)
