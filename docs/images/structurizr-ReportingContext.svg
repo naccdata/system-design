@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="663px" preserveAspectRatio="none" style="width:580px;height:663px;background:#FFFFFF;" version="1.1" viewBox="0 0 580 663" width="580px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="320" x="123.75" y="16.708">Reporting System - System Context</text><!--MD5=[9ac697bb4a0bca6a91b74ed1b7cf89c6]
+cluster NACC--><polygon fill="#FFFFFF" points="319.5,291.9531,369.5,291.9531,376.5,314.25,563.5,314.25,563.5,656.4531,319.5,656.4531,319.5,291.9531" style="stroke:#444444;stroke-width:1.5;"/><line style="stroke:#444444;stroke-width:1.5;" x1="319.5" x2="376.5" y1="314.25" y2="314.25"/><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="44" x="323.5" y="306.9482">NACC</text><!--MD5=[2083a564367558674a493bc10de5982a]
+entity DataWarehouse--><rect fill="#1168BD" height="99.1563" style="stroke:#0B4884;stroke-width:1.5;" width="213" x="335" y="541.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="148" x="367.5" y="566.3047">Data Warehouse</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="394.5" y="579.3604">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="443.5" y="594.7139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="189" x="345" y="611.0107">Supports management and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="373" y="627.3076">queries of data sets</text><!--MD5=[acea27ffa16147f959b07a3a72c311e3]
+entity ReportingSystem--><rect fill="#1168BD" height="99.1563" style="stroke:#0B4884;stroke-width:1.5;" width="196" x="347.5" y="326.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="159" x="366" y="351.8047">Reporting System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="398.5" y="364.8604">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="447.5" y="380.2139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="357.5" y="396.5107">Supports generation and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="159" x="366" y="412.8076">presentation of reports</text><!--MD5=[302919d6978d29895b5ec0df99280ac3]
+entity stereotypeExternalDataCenter--><rect fill="#08427B" height="117.7813" style="stroke:#052E56;stroke-width:1.5;" width="219" x="7" y="317.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="197" x="18" y="342.3047">«stereotype» External</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="62.5" y="360.9297">Data Center</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="69.5" y="373.9854">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="118.5" y="389.3389"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="199" x="17" y="405.6357">Represents linked repository</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="132" x="50.5" y="421.9326">of specialized data.</text><!--MD5=[9187420b3ee29e13a21850ad86899c09]
+entity ResearchCenterUser--><ellipse cx="445.5" cy="57.7573" fill="#08427B" rx="30.8041" ry="30.8041" style="stroke:#052E56;stroke-width:1.5;"/><rect fill="#08427B" height="99.1563" rx="30.8041" ry="30.8041" style="stroke:#052E56;stroke-width:1.5;" width="217" x="337" y="88.5614"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="197" x="347" y="113.413">Research Center User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="424.5" y="126.4686">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="447.5" y="141.8222"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="367.5" y="158.119">User at ADRC or other</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="390.5" y="174.4159">research center</text><!--MD5=[0722379c98839007259a223b79dd3b2a]
+link stereotypeExternalDataCenter to DataWarehouse--><path d="M205.31,435.5231 C254.57,467.7231 315.28,507.4231 362.82,538.5131 " fill="none" id="stereotypeExternalDataCenter-to-DataWarehouse" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="367.09,541.3031,361.7349,533.0374,362.9014,538.5727,357.3661,539.7392,367.09,541.3031" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="88" x="318.5" y="475.7354">Request NACC ID</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="47" x="339" y="487.376">for ADRC</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="51" x="338.5" y="499.0166">participant</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="337" y="508.8008">[JSON/HTTPS]</text><!--MD5=[913181c712de9af2760a270197d7db6d]
+link ReportingSystem to stereotypeExternalDataCenter--><path d="M347.49,376.4531 C310.92,376.4531 269.07,376.4531 231.14,376.4531 " fill="none" id="ReportingSystem-to-stereotypeExternalDataCenter" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="226.05,376.4531,235.05,380.4531,231.05,376.4531,235.05,372.4531,226.05,376.4531" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="82" x="244.25" y="348.7354">Request data for</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="44" x="264.75" y="360.376">reporting</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="259.75" y="370.1602">[JSON/HTTPS]</text><!--MD5=[87839f79996390cd6148e58185926030]
+link ReportingSystem to DataWarehouse--><path d="M444.58,426.2031 C443.96,459.0031 443.15,502.2631 442.51,536.0831 " fill="none" id="ReportingSystem-to-DataWarehouse" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="442.41,541.4331,446.5892,532.5149,442.51,536.4341,438.5908,532.3549,442.41,541.4331" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="0" x="447.5" y="492.2354"/><!--MD5=[83e27f07bf42ce4f6a839bebb5d3bd36]
+link ResearchCenterUser to ReportingSystem--><path d="M445.5,188.2031 C445.5,231.2931 445.5,283.3431 445.5,321.6231 " fill="none" id="ResearchCenterUser-to-ReportingSystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="445.5,326.6931,449.5,317.6931,445.5,321.6931,441.5,317.6931,445.5,326.6931" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="86" x="447" y="228.2354">Views ADRC data</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="87" x="446.5" y="239.876">and reports about</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="79" x="450.5" y="251.5166">submissions and</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="29" x="477" y="263.1572">errors</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="32" x="475.5" y="272.9414">[HTTPS]</text><!--MD5=[635e6f1930e2d7771a66d13edc7de744]
+@startuml
+title Reporting System - System Context
+
+top to bottom direction
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<stereotypeExternalDataCenter>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<DataWarehouse>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam rectangle<<ReportingSystem>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam person<<ResearchCenterUser>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+
+package "NACC" <<enterprise>> {
+  skinparam PackageBorderColor<<enterprise>> #444444
+  skinparam PackageFontColor<<enterprise>> #444444
+
+  rectangle "==Data Warehouse\n<size:10>[Software System]</size>\n\nSupports management and queries of data sets" <<DataWarehouse>> as DataWarehouse
+  rectangle "==Reporting System\n<size:10>[Software System]</size>\n\nSupports generation and presentation of reports" <<ReportingSystem>> as ReportingSystem
+}
+
+rectangle "==<<stereotype>> External Data Center\n<size:10>[Software System]</size>\n\nRepresents linked repository of specialized data." <<stereotypeExternalDataCenter>> as stereotypeExternalDataCenter
+person "==Research Center User\n<size:10>[Person]</size>\n\nUser at ADRC or other research center" <<ResearchCenterUser>> as ResearchCenterUser
+
+stereotypeExternalDataCenter .[#707070,thickness=2].> DataWarehouse : "<color:#707070>Request NACC ID for ADRC participant\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+ReportingSystem .[#707070,thickness=2].> stereotypeExternalDataCenter : "<color:#707070>Request data for reporting\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+ReportingSystem .[#707070,thickness=2].> DataWarehouse : "<color:#707070>"
+ResearchCenterUser .[#707070,thickness=2].> ReportingSystem : "<color:#707070>Views ADRC data and reports about submissions and errors\n<color:#707070><size:8>[HTTPS]</size>"
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 13:43:48 UTC 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

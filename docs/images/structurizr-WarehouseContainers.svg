@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="673px" preserveAspectRatio="none" style="width:1223px;height:673px;background:#FFFFFF;" version="1.1" viewBox="0 0 1223 673" width="1223px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="261" x="474.5" y="16.708">Data Warehouse - Containers</text><!--MD5=[e78a8146ebd67c7ee71ee840a747a9a6]
+cluster Data Warehouse\n[Software System]--><polygon fill="#FFFFFF" points="66,276.9531,219,276.9531,226,315.5469,745,315.5469,745,666.9531,66,666.9531,66,276.9531" style="stroke:#444444;stroke-width:1.5;"/><line style="stroke:#444444;stroke-width:1.5;" x1="66" x2="226" y1="315.5469" y2="315.5469"/><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="130" x="78.5" y="291.9482">Data Warehouse</text><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="70" y="308.2451">[Software System]</text><!--MD5=[5288c5f87c93f7dc670b0373cc1d4fa2]
+entity DataWarehouse.DataSearch--><rect fill="#438DD5" height="115.4531" style="stroke:#2E6295;stroke-width:1.5;" width="198" x="531" y="337.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="576" y="362.3047">Data Search</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="602" y="375.3604">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="632" y="390.7139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167" x="544.5" y="407.0107">Single page interface for</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="541" y="423.3076">search across all types of</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30" x="615" y="439.6045">data</text><!--MD5=[0e98a6bf8e17418b0b4253fbada468cb]
+entity DataWarehouse.DataIndex--><rect fill="#438DD5" height="115.4531" style="stroke:#2E6295;stroke-width:1.5;" width="177" x="318.5" y="337.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="96" x="359" y="362.3047">Data Index</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="127" x="343.5" y="375.3604">[Container: ElasticSearch]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="409" y="390.7139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="328.5" y="407.0107">Subsystem to support</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="149" x="330.5" y="423.3076">search across all data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="372" y="439.6045">resources</text><!--MD5=[07bcfae0da7aadc5c25d5802f3fe6c77]
+entity DataWarehouse.DataWarehouseAPI--><rect fill="#438DD5" height="82.8594" style="stroke:#2E6295;stroke-width:1.5;" width="204" x="525" y="567.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="184" x="535" y="592.8047">Data Warehouse API</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="599" y="605.8604">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="629" y="621.2139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="562" y="637.5107">API for data access</text><!--MD5=[ef3a04b9c7981697c0692be99d2e4897]
+entity DataWarehouse.MetadataManagement--><rect fill="#438DD5" height="134.0781" style="stroke:#2E6295;stroke-width:1.5;" width="201" x="82.5" y="327.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="84" x="138" y="352.8047">Metadata</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="115" x="125.5" y="371.4297">Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="155" y="384.4854">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="185" y="399.8389"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="176" x="93" y="416.1357">Supports management of</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="92.5" y="432.4326">metadata for projects and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="136.5" y="448.7295">organizations</text><!--MD5=[68fb8805b4d54261470b7767a23af820]
+entity ProjectUser--><ellipse cx="80" cy="64.5507" fill="#08427B" rx="23.0976" ry="23.0976" style="stroke:#052E56;stroke-width:1.5;"/><rect fill="#08427B" height="82.8594" rx="23.0976" ry="23.0976" style="stroke:#052E56;stroke-width:1.5;" width="146" x="7" y="87.6483"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="111" x="24.5" y="112.4999">Project User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="59" y="125.5555">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="82" y="140.909"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="17" y="157.2059">Member of project</text><!--MD5=[e7f18db29a1118aa10e0c5e87f5a8c57]
+entity FormsManager--><ellipse cx="286" cy="56.1541" fill="#08427B" rx="29.2009" ry="29.2009" style="stroke:#052E56;stroke-width:1.5;"/><rect fill="#08427B" height="99.1563" rx="29.2009" ry="29.2009" style="stroke:#052E56;stroke-width:1.5;" width="195" x="188.5" y="85.355"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="138" x="217" y="110.2065">Forms Manager</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="265" y="123.2622">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="288" y="138.6157"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="171" x="198.5" y="154.9126">Manages forms and form</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="257" y="171.2095">versions</text><!--MD5=[0bb5d6a16b57d0fd2f7da177193b14c4]
+entity ResearchUser--><ellipse cx="630" cy="56.3955" fill="#08427B" rx="28.4423" ry="28.4423" style="stroke:#052E56;stroke-width:1.5;"/><rect fill="#08427B" height="99.1563" rx="28.4423" ry="28.4423" style="stroke:#052E56;stroke-width:1.5;" width="185" x="537.5" y="84.8378"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="130" x="565" y="109.6894">Research User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="609" y="122.745">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="632" y="138.0985"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="161" x="547.5" y="154.3954">Research user of NACC</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="580.5" y="170.6923">managed data</text><!--MD5=[302919d6978d29895b5ec0df99280ac3]
+entity stereotypeExternalDataCenter--><rect fill="#08427B" height="117.7813" style="stroke:#052E56;stroke-width:1.5;" width="219" x="839.5" y="335.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="197" x="850.5" y="360.8047">«stereotype» External</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="108" x="895" y="379.4297">Data Center</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="902" y="392.4854">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="951" y="407.8389"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="199" x="849.5" y="424.1357">Represents linked repository</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="132" x="883" y="440.4326">of specialized data.</text><!--MD5=[44eb414e0cca8c7e45ef427a4345dd53]
+entity TransferSystem--><rect fill="#1168BD" height="115.4531" style="stroke:#0B4884;stroke-width:1.5;" width="197" x="768.5" y="48.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="148" x="793" y="73.3047">Transfer System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="820" y="86.3604">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="869" y="101.7139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="173" x="778.5" y="118.0107">Supports pushing/pulling</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="140" x="795" y="134.3076">data to collaborating</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="810" y="150.6045">centers/projects</text><!--MD5=[acea27ffa16147f959b07a3a72c311e3]
+entity ReportingSystem--><rect fill="#1168BD" height="99.1563" style="stroke:#0B4884;stroke-width:1.5;" width="196" x="1021" y="56.4531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="159" x="1039.5" y="81.3047">Reporting System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="1072" y="94.3604">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="0" x="1121" y="109.7139"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="1031" y="126.0107">Supports generation and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="159" x="1039.5" y="142.3076">presentation of reports</text><!--MD5=[ef96c680808763b860aaea6249e21892]
+link FormsManager to DataWarehouse.MetadataManagement--><path d="M257.99,184.9931 C242.56,227.9931 223.55,280.9631 208.53,322.8131 " fill="none" id="FormsManager-to-DataWarehouse.MetadataManagement" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="206.81,327.6031,213.6067,320.4754,208.4935,322.8951,206.0738,317.7818,206.81,327.6031" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="60" x="253" y="225.2354">Modify form</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="248" y="236.876">definitions and</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="40" x="264.5" y="248.5166">versions</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="32" x="268.5" y="258.3008">[HTTPS]</text><!--MD5=[a2d2f96d7a7cf2c1b351e0001f00ec59]
+link ResearchUser to DataWarehouse.DataSearch--><path d="M630,184.2431 C630,230.5031 630,288.5331 630,331.8131 " fill="none" id="ResearchUser-to-DataWarehouse.DataSearch" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="630,337.0231,634,328.0231,630,332.0231,626,328.0231,630,337.0231" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="51" x="646" y="225.2354">Search for</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="72" x="635.5" y="236.876">data/resources</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="631" y="248.5166">relevant to query</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="32" x="657" y="258.3008">[HTTPS]</text><!--MD5=[d219ac19264665ae8d254c0c3339a2ff]
+link stereotypeExternalDataCenter to DataWarehouse.DataWarehouseAPI--><path d="M909.23,454.1831 C887.23,482.7331 857.74,515.6731 825,537.9531 C797.73,556.5131 765.02,570.7531 734.12,581.4231 " fill="none" id="stereotypeExternalDataCenter-to-DataWarehouse.DataWarehouseAPI" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="729.18,583.1031,738.9873,584.0074,733.9162,581.5005,736.4231,576.4295,729.18,583.1031" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="88" x="876" y="502.2354">Request NACC ID</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="47" x="896.5" y="513.876">for ADRC</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="51" x="896" y="525.5166">participant</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="894.5" y="535.3008">[JSON/HTTPS]</text><!--MD5=[913181c712de9af2760a270197d7db6d]
+link ReportingSystem to stereotypeExternalDataCenter--><path d="M1064.6,155.5431 C1047.37,172.9931 1029.35,193.6631 1016,214.9531 C993.66,250.5931 977.02,294.8231 965.9,330.4031 " fill="none" id="ReportingSystem-to-stereotypeExternalDataCenter" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="964.3,335.5931,970.7948,328.1893,965.7865,330.8192,963.1565,325.8109,964.3,335.5931" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="82" x="1017" y="230.7354">Request data for</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="44" x="1037.5" y="242.376">reporting</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="1032.5" y="252.1602">[JSON/HTTPS]</text><!--MD5=[fbafa5a25a2cfd9f9d6316c7a888e31d]
+link TransferSystem to stereotypeExternalDataCenter--><path d="M872.31,163.6731 C875.95,193.0931 881.82,229.3831 891,260.9531 C897.86,284.5531 907.92,309.4831 917.73,331.2931 " fill="none" id="TransferSystem-to-stereotypeExternalDataCenter" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="919.82,335.9031,919.7372,326.0546,917.751,331.3513,912.4543,329.365,919.82,335.9031" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="75" x="892" y="230.7354">Scheduled data</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="39" x="911.5" y="242.376">transfer</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="904" y="252.1602">[JSON/HTTPS]</text><!--MD5=[1a7cdadbd7593a787ba3fb87154e3e38]
+link DataWarehouse.DataSearch to DataWarehouse.DataWarehouseAPI--><path d="M629.2,452.6231 C628.71,487.0531 628.1,530.4331 627.65,562.6731 " fill="none" id="DataWarehouse.DataSearch-to-DataWarehouse.DataWarehouseAPI" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="627.57,567.7531,631.6982,558.8112,627.6414,562.7536,623.699,558.6969,627.57,567.7531" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="0" x="632" y="518.7354"/><!--MD5=[e318896206075ba72f003868585d837e]
+link TransferSystem to DataWarehouse.DataWarehouseAPI--><path d="M849.12,163.5031 C819.44,256.7631 761.8,435.2431 747,461.9531 C726.34,499.2231 695.84,536.3131 670.75,563.8531 " fill="none" id="TransferSystem-to-DataWarehouse.DataWarehouseAPI" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="667.09,567.8431,676.116,563.9021,670.4647,564.1538,670.2131,558.5025,667.09,567.8431" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="0" x="818" y="398.7354"/><!--MD5=[0a10fdac24c7379c09b0eb181af9856e]
+link ReportingSystem to DataWarehouse.DataWarehouseAPI--><path d="M1124.89,155.6431 C1131.18,227.9131 1133.48,365.4031 1076,461.9531 C1047.44,509.9231 1026.87,514.9531 976,537.9531 C899.27,572.6431 805.37,590.3731 734.31,599.3731 " fill="none" id="ReportingSystem-to-DataWarehouse.DataWarehouseAPI" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="729.23,600.0131,738.6607,602.8526,734.1905,599.3859,737.6572,594.9158,729.23,600.0131" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="0" x="1130" y="398.7354"/><!--MD5=[893d14c19a9aacdf9ef1944aa72d746a]
+link ProjectUser to DataWarehouse.MetadataManagement--><path d="M95.45,170.5731 C102.84,198.5931 112.4,231.7231 123,260.9531 C130.44,281.4531 139.66,303.2131 148.62,323.0531 " fill="none" id="ProjectUser-to-DataWarehouse.MetadataManagement" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="150.77,327.7931,150.6872,317.9446,148.701,323.2413,143.4043,321.255,150.77,327.7931" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="99" x="124" y="236.7354">Request new project</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="39" x="154" y="246.5195">[REDCAP]</text><!--MD5=[8b98a0f1a12f69daac571e12a538a176]
+@startuml
+title Data Warehouse - Containers
+
+top to bottom direction
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<stereotypeExternalDataCenter>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<DataWarehouse.DataIndex>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<DataWarehouse.DataSearch>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<DataWarehouse.DataWarehouseAPI>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam person<<FormsManager>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<DataWarehouse.MetadataManagement>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam person<<ProjectUser>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<ReportingSystem>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam person<<ResearchUser>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<TransferSystem>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+
+person "==Project User\n<size:10>[Person]</size>\n\nMember of project" <<ProjectUser>> as ProjectUser
+person "==Forms Manager\n<size:10>[Person]</size>\n\nManages forms and form versions" <<FormsManager>> as FormsManager
+person "==Research User\n<size:10>[Person]</size>\n\nResearch user of NACC managed data" <<ResearchUser>> as ResearchUser
+rectangle "==<<stereotype>> External Data Center\n<size:10>[Software System]</size>\n\nRepresents linked repository of specialized data." <<stereotypeExternalDataCenter>> as stereotypeExternalDataCenter
+rectangle "==Transfer System\n<size:10>[Software System]</size>\n\nSupports pushing/pulling data to collaborating centers/projects" <<TransferSystem>> as TransferSystem
+rectangle "==Reporting System\n<size:10>[Software System]</size>\n\nSupports generation and presentation of reports" <<ReportingSystem>> as ReportingSystem
+
+package "Data Warehouse\n[Software System]" <<DataWarehouse>> {
+  skinparam PackageBorderColor<<DataWarehouse>> #444444
+  skinparam PackageFontColor<<DataWarehouse>> #444444
+
+  rectangle "==Data Search\n<size:10>[Container]</size>\n\nSingle page interface for search across all types of data" <<DataWarehouse.DataSearch>> as DataWarehouse.DataSearch
+  rectangle "==Data Index\n<size:10>[Container: ElasticSearch]</size>\n\nSubsystem to support search across all data resources" <<DataWarehouse.DataIndex>> as DataWarehouse.DataIndex
+  rectangle "==Data Warehouse API\n<size:10>[Container]</size>\n\nAPI for data access" <<DataWarehouse.DataWarehouseAPI>> as DataWarehouse.DataWarehouseAPI
+  rectangle "==Metadata Management\n<size:10>[Container]</size>\n\nSupports management of metadata for projects and organizations" <<DataWarehouse.MetadataManagement>> as DataWarehouse.MetadataManagement
+}
+
+FormsManager .[#707070,thickness=2].> DataWarehouse.MetadataManagement : "<color:#707070>Modify form definitions and versions\n<color:#707070><size:8>[HTTPS]</size>"
+ResearchUser .[#707070,thickness=2].> DataWarehouse.DataSearch : "<color:#707070>Search for data/resources relevant to query\n<color:#707070><size:8>[HTTPS]</size>"
+stereotypeExternalDataCenter .[#707070,thickness=2].> DataWarehouse.DataWarehouseAPI : "<color:#707070>Request NACC ID for ADRC participant\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+ReportingSystem .[#707070,thickness=2].> stereotypeExternalDataCenter : "<color:#707070>Request data for reporting\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+TransferSystem .[#707070,thickness=2].> stereotypeExternalDataCenter : "<color:#707070>Scheduled data transfer\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+DataWarehouse.DataSearch .[#707070,thickness=2].> DataWarehouse.DataWarehouseAPI : "<color:#707070>"
+TransferSystem .[#707070,thickness=2].> DataWarehouse.DataWarehouseAPI : "<color:#707070>"
+ReportingSystem .[#707070,thickness=2].> DataWarehouse.DataWarehouseAPI : "<color:#707070>"
+ProjectUser .[#707070,thickness=2].> DataWarehouse.MetadataManagement : "<color:#707070>Request new project\n<color:#707070><size:8>[REDCAP]</size>"
+@enduml
+
+PlantUML version 1.2021.10(Mon Aug 30 13:43:48 UTC 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,29 +1,6 @@
-# NACC Data Repository
+# Form Definitions
 
-## Context 
-
-this is the description of the NACC system context
-
-![Repository-Context-Diagram](images/structurizr-RepositoryContext.svg)
-
-
-
-## Architecture
-
-![Repository-Container-Diagram](images/structurizr-RepositoryContainers.svg)
-
-
-## Submission
-
-BLAH
-
-## Data Validation
-
-![Validator-Component-Diagram](images/structurizr-ValidatorComponent.svg)
-
-## Form Definitions
-
-![diagram](./03-data-repository-1.svg)
+![diagram](./form-definitions-1.svg)
 
 ```yaml
 ---
@@ -56,7 +33,7 @@ form_set:
 ```yaml
 ---
 version: "0.0.1"
-study: UDS
+project: UDS
 design:
   uds:
     form_set: 
