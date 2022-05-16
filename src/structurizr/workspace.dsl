@@ -138,12 +138,10 @@ workspace {
         }
 
         externalDataCenterSystem = softwareSystem "<<stereotype>> External Data Center" "Represents linked repository of specialized data." "External System" {
-            -> fileSubmissionController "Submit specialized data" "JSON/HTTPS"
             -> identifiersController "Request NACC ID for ADRC participant" "JSON/HTTPS"
             -> dataController "Request data for participant" "JSON/HTTPS"
         }
-        dataReporting -> externalDataCenterSystem "Request data for reporting" "JSON/HTTPS"
-        dataTransferSystem -> externalDataCenterSystem "Scheduled data transfer" "JSON/HTTPS"
+        dataTransferSystem -> externalDataCenterSystem "Push/Pull data" "JSON/HTTPS"
 
         adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System" {
             -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
@@ -157,13 +155,13 @@ workspace {
         }
         group "Data Centers" {
             ncradSystem = softwareSystem "NCRAD" "Data systems of collaborating site" "External System" {
-                -> fileSubmissionController "Genomic data for transfer to ADRCs" 
+                -> dataTransferSystem "Genomic data for transfer to ADRCs" 
             }
             niagadsSystem = softwareSystem "NIAGADS" "Data systems of collaborating site" "External System" {
-                -> fileSubmissionController "Genotype data for transfer to ADRCs"
+                -> dataTransferSystem "Genotype data for transfer to ADRCs"
             }
             loniSystem = softwareSystem "LONI" "LONI data system supporting SCAN project" "External System" {
-                -> fileSubmissionController "Computed SCAN image metadata" 
+                -> dataTransferSystem "Computed SCAN image metadata" 
                 -> identifiersController "Request NACC ID for SCAN participant"
             }
             dataReporting -> loniSystem "Request SCAN image status" "JSON/HTTPS"
@@ -171,7 +169,7 @@ workspace {
 
         group "Project Centers" {
             atriSystem = softwareSystem "ATRI" "ATRI data system supporting LEADS project" "External System"
-            dataReporting -> atriSystem "Request LEADS participants" "JSON/HTTPS"
+            dataTransferSystem -> atriSystem "Request LEADS participants" "JSON/HTTPS"
 
             rushSystem = softwareSystem "Rush/DVCID" "Rush data system supporting DVCID project" "External System" {
                 -> identifiersController "Request NACC ID for DVCID participant"
@@ -203,6 +201,14 @@ workspace {
             exclude projectInstigatorUser
             exclude website
             exclude externalUser
+            autoLayout
+        }
+
+        systemlandscape "SystemLandscape" {
+            include *
+            exclude externalDataCenterSystem
+            exclude researchCenterUser
+            exclude projectUser
             autoLayout
         }
 
