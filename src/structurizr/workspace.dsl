@@ -28,33 +28,49 @@ workspace {
                 }
             }
             dataSubmissionSystem = softwareSystem "Submission System" "Supports acquisition of data sets" {
-                formPipeline = container "Form Pipeline" "Receives and validates forms" {
-                    validatedProject = component "<<stereotype>> Validated Form Store" "Stores validated forms ready for transfer into data warehouse" "REDCap"
-                    formValidator = component "Form Data Validator" "Service for validation of forms data"
-                    transferService = component "Form Transfer" "Transfers valid forms" {
-                        -> formValidator "form data to be validated aginst project rules" "JSON/HTTPS"
-                        -> validatedProject "validated data"
-                    }                   
-                    formQuarantineProject = component "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap" {
-                        -> transferService
+                // Form pipeline
+                group "Form pipeline" {
+                    errorDatabase = container "Error Database" "Stores errors found in submitted data" "MySQL or MongoDB" "Database"
+                    validatedProject = container "<<stereotype>> Validated Form Store" "Stores validated forms ready for transfer into data warehouse" "REDCap"
+                    formValidator = container "Form Data Validator" "Service for validation of forms data" "FastAPI/Python" {
+                        -> errorDatabase "Register errors in forms"
                     }
+                    formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap"
+                    transferService = container "Form Transfer" "Transfers valid forms" "Python" {
+                        -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
+                        -> formValidator "form data to be validated against project rules" "JSON/HTTPS"
+                        -> validatedProject "push validated data" "JSON/HTTPS"
+                    }                   
+
                 }
-                imagePipeline = container "Image Pipeline" "Receives, validates and transforms image headers" {
+
+                // DICOM Image pipeline
+                dicomImagePipeline = container "Image Pipeline" "Receives, validates and transforms image headers" {
                 }
+
+                // File pipeline
                 filePipeline = container "File Pipeline" "Recieves, validates and transforms other data files" {
                 }
+
                 dataSubmissionAPI = container "Data Submission API" "API for data submission and access" {
                     fileSubmissionController = component "(Non-form/image) File Submission Controller" "Accept general file submissions" {
                         -> filePipeline
                     }
-                    imageSubmissionController = component "Image Submission Controller" "Accept image submissions" {
-                        -> imagePipeline
+                    dicomImageSubmissionController = component "Image Submission Controller" "Accept image submissions" {
+                        -> dicomImagePipeline
                     }
                     //no form controller because use REDCap
                 }
-                submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" {
-                    -> formQuarantineProject
+
+                submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Next.js" {
+                    -> formQuarantineProject "Push form data" "CSV/HTTPS"
+                    -> fileSubmissionController
+                    -> dicomImageSubmissionController
+                    -> errorDatabase "Retrieve submission errors" "JSON/HTTPS"
                 }
+                submissionWebApplication = container "Submission Web App" "Delivers submission application to user" "nginx" {
+                    -> submissionApplication "Delivers app to user's browser"
+                }                
             }
 
             dataTransferSystem = softwareSystem "Transfer System" "Supports pushing/pulling data to collaborating centers/projects" {
@@ -145,12 +161,12 @@ workspace {
 
         adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System" {
             -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
-            -> imageSubmissionController "Submit image data" "JSON/HTTPS"
+            -> dicomImageSubmissionController "Submit image data" "JSON/HTTPS"
             -> fileSubmissionController "Submit file data" "JSON/HTTPS"
         }
         centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System" {
             -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
-            -> imageSubmissionController "Submit image data" "JSON/HTTPS"
+            -> dicomImageSubmissionController "Submit image data" "JSON/HTTPS"
             -> fileSubmissionController "Submit file data" "JSON/HTTPS"
         }
         group "Data Centers" {
@@ -181,6 +197,39 @@ workspace {
         gaainSystem = softwareSystem "GAAIN" "GAAIN data system" "External System"
         dataTransferSystem -> gaainSystem "UDS data?"
 
+        deploymentEnvironment "Production" {
+            deploymentNode "User's Computer" "" "MS Windows, Apple MacOS, Linux" {
+                deploymentNode "Web Browser" "" "Chrome, Firefox, Safari or Edge" {
+                    submissionApplicationInstance = containerInstance submissionApplication 
+                }
+            }
+            deploymentNode "redcap.naccdata.org" "" "RIT Redhat VM" {
+                deploymentNode "NACC REDCap" "" "REDCap" {
+                    formQuarantineInstance = containerInstance formQuarantineProject
+                    validatedFormInstance = containerInstance validatedProject
+                }
+            }
+            deploymentNode "VM" "" "Cloud VM or RIT Redhat VM" {
+                deploymentNode "Docker Container - Submission App" "" "Docker" {
+                    submissionWebApplicationInstance = containerInstance submissionWebApplication
+                }
+                deploymentNode "Docker Container - Form Transfer Service" "" "Docker" {
+                    transferServiceInstance = containerInstance transferService
+                }
+                deploymentNode "Docker Container - Form Validator Service" "" "Docker" {
+                    formValidatorInstance = containerInstance formValidator
+                }
+                deploymentNode "Docker Container - Data Submission API" "" "Docker" {
+                    deploymentNode "web server" "" "web server" {
+                        dataSubmissionAPIInstance = containerInstance dataSubmissionAPI
+                    }
+                }
+                deploymentNode "Docker Container - Error Database" "" "Docker" {
+                    errorDatabaseInstance = containerInstance errorDatabase
+                }
+            }
+
+        }
     }
 
     views {
@@ -290,6 +339,11 @@ workspace {
             exclude website
             exclude externalUser
             autoLayout 
+        }
+
+        deployment dataSubmissionSystem "Production" "ProductionSubmissionDeployment" {
+            include *
+            autoLayout
         }
 
         systemContext dataTransferSystem "TransferContext" {
