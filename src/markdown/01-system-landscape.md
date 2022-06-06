@@ -5,19 +5,19 @@ This document describes a model of the software systems supporting the National 
 ## Document Purpose
 
 The goal of this document is to help the reader understand what NACC is and the environment in which NACC operates.
-However, the software system is model is modeled in a desired state of software systems, rather than describing the existing system  that has grown organically within NACC.
+However, the software system is modeled in a desired state, rather than describing the existing system that has grown organically within NACC.
 
 ## About NACC
 
 NACC is the coordinating center for the Alzheimer's Disease Research Center (ADRC) program of the NIH, which funds ADRCs across the country.
 Clinical representatives from the ADRCs (the Clinical Task Force) define the protocol used to gather data, mainly through a set of forms called UDS (or Uniform Data Set).
 However, centers collect other common forms of data from the ADRCs, such as imaging and neuropathology exam data.
-As the coordinating center, NACC serves primarily as the warehouse of data collected at ADRCs, and is a conduit for returning to the ADRCs data derived elsewhere and stored at other data centers, including NCRAD, NIAGADS, and LONI.
+As the coordinating center, NACC serves primarily as the warehouse of data collected at ADRCs, which is shared with the research community beyond the ADRCs.
+NACC is also the conduit for returning to the ADRCs data derived elsewhere and stored at other data centers, including the biomarker inventory at NCRAD, genetics data at NIAGADS, and data computed from imaging data stored LONI.
 
-However, NACC also manages data for affiliated projects.
+In addition, there are several projects that use UDS data and are also supported by NACC.
 These are often specialized studies that collect UDS form responses for non-ADRC participants, or use the data from subsets of the UDS participants.
 These projects are defined and managed separately from the UDS project, and may involve non-ADRC sites.
-But they generally use some of the UDS forms along with collecting other data.
 
 NACC also contributes warehoused UDS data to other projects (e.g., GAAIN).
 
@@ -28,12 +28,12 @@ ADRD data are of multiple kinds:
 - Form responses – these are data collected from the completion of forms. 
   Responses may be captured electronically using a system such as REDCap, or may be captured on paper and transcribed into a data file manually.
   NACC forms data is primarily responses for the Uniform Data Set and associated modules.
-- MR or PET Images – these are collected by imaging cores at research centers.
+- MR or PET Images – these are DICOM images collected by imaging cores at research centers.
   These are a series of images created during a single session, and have associated metadata in a DICOM header.
 - Other data – these could be images collected by visualization of neuropathology slides, audio/video files capturing interaction with the participant, movement sensor data, and EHR data.
 
 All data at NACC is associated with a participant who is given a NACC specific ID.
-This individual is also identified by a center ID and center-assigned participant ID.
+This individual is also identified by a center ID and center-assigned participant ID, but only the NACC ID are made public.
 
 Data stored at other sites is searchable at NACC.
 
@@ -46,8 +46,10 @@ To support NACC’s role, there are five key functions of NACC data systems:
 1. *Receiving data*: Data can be received from centers in three ways, through an online form interface, a batch submission interface, and through API endpoints.
    Data quality is ensured before the data is stored.
 2. *Providing data*: Users may browse or search for data. 
-   Data may also be accessed via API. 
-   ADRC users will see center participant IDs for data corresponding to visits at the ADRC, while everyone else will see NACC IDs.
+   Data may also be accessed via API.
+
+   How data is shared is determined by data ownership and authorization.
+   For instance, ADRC users will see center participant IDs for data corresponding to visits at the ADRC, while everyone else will see NACC IDs.
    ADRC users will also have access to data generated at other sites including ADGC genotyping/imputation data from NIAGADS. 
 3. *Storing data*: All three types of data can be stored.
    And, all data is sufficiently indexed to support efficient searches.
