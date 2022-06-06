@@ -1,5 +1,13 @@
 # Domain model 
 
+This document describes the domain model for the software systems supporting the National Alzheimer's Coordinating Center (NACC).
+
+## Document Purpose
+
+The goal of this document is to help the reader understand the objects that occur.
+
+## Domain Objects
+
 The repository captures data for for a project the goal of which is to capture (longitudinal) standardized observations for the enrolled participants.
 A project consists of centers that enroll and observe participants, and a design which determines the observations that will be made.
 
