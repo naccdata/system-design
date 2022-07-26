@@ -24,7 +24,6 @@ classDiagram
     Project --> "0..n" Participant : enrollees
     Project --> "1..n" Design
     Project --> "0..n" Observation : dataset
-    Participant --> Center : enrollment
 ```
 
 Observations are captured at a project center where the participant is enrolled within the project.
