@@ -24,6 +24,7 @@ classDiagram
     Project --> "0..n" Participant : enrollees
     Project --> "1..n" Design
     Project --> "0..n" Observation : dataset
+    Participant --> Center : enrollment
 ```
 
 Observations are captured at a project center where the participant is enrolled within the project.
@@ -41,7 +42,7 @@ classDiagram
     Visit *-- "1..n" Observation
 ```
 
-*note: need to represent participant enrollment at a center being time dependent*
+*note: need to represent participant enrollment at a center being time dependent. diagram needs an association class*
 
 As determined by the project design, observations may be form responses, images, other forms of digital data, or biospecimens captured during the visit.
 

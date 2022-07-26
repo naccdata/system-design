@@ -17,7 +17,7 @@ Observations are captured at a project center where the participant is enrolled 
 
 ![diagram](./02-domain-model-2.svg)
 
-*note: need to represent participant enrollment at a center being time dependent*
+*note: need to represent participant enrollment at a center being time dependent. diagram needs an association class*
 
 As determined by the project design, observations may be form responses, images, other forms of digital data, or biospecimens captured during the visit.
 
