@@ -1,43 +1,26 @@
 # NACC System Landscape
 
-This document describes a model of the software systems supporting the National Alzheimer's Coordinating Center (NACC).
+This document describes a model of the software systems supporting the [National Alzheimer's Coordinating Center (NACC)](https://naccdata.org).
 
 ## Document Purpose
 
-The goal of this document is to help the reader understand what NACC is and the environment in which NACC operates.
-However, the software system is modeled in a desired state, rather than describing the existing system that has grown organically within NACC.
+The goal of this document is to help the reader understand what NACC and the environment in which NACC operates.
+
+However, to a certain extent, the software system is modeled in a desired state, rather than describing the existing system that has grown organically within NACC.
 
 ## About NACC
 
-NACC is the coordinating center for the Alzheimer's Disease Research Center (ADRC) program of the NIH, which funds ADRCs across the country.
+NACC is the coordinating center for the [Alzheimer's Disease Research Center (ADRC) program of the NIH](https://www.nia.nih.gov/health/alzheimers-disease-research-centers), which funds ADRCs across the country.
 Clinical representatives from the ADRCs (the Clinical Task Force) define the protocol used to gather data, mainly through a set of forms called UDS (or Uniform Data Set).
 However, centers collect other common forms of data from the ADRCs, such as imaging and neuropathology exam data.
 As the coordinating center, NACC serves primarily as the warehouse of data collected at ADRCs, which is shared with the research community beyond the ADRCs.
-NACC is also the conduit for returning to the ADRCs data derived elsewhere and stored at other data centers, including the biomarker inventory at NCRAD, genetics data at NIAGADS, and data computed from imaging data stored LONI.
+NACC is also the conduit for returning to the ADRCs data derived elsewhere and stored at other data centers, including the biomarker inventory at [NCRAD](https://ncrad.iu.edu), genetics data at [NIAGADS](https://www.niagads.org) from the [ADGC](https://www.adgenetics.org), and data computed from imaging data stored at LONI for [SCAN](http://scan.naccdata.org).
 
-In addition, there are several projects that use UDS data and are also supported by NACC.
+In addition, there are several affiliate projects that collect UDS data that are also supported by NACC.
 These are often specialized studies that collect UDS form responses for non-ADRC participants, or use the data from subsets of the UDS participants.
 These projects are defined and managed separately from the UDS project, and may involve non-ADRC sites.
 
-NACC also contributes warehoused UDS data to other projects (e.g., GAAIN).
-
-## NACC data
-
-ADRD data are of multiple kinds:
-
-- Form responses – these are data collected from the completion of forms. 
-  Responses may be captured electronically using a system such as REDCap, or may be captured on paper and transcribed into a data file manually.
-  NACC forms data is primarily responses for the Uniform Data Set and associated modules.
-- MR or PET Images – these are DICOM images collected by imaging cores at research centers.
-  These are a series of images created during a single session, and have associated metadata in a DICOM header.
-- Other data – these could be images collected by visualization of neuropathology slides, audio/video files capturing interaction with the participant, movement sensor data, and EHR data.
-
-All data at NACC is associated with a participant who is given a NACC specific ID.
-This individual is also identified by a center ID and center-assigned participant ID, but only the NACC ID are made public.
-
-Data stored at other sites is searchable at NACC.
-
-Data is frozen quarterly to provide a fixed set of data for research.
+NACC also contributes warehoused UDS data to other projects (e.g., [GAAIN](https://gaain.org)).
 
 ## NACC functions
 
@@ -56,9 +39,26 @@ To support NACC’s role, there are five key functions of NACC data systems:
    All data has provenance indicating where it came from and whether it has been transformed.
    Externally accessible data is also indexed.
 4. *Transferring data*: NACC may push data to or pull data from other centers. 
-   Examples of pulled data is SCAN analytical data derived from images stored at LONI.
-   Pushed data is something like the list of NACC IDs for a data freeze pushed to NCRAD.
 5. *Reporting on NACC data*: Reports may be generated that reflect the data available, status of data, and audits of data quality.
+
+## NACC data
+
+Data managed at NACC are of multiple kinds:
+
+- Form responses – these are data collected from the completion of forms. 
+  Responses may be captured electronically using a system such as REDCap, or may be captured on paper and transcribed into a data file manually.
+  NACC forms data is consists primarily as responses to forms of the Uniform Data Set and associated modules.
+- MR or PET Images – these are DICOM images collected by imaging cores at research centers.
+  These are a series of images created during a single session, and have associated metadata in a DICOM header.
+- Other future data – these could be images collected by visualization of neuropathology slides, audio/video files capturing interaction with the participant, movement sensor data, and EHR data.
+
+All data at NACC is associated with a participant who is assigned a NACC specific ID.
+This individual is also identified by a center ID and center-assigned participant ID, but the NACC ID stays with a participant when they move to another center.
+Only the NACC ID is used in released data sets.
+
+Data stored at other sites is searchable at NACC.
+
+Data is frozen quarterly to provide a fixed set of data for research.
 
 ## Landscape model
 
