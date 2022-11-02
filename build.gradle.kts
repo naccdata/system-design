@@ -7,7 +7,7 @@
  */
 
 plugins {
-  id("pl.zalas.structurizr-cli") version "1.1.1"
+  id("pl.zalas.structurizr-cli") version "1.3.1"
 }
 
 repositories {
@@ -19,7 +19,7 @@ val workspace by configurations.creating
 val workspacepuml by configurations.creating
 
 dependencies {
-    "plantuml"("net.sourceforge.plantuml:plantuml:1.2021.10")
+    "plantuml"("net.sourceforge.plantuml:plantuml:1.2022.12")
     "workspace"(files("src/structurizr/workspace.dsl"))
 }
 
