@@ -4,42 +4,82 @@ workspace {
     
         enterprise "NACC" {
 
-            dataWarehouseSystem = softwareSystem "Data Warehouse" "Supports management and queries of data sets" {
-                dataIndexing = container "Data Index" "Subsystem to support search across all data resources" "ElasticSearch"
-                dataWarehouseAPI = container "Data Warehouse API" "API for data access" {
-                    dataController = component "Data Access Controller" "Provide data requested for participants"                    
-                    identifiersController = component "Identifier Mapping Controller" "Provide/provision identifiers for participants" 
-                    indexingController = component "Data Indexing Controller" "Adds data to index for search"
+            userManangementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
+                directory = container "NACC Directory" "Allows users to view and edit the NACC directory" {
+                    directoryInterface = component "Directory Management Interface" "Interface to manage directory entries" "REDCap"
+                    directoryAPI = component "Directory API" "API for accessing NACC directory information" "JSON/HTTPS"
                 }
-                metadataManagementSystem = container "Metadata Management" "Supports management of metadata for projects and organizations" {
+            }
+
+            projectManagementSystem = softwareSystem "Project Management" "Supports the management of projects within NACC systems" {
+                projectIntakeSystem = container "Project Intake" "Supports intake of project information" {
+                    projectIntakeInterface = component "Project Intake" "Interface for requesting new projects"  "REDCap"
+                    projectIntakeAPI = component "Project API" "Interface for access project intake requests"
+                }
+            }
+          
+
+            dataWarehouseSystem = softwareSystem "Data Warehouse" "Supports management and queries of data sets" {
+
+                dataWarehouseAPI = container "Data Warehouse API" "API for data access" "FW"
+
+                userManagementSynchonizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
+                    -> directoryAPI "User information" "JSON/HTTPS"
+                }
+                projectManagementSynchronizer = container "Project Management Sync" "Synchronizes project definitions and user authorization" "FW Gear" {
+                    -> directoryAPI "Center information" "JSON/HTTPS"
+                    -> projectIntakeAPI "Project details" "JSON/HTTPS"
+                }
+
+                dataPipeline = container "<<Stereotype>> Project Pipeline" "Pipeline for QC, harmonization of project data" {
+                    // see dataSubmissionSystem
+                    group "Data Pipeline" {
+                        ingestProject = component "<<Stereotype>> Quarantine" "Collection of quarantined data" "FW Group"
+                        acceptedProject = component "<<Stereotype>> Accepted Forms" "Collection of data that has past QC and released by center" "FW Group"
+                    }
+                }                
+                dataReleasePipeline = container "Pipeline for data release" {
+                    dataReleaseProject = component "Release Data" "Collection of frozen data for release to researchers" "FW Group"
+                    dataAggregator = component "Data Aggregator" "Aggregates project data across centers" "FW Gear" {
+                        -> dataReleaseProject
+                    }
+                    acceptedProject -> dataAggregator "Pull project data"
+
+                    // TODO: data needs to be pushed to leaf or data request bucket
+                    dataReleaseView = component "Data Release View" "Data view for release data" "FW View(s)"
+                    buildAndExportViews = component "Build & Export Release Views" "Builds data views for data releases" "Python/FW Gear" {
+                        -> dataReleaseView "create data view"
+                    }
+
+                }
+
+                participantManagement = container "Participant Management" "Manages participant identifiers and center access" {
+                    identifiersController = component "Identifier Mapping Controller" "Provide/provision identifiers for participants" 
+                }
+
+
+                formManagementSystem = container "Form Management" "Supports management of metadata for projects and organizations" {
                     formDefinitionDatabase = component "Form Definitions" "Database of form definitions and quality rules"
                     formManagementInterface = component "Form Management" "Single page interface for managing form definitions and versions" {
                         -> formDefinitionDatabase
                     }
-                    projectDefinitionDatabase = component "Project Metadata" "Database of project meta-data"
-                    projectIntake = component "Project Intake" "Single page interface for requestin new projects"                
-                    projectManagementInterface = component "Project Management" "Single page interface for managing projects within repository" {
-                        # -> directorySystem
-                        -> projectDefinitionDatabase
-                    }
                 }
-                searchInterface = container "Data Search" "Single page interface for search across all types of data" {
-                    -> indexingController
-                }
+
             }
             dataSubmissionSystem = softwareSystem "Submission System" "Supports acquisition of data sets" {
                 // Form pipeline
                 group "Form pipeline" {
-                    errorDatabase = container "Error Database" "Stores errors found in submitted data" "MySQL or MongoDB" "Database"
-                    validatedProject = container "<<stereotype>> Validated Form Store" "Stores validated forms ready for transfer into data warehouse" "REDCap"
-                    formValidator = container "Form Data Validator" "Service for validation of forms data" "FastAPI/Python" {
-                        -> errorDatabase "Register errors in forms"
+                    formValidator = container "Form Data Validator" "Service for validation of forms data" "Python/FW Gear" {
+                        -> ingestProject "Record errors in forms" "JSON"
                     }
-                    formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap"
+                    formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap Project" {
+                        formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
+                        formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
+                    }
                     transferService = container "Form Transfer" "Transfers valid forms" "Python" {
                         -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
                         -> formValidator "form data to be validated against project rules" "JSON/HTTPS"
-                        -> validatedProject "push validated data" "JSON/HTTPS"
+                        -> ingestProject "push validated data" "JSON/HTTPS"
                     }                   
 
                 }
@@ -66,7 +106,7 @@ workspace {
                     -> formQuarantineProject "Push form data" "CSV/HTTPS"
                     -> fileSubmissionController
                     -> dicomImageSubmissionController
-                    -> errorDatabase "Retrieve submission errors" "JSON/HTTPS"
+                    -> ingestProject "Retrieve submission errors" "JSON/HTTPS"
                 }
                 submissionWebApplication = container "Submission Web App" "Delivers submission application to user" "nginx" {
                     -> submissionApplication "Delivers app to user's browser"
@@ -76,12 +116,25 @@ workspace {
             dataTransferSystem = softwareSystem "Transfer System" "Supports pushing/pulling data to collaborating centers/projects" {
                 -> dataWarehouseAPI
             }
+
             reportingSystem = softwareSystem "Reporting System" "Supports generation and presentation of reports" {
                 dataReporting = container "Reporting System" "Subsystem to generate reports about data" {
                     -> dataWarehouseAPI
                 }
                 reportingInterface = container "Data Reporting/Auditing" "Single page interface for reporting on/auditing of data submissions" {
                     -> dataReporting
+                }
+            }
+
+            sharingSystem = softwareSystem "Data Sharing System" "Supports access to data" {
+                searchInterface = container "Data Search" "Single page interface for search across all types of data" {
+                    //TODO: this is wrong
+                    -> dataReleaseView
+                }
+
+                dataRequentIntake = container "Data Request Intake" "Supports requests of project data" {
+                    dataRequestInterface = component "Data Request Interface" "Interface for requesting data" "REDCap"
+                    dataRequestAPI = component "Data Request API" "API for accessing data request information" "JSON/HTTPS"
                 }
             }
 
@@ -96,13 +149,16 @@ workspace {
                 }
             }
         }
+
+        //Users are split by role with the first user being a generalization of roles
         externalUser = person "External User" "ADRC, NIA, or other external user" "External User"{
             -> website "Accesses website for information about NACC, data, and events"
         }
 
+        //Research Centers/ADRCs - users at centers collecting data
         researchCenterUser = person "Research Center User" "User at ADRC or other research center" "External User" {
             -> calculatorInterface "Use calculators for completing forms" "HTTPS"
-            # -> directoryManagementInterface  "Adds/Removes Members Of Adrc" "HTTPS"
+            -> directoryInterface  "Adds/Removes Members Of Adrc" "HTTPS"
             -> documentationInterface "Get information about NACC resources" "HTTPS"
             -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
             -> submissionApplication "Uploads data and corrects errors" "HTTPS"
@@ -116,7 +172,7 @@ workspace {
             # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
         }
         adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
-            # -> directoryManagementInterface "Adds/Removes Members Of Adrc" "HTTPS"
+            -> directoryInterface "Adds/Removes Members Of Adrc" "HTTPS"
             -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
             # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
         }
@@ -131,15 +187,15 @@ workspace {
             # -> trainingInterface "Learn about using NACC resources" "HTTPS"
         }
 
+        // Project users -- users within groups running research projects
         projectUser = person "Project User" "Member of project" "External User" {
-            -> projectIntake "Request new project" "REDCAP"
-            -> projectManagementInterface "Update project meta-data" "HTTPS"
+            -> projectIntakeInterface "Request new project" "REDCAP"
         }
         projectInstigatorUser = person "Project Instigator" "Initiates request for external project" "External User" {
-            -> projectIntake "Requests a new project" "REDCap"
+            -> projectIntakeInterface "Requests a new project" "REDCap"
         }
         projectAdminUser = person "Project Coordinator" "Manages project meta data including forms and other collected data" "External User"{
-            -> projectManagementInterface "Update project meta-data" "HTTPS"
+            
         }
         formManagerUser = person "Forms Manager" "Manages forms and form versions" "External User" {
             -> formManagementInterface "Modify form definitions and versions" "HTTPS"
@@ -149,13 +205,13 @@ workspace {
             -> searchInterface "Search for data/resources relevant to query" "HTTPS"
             # -> publicationTrackingInterface "Submit publication" "REDCap"
             # -> duaInterface "Sign Data Use Agreement" "REDCap"
-            # -> dataRequestInterface "Make and update customized requests; view history of requests" "HTTPS"
+            -> dataRequestInterface "Make and update customized requests; view history of requests" "HTTPS"
             # -> quickAccessInterface "Access to quick access data sets" "HTTPS"
         }
 
         externalDataCenterSystem = softwareSystem "<<stereotype>> External Data Center" "Represents linked repository of specialized data." "External System" {
             -> identifiersController "Request NACC ID for ADRC participant" "JSON/HTTPS"
-            -> dataController "Request data for participant" "JSON/HTTPS"
+            -> dataWarehouseAPI "Request data for participant" "JSON/HTTPS"
         }
         dataTransferSystem -> externalDataCenterSystem "Push/Pull data" "JSON/HTTPS"
 
@@ -189,7 +245,7 @@ workspace {
 
             rushSystem = softwareSystem "Rush/DVCID" "Rush data system supporting DVCID project" "External System" {
                 -> identifiersController "Request NACC ID for DVCID participant"
-                -> dataController "Request UDS data for DVCID participant"
+                -> dataWarehouseAPI "Request UDS data for DVCID participant"
             }
             
         }
@@ -197,44 +253,45 @@ workspace {
         gaainSystem = softwareSystem "GAAIN" "GAAIN data system" "External System"
         dataTransferSystem -> gaainSystem "UDS data?"
 
-        deploymentEnvironment "Production" {
-            deploymentNode "User's Computer" "" "MS Windows, Apple MacOS, Linux" {
-                deploymentNode "Web Browser" "" "Chrome, Firefox, Safari or Edge" {
-                    submissionApplicationInstance = containerInstance submissionApplication 
-                }
-            }
-            deploymentNode "redcap.naccdata.org" "" "RIT Redhat VM" {
-                deploymentNode "NACC REDCap" "" "REDCap" {
-                    formQuarantineInstance = containerInstance formQuarantineProject
-                    validatedFormInstance = containerInstance validatedProject
-                }
-            }
-            deploymentNode "VM" "" "Cloud VM or RIT Redhat VM" {
-                deploymentNode "Docker Container - Submission App" "" "Docker" {
-                    submissionWebApplicationInstance = containerInstance submissionWebApplication
-                }
-                deploymentNode "Docker Container - Form Transfer Service" "" "Docker" {
-                    transferServiceInstance = containerInstance transferService
-                }
-                deploymentNode "Docker Container - Form Validator Service" "" "Docker" {
-                    formValidatorInstance = containerInstance formValidator
-                }
-                deploymentNode "Docker Container - Data Submission API" "" "Docker" {
-                    deploymentNode "web server" "" "web server" {
-                        dataSubmissionAPIInstance = containerInstance dataSubmissionAPI
-                    }
-                }
-                deploymentNode "Docker Container - Error Database" "" "Docker" {
-                    errorDatabaseInstance = containerInstance errorDatabase
-                }
-            }
+        # deploymentEnvironment "Production" {
+        #     deploymentNode "User's Computer" "" "MS Windows, Apple MacOS, Linux" {
+        #         deploymentNode "Web Browser" "" "Chrome, Firefox, Safari or Edge" {
+        #             submissionApplicationInstance = containerInstance submissionApplication 
+        #         }
+        #     }
+        #     deploymentNode "redcap.naccdata.org" "" "RIT Redhat VM" {
+        #         deploymentNode "NACC REDCap" "" "REDCap" {
+        #             formQuarantineInstance = containerInstance formQuarantineProject
+        #             validatedFormInstance = containerInstance validatedProject
+        #         }
+        #     }
+        #     deploymentNode "VM" "" "Cloud VM or RIT Redhat VM" {
+        #         deploymentNode "Docker Container - Submission App" "" "Docker" {
+        #             submissionWebApplicationInstance = containerInstance submissionWebApplication
+        #         }
+        #         deploymentNode "Docker Container - Form Transfer Service" "" "Docker" {
+        #             transferServiceInstance = containerInstance transferService
+        #         }
+        #         deploymentNode "Docker Container - Form Validator Service" "" "Docker" {
+        #             formValidatorInstance = containerInstance formValidator
+        #         }
+        #         deploymentNode "Docker Container - Data Submission API" "" "Docker" {
+        #             deploymentNode "web server" "" "web server" {
+        #                 dataSubmissionAPIInstance = containerInstance dataSubmissionAPI
+        #             }
+        #         }
+        #         deploymentNode "Docker Container - Error Database" "" "Docker" {
+        #             errorDatabaseInstance = containerInstance errorDatabase
+        #         }
+        #     }
 
-        }
+        # }
     }
 
     views {
         systemlandscape "GeneralizedSystemLandscape" {
             include *
+            exclude authorizationSystem
             exclude adrcDataSystem
             exclude ncradSystem
             exclude niagadsSystem
@@ -341,10 +398,10 @@ workspace {
             autoLayout 
         }
 
-        deployment dataSubmissionSystem "Production" "ProductionSubmissionDeployment" {
-            include *
-            autoLayout
-        }
+        # deployment dataSubmissionSystem "Production" "ProductionSubmissionDeployment" {
+        #     include *
+        #     autoLayout
+        # }
 
         systemContext dataTransferSystem "TransferContext" {
             include *
