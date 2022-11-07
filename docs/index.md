@@ -30,21 +30,28 @@ the Standardized Centralized Alzheimer's and Related Dementias Neuroimaging (SCA
    This document uses UML class diagram notation, but should be accessible to most readers.
 
 3. Subsystems - the initial sections of these documents are meant to be accessible to a general audience, but most of the content is meant for a technical audience.
-   1. [Data Submission](03-submission.md) -
-      describes data submission system.
+   1. [Project Management](03-project-management.md) -
+      describes management of projects.
 
-   2. [Data Warehouse](04-warehouse.md) –
+   2. [User Management](04-user-management.md) -
+      describes management of users.
+
+   3. [Data Warehouse](05-warehouse.md) –
        describes the system for managing data.
 
-   3. [Data Transfer](05-transfer.md) -
+   4. [Data Submission](06-submission.md) -
+      describes data submission system.
+
+   5. [Data Transfer](07-transfer.md) -
       describes the subsystem for tracking research using NACC-managed data.
 
-   4. [Reporting](06-reporting.md) –
+   6. [Reporting](08-reporting.md) –
       describes the subsystem for NACC communications
 
-   5. [Website](07-website.md)
+   7. [Website](09-website.md)
 
-4. [Architectural Decisions](14-decision-log.md) -
+4. [Architectural Decisions](20-decision-log.md) -
+   Captures decisions made about architecture
 
 ## Document Access
 
