@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="866px" preserveAspectRatio="none" style="width:996px;height:866px;background:#FFFFFF;" version="1.1" viewBox="0 0 996 866" width="996px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="26.2969" id="_title" style="stroke:none;stroke-width:1.0;" width="274" x="354.135" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="264" x="359.135" y="22.9951">Project Management - Containers</text><!--MD5=[8a0cda81b3886ad239b4900fa7b23a25]
+cluster Project Management\n[Software System]--><g id="cluster_Project Management\n[Software System]"><path d="M347.77,293.2969 L510.77,293.2969 A3.75,3.75 0 0 1 513.27,295.7969 L520.27,331.8906 L822.77,331.8906 A2.5,2.5 0 0 1 825.27,334.3906 L825.27,693.7969 A2.5,2.5 0 0 1 822.77,696.2969 L347.77,696.2969 A2.5,2.5 0 0 1 345.27,693.7969 L345.27,295.7969 A2.5,2.5 0 0 1 347.77,293.2969 " fill="none" style="stroke:#444444;stroke-width:1.5;"/><line style="stroke:#444444;stroke-width:1.5;" x1="345.27" x2="520.27" y1="331.8906" y2="331.8906"/><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="162" x="349.27" y="308.292">Project Management</text><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="356.77" y="324.5889">[Software System]</text></g><!--MD5=[2cc3e9b47d137ff8fff85fd3b8fe7d47]
+entity ProjectManagement.ProjectIntake--><g id="elem_ProjectManagement.ProjectIntake"><rect fill="#438DD5" height="99.1563" rx="2.5" ry="2.5" style="stroke:#2E6295;stroke-width:0.5;" width="202" x="605.27" y="581.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="127" x="642.77" y="606.1484">Project Intake</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="678.27" y="619.2041">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="704.27" y="634.5576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="178" x="615.27" y="650.8545">Supports intake of project</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="667.77" y="667.1514">information</text></g><!--MD5=[88375c85f67f4f9cb22c8bd886440541]
+entity ProjectManagement.ProjectManagementSync--><g id="elem_ProjectManagement.ProjectManagementSync"><rect fill="#438DD5" height="134.0781" rx="2.5" ry="2.5" style="stroke:#2E6295;stroke-width:0.5;" width="211" x="597.77" y="344.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="185" x="607.77" y="369.1484">Project Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="42" x="682.27" y="387.7734">Sync</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="104" x="651.27" y="400.8291">[Container: FW Gear]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="701.27" y="416.1826"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="628.77" y="432.4795">Synchronizes project</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="136" x="633.27" y="448.7764">definitions and user</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="658.27" y="465.0732">authorization</text></g><!--MD5=[ba5660ce4b589234f4f7b2e81cce897e]
+entity ProjectManagement.FormManagement--><g id="elem_ProjectManagement.FormManagement"><rect fill="#438DD5" height="115.4531" rx="2.5" ry="2.5" style="stroke:#2E6295;stroke-width:0.5;" width="201" x="361.77" y="353.7969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="166" x="379.27" y="378.6484">Form Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="434.27" y="391.7041">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="460.27" y="407.0576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="176" x="372.27" y="423.3545">Supports management of</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="371.77" y="439.6514">metadata for projects and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="93" x="415.77" y="455.9482">organizations</text></g><!--MD5=[2083a564367558674a493bc10de5982a]
+entity DataWarehouse--><g id="elem_DataWarehouse"><rect fill="#1168BD" height="99.1563" rx="2.5" ry="2.5" style="stroke:#0B4884;stroke-width:0.5;" width="213" x="112.77" y="761.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="148" x="145.27" y="786.1484">Data Warehouse</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="172.27" y="799.2041">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="217.27" y="814.5576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="189" x="122.77" y="830.8545">Supports management and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="150.77" y="847.1514">queries of data sets</text></g><!--MD5=[e7f18db29a1118aa10e0c5e87f5a8c57]
+entity FormsManager--><g id="elem_FormsManager"><ellipse cx="462.27" cy="72.4978" fill="#08427B" rx="29.2009" ry="29.2009" style="stroke:#052E56;stroke-width:0.5;"/><rect fill="#08427B" height="99.1563" rx="29.2009" ry="29.2009" style="stroke:#052E56;stroke-width:0.5;" width="195" x="364.77" y="101.6987"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="138" x="393.27" y="126.5503">Forms Manager</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="441.27" y="139.606">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="460.27" y="154.9595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="171" x="374.77" y="171.2563">Manages forms and form</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="58" x="433.27" y="187.5532">versions</text></g><!--MD5=[68fb8805b4d54261470b7767a23af820]
+entity ProjectUser--><g id="elem_ProjectUser"><ellipse cx="917.27" cy="369.8945" fill="#08427B" rx="23.0976" ry="23.0976" style="stroke:#052E56;stroke-width:0.5;"/><rect fill="#08427B" height="82.8594" rx="23.0976" ry="23.0976" style="stroke:#052E56;stroke-width:0.5;" width="146" x="844.27" y="392.992"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="111" x="861.77" y="417.8436">Project User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="896.27" y="430.8993">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="915.27" y="446.2528"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="126" x="854.27" y="462.5497">Member of project</text></g><!--MD5=[f31e095423d81c7d0905b20b389c885d]
+entity SubmissionSystem--><g id="elem_SubmissionSystem"><rect fill="#1168BD" height="99.1563" rx="2.5" ry="2.5" style="stroke:#0B4884;stroke-width:0.5;" width="216" x="31.27" y="72.7969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="171" x="53.77" y="97.6484">Submission System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="92.27" y="110.7041">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="137.27" y="126.0576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="192" x="41.27" y="142.3545">Supports acquisition of data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="30" x="124.27" y="158.6514">sets</text></g><!--MD5=[4afc81570287e9aa980848dc83f28f7b]
+entity UserManagement--><g id="elem_UserManagement"><rect fill="#1168BD" height="115.4531" rx="2.5" ry="2.5" style="stroke:#0B4884;stroke-width:0.5;" width="220" x="109.27" y="573.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="162" x="138.27" y="598.1484">User Management</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="172.27" y="611.2041">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="217.27" y="626.5576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="196" x="119.27" y="642.8545">Allows centers or projects to</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="197" x="120.77" y="659.1514">manage their own users and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="92" x="173.27" y="675.4482">access rights</text></g><!--MD5=[314ad85bfecfff994458b1df2a408adb]
+link ProjectUser to ProjectManagement.ProjectIntake--><g id="link_ProjectUser_ProjectManagement.ProjectIntake"><path d="M855.39,476.0869 C824.07,508.3669 786.53,547.0569 756.95,577.5569 " fill="none" id="ProjectUser-to-ProjectManagement.ProjectIntake" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="753.39,581.2269,762.5315,577.5617,756.8752,577.6417,756.7952,571.9854,753.39,581.2269" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="99" x="818.27" y="524.5791">Request new project</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="39" x="848.27" y="534.3633">[REDCAP]</text></g><!--MD5=[ce89ea8d896060c9db19e9edcc0bc9c3]
+link FormsManager to ProjectManagement.FormManagement--><g id="link_FormsManager_ProjectManagement.FormManagement"><path d="M462.27,201.3369 C462.27,247.5969 462.27,305.4069 462.27,348.4769 " fill="none" id="FormsManager-to-ProjectManagement.FormManagement" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="462.27,353.6569,466.27,344.6569,462.27,348.6569,458.27,344.6569,462.27,353.6569" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="60" x="468.27" y="241.5791">Modify form</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="463.27" y="253.2197">definitions and</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="40" x="479.77" y="264.8604">versions</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="32" x="483.77" y="274.6445">[HTTPS]</text></g><!--MD5=[c4693646364427282d055ab3408197aa]
+link UserManagement to DataWarehouse--><g id="link_UserManagement_DataWarehouse"><path d="M219.27,688.6069 C219.27,710.1769 219.27,734.6669 219.27,755.9469 " fill="none" id="UserManagement-to-DataWarehouse" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="219.27,761.0069,223.27,752.0069,219.27,756.0069,215.27,752.0069,219.27,761.0069" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="95" x="220.27" y="728.5791">Create/Retire users</text></g><!--MD5=[072ed83ae076c21092fa1eaba8865c77]
+link ProjectManagement.ProjectManagementSync to UserManagement--><g id="link_ProjectManagement.ProjectManagementSync_UserManagement"><path d="M597.68,472.0869 C591.87,474.3869 586.05,476.4769 580.27,478.2969 C471.84,512.4369 426.93,455.4869 326.27,508.2969 C299.44,522.3769 276.23,546.1369 258.36,568.9369 " fill="none" id="ProjectManagement.ProjectManagementSync-to-UserManagement" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="255.08,573.1769,263.7477,568.5002,258.1368,569.2201,257.4169,563.6093,255.08,573.1769" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="93" x="327.27" y="524.5791">Center information</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="346.77" y="534.3633">[JSON/HTTPS]</text></g><!--MD5=[eaa28785f486919e0bd1c180a402299a]
+link ProjectManagement.ProjectManagementSync to ProjectManagement.ProjectIntake--><g id="link_ProjectManagement.ProjectManagementSync_ProjectManagement.ProjectIntake"><path d="M704.18,478.4369 C704.61,509.7469 705.12,546.6569 705.53,576.1869 " fill="none" id="ProjectManagement.ProjectManagementSync-to-ProjectManagement.ProjectIntake" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="705.6,581.2269,709.471,572.1707,705.5286,576.2274,701.4718,572.2849,705.6,581.2269" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="68" x="705.27" y="524.5791">Project details</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="54" x="712.27" y="534.3633">[JSON/HTTPS]</text></g><!--MD5=[949bc6a8e2eb4044084a8b7400a91ece]
+link ProjectManagement.ProjectManagementSync to DataWarehouse--><g id="link_ProjectManagement.ProjectManagementSync_DataWarehouse"><path d="M624.9,478.3569 C516.14,570.0169 331.85,725.2869 324.27,731.2969 C313.23,740.0569 301.4,749.1669 289.79,757.9469 " fill="none" id="ProjectManagement.ProjectManagementSync-to-DataWarehouse" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="285.53,761.1669,295.125,758.945,289.5231,758.1578,290.3104,752.5559,285.53,761.1669" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="71" x="512.27" y="628.5791">Create/update</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="38" x="530.27" y="640.2197">projects</text></g><!--MD5=[1f1c7d7c61a4c98e67b1c762a35716f1]
+link SubmissionSystem to DataWarehouse--><g id="link_SubmissionSystem_DataWarehouse"><path d="M119.54,172.1269 C80.87,275.8669 6,523.5069 91.27,704.2969 C100.98,724.8769 116.89,742.8069 134.25,757.7569 " fill="none" id="SubmissionSystem-to-DataWarehouse" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="138.21,761.0969,133.9084,752.237,134.3877,757.8736,128.7511,758.3528,138.21,761.0969" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="77" x="54.27" y="518.5791">Record errors in</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="29" x="79.77" y="530.2197">forms</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="25" x="81.77" y="540.0039">[JSON]</text></g><!--MD5=[bef13056ab14d3bd5c8c50862166c804]
+link SubmissionSystem to ProjectManagement.FormManagement--><g id="link_SubmissionSystem_ProjectManagement.FormManagement"><path d="M194.06,171.9869 C249.45,221.1969 335.15,297.3469 394.72,350.2769 " fill="none" id="SubmissionSystem-to-ProjectManagement.FormManagement" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="398.6,353.7269,394.5499,344.7493,394.8701,350.3971,389.2223,350.7172,398.6,353.7269" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="76" x="312.27" y="253.0791">form definitions</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="49" x="325.77" y="262.8633">[JSON/YAML]</text></g><!--MD5=[2ee4e72f1b63e2bf75a0fd2e971365a0]
+@startuml
+title Project Management - Containers
+
+top to bottom direction
+
+skinparam {
+  shadowing false
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<DataWarehouse>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam rectangle<<ProjectManagement.FormManagement>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam person<<FormsManager>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<ProjectManagement.ProjectIntake>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<ProjectManagement.ProjectManagementSync>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam person<<ProjectUser>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
+skinparam rectangle<<SubmissionSystem>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam rectangle<<UserManagement>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+
+rectangle "==Data Warehouse\n<size:10>[Software System]</size>\n\nSupports management and queries of data sets" <<DataWarehouse>> as DataWarehouse
+person "==Forms Manager\n<size:10>[Person]</size>\n\nManages forms and form versions" <<FormsManager>> as FormsManager
+person "==Project User\n<size:10>[Person]</size>\n\nMember of project" <<ProjectUser>> as ProjectUser
+rectangle "==Submission System\n<size:10>[Software System]</size>\n\nSupports acquisition of data sets" <<SubmissionSystem>> as SubmissionSystem
+rectangle "==User Management\n<size:10>[Software System]</size>\n\nAllows centers or projects to manage their own users and access rights" <<UserManagement>> as UserManagement
+
+package "Project Management\n[Software System]" <<ProjectManagement>> {
+  skinparam PackageBorderColor<<ProjectManagement>> #444444
+  skinparam PackageFontColor<<ProjectManagement>> #444444
+
+  rectangle "==Project Intake\n<size:10>[Container]</size>\n\nSupports intake of project information" <<ProjectManagement.ProjectIntake>> as ProjectManagement.ProjectIntake
+  rectangle "==Project Management Sync\n<size:10>[Container: FW Gear]</size>\n\nSynchronizes project definitions and user authorization" <<ProjectManagement.ProjectManagementSync>> as ProjectManagement.ProjectManagementSync
+  rectangle "==Form Management\n<size:10>[Container]</size>\n\nSupports management of metadata for projects and organizations" <<ProjectManagement.FormManagement>> as ProjectManagement.FormManagement
+}
+
+ProjectUser .[#707070,thickness=2].> ProjectManagement.ProjectIntake : "<color:#707070>Request new project\n<color:#707070><size:8>[REDCAP]</size>"
+FormsManager .[#707070,thickness=2].> ProjectManagement.FormManagement : "<color:#707070>Modify form definitions and versions\n<color:#707070><size:8>[HTTPS]</size>"
+UserManagement .[#707070,thickness=2].> DataWarehouse : "<color:#707070>Create/Retire users"
+ProjectManagement.ProjectManagementSync .[#707070,thickness=2].> UserManagement : "<color:#707070>Center information\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+ProjectManagement.ProjectManagementSync .[#707070,thickness=2].> ProjectManagement.ProjectIntake : "<color:#707070>Project details\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+ProjectManagement.ProjectManagementSync .[#707070,thickness=2].> DataWarehouse : "<color:#707070>Create/update projects"
+SubmissionSystem .[#707070,thickness=2].> DataWarehouse : "<color:#707070>Record errors in forms\n<color:#707070><size:8>[JSON]</size>"
+SubmissionSystem .[#707070,thickness=2].> ProjectManagement.FormManagement : "<color:#707070>form definitions\n<color:#707070><size:8>[JSON/YAML]</size>"
+@enduml
+
+PlantUML version 1.2022.12(Sun Oct 23 18:12:26 UTC 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

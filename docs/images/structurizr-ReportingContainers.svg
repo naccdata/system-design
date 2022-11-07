@@ -1,6 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="44px" preserveAspectRatio="none" style="width:261px;height:44px;background:#FFFFFF;" version="1.1" viewBox="0 0 261 44" width="261px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="26.2969" id="_title" style="stroke:none;stroke-width:1.0;" width="243" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="233" x="10" y="22.9951">Transfer System - Containers</text><!--MD5=[abee6b98f7ad47ffdef2ce9922f0a158]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="845px" preserveAspectRatio="none" style="width:270px;height:845px;background:#FFFFFF;" version="1.1" viewBox="0 0 270 845" width="270px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="26.2969" id="_title" style="stroke:none;stroke-width:1.0;" width="252" x="5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="242" x="10" y="22.9951">Reporting System - Containers</text><!--MD5=[e1b3e158574670a58454a95a8e3073e5]
+cluster Reporting System\n[Software System]--><g id="cluster_Reporting System\n[Software System]"><path d="M14,308.2969 L162,308.2969 A3.75,3.75 0 0 1 164.5,310.7969 L171.5,346.8906 L261,346.8906 A2.5,2.5 0 0 1 263.5,349.3906 L263.5,678.7969 A2.5,2.5 0 0 1 261,681.2969 L14,681.2969 A2.5,2.5 0 0 1 11.5,678.7969 L11.5,310.7969 A2.5,2.5 0 0 1 14,308.2969 " fill="none" style="stroke:#444444;stroke-width:1.5;"/><line style="stroke:#444444;stroke-width:1.5;" x1="11.5" x2="171.5" y1="346.8906" y2="346.8906"/><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="140" x="19" y="323.292">Reporting System</text><text fill="#444444" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="147" x="15.5" y="339.5889">[Software System]</text></g><!--MD5=[bd8e6608ab58be3776efcd63b2a53aca]
+entity ReportingSystem.ReportingSystem--><g id="elem_ReportingSystem.ReportingSystem"><rect fill="#438DD5" height="99.1563" rx="2.5" ry="2.5" style="stroke:#2E6295;stroke-width:0.5;" width="186" x="44.5" y="566.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="159" x="58" y="591.1484">Reporting System</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="109.5" y="604.2041">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="135.5" y="619.5576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="162" x="54.5" y="635.8545">Subsystem to generate</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="128" x="73.5" y="652.1514">reports about data</text></g><!--MD5=[954ca035d0fb0c0ca54f73a63c282901]
+entity ReportingSystem.DataReportingAuditing--><g id="elem_ReportingSystem.DataReportingAuditing"><rect fill="#438DD5" height="134.0781" rx="2.5" ry="2.5" style="stroke:#2E6295;stroke-width:0.5;" width="220" x="27.5" y="359.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="41" x="114" y="384.1484">Data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="165" x="55" y="402.7734">Reporting/Auditing</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="109.5" y="415.8291">[Container]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="135.5" y="431.1826"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="167" x="52" y="447.4795">Single page interface for</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="196" x="37.5" y="463.7764">reporting on/auditing of data</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="94" y="480.0732">submissions</text></g><!--MD5=[2083a564367558674a493bc10de5982a]
+entity DataWarehouse--><g id="elem_DataWarehouse"><rect fill="#1168BD" height="99.1563" rx="2.5" ry="2.5" style="stroke:#0B4884;stroke-width:0.5;" width="213" x="31" y="740.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="148" x="63.5" y="765.1484">Data Warehouse</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="90.5" y="778.2041">[Software System]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="135.5" y="793.5576"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="189" x="41" y="809.8545">Supports management and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="137" x="69" y="826.1514">queries of data sets</text></g><!--MD5=[9187420b3ee29e13a21850ad86899c09]
+entity ResearchCenterUser--><g id="elem_ResearchCenterUser"><ellipse cx="137.5" cy="74.101" fill="#08427B" rx="30.8041" ry="30.8041" style="stroke:#052E56;stroke-width:0.5;"/><rect fill="#08427B" height="99.1563" rx="30.8041" ry="30.8041" style="stroke:#052E56;stroke-width:0.5;" width="217" x="29" y="104.9052"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="197" x="39" y="129.7567">Research Center User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="42" x="116.5" y="142.8124">[Person]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="135.5" y="158.1659"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="59.5" y="174.4628">User at ADRC or other</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="110" x="82.5" y="190.7597">research center</text></g><!--MD5=[6c2d7accc11a75ae923db7af15194cc2]
+link ReportingSystem.ReportingSystem to DataWarehouse--><g id="link_ReportingSystem.ReportingSystem_DataWarehouse"><path d="M137.5,665.6269 C137.5,687.2369 137.5,712.7169 137.5,734.8769 " fill="none" id="ReportingSystem.ReportingSystem-to-DataWarehouse" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="137.5,740.1469,141.5,731.1469,137.5,735.1469,133.5,731.1469,137.5,740.1469" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="3" x="138.5" y="707.5791"> </text></g><!--MD5=[2b3ee49a092c82d4c2d753ba4288d419]
+link ReportingSystem.DataReportingAuditing to ReportingSystem.ReportingSystem--><g id="link_ReportingSystem.DataReportingAuditing_ReportingSystem.ReportingSystem"><path d="M137.5,493.4069 C137.5,515.5569 137.5,539.9769 137.5,561.0669 " fill="none" id="ReportingSystem.DataReportingAuditing-to-ReportingSystem.ReportingSystem" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="137.5,566.0769,141.5,557.0769,137.5,561.0769,133.5,557.0769,137.5,566.0769" style="stroke:#707070;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="3" x="138.5" y="533.5791"> </text></g><!--MD5=[cf272a7774881bbf5ae2573d4ae673f6]
+link ResearchCenterUser to ReportingSystem.DataReportingAuditing--><g id="link_ResearchCenterUser_ReportingSystem.DataReportingAuditing"><path d="M137.5,204.5369 C137.5,250.9169 137.5,308.8769 137.5,353.7769 " fill="none" id="ResearchCenterUser-to-ReportingSystem.DataReportingAuditing" style="stroke:#707070;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#707070" points="137.5,358.9069,141.5,349.9069,137.5,353.9069,133.5,349.9069,137.5,358.9069" style="stroke:#707070;stroke-width:2.0;"/><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="86" x="139" y="244.5791">Views ADRC data</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="87" x="138.5" y="256.2197">and reports about</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="79" x="142.5" y="267.8604">submissions and</text><text fill="#707070" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="29" x="169" y="279.501">errors</text><text fill="#707070" font-family="sans-serif" font-size="8" lengthAdjust="spacing" textLength="32" x="167.5" y="289.2852">[HTTPS]</text></g><!--MD5=[075f0b443f99ae90e3d6f355509e0e2e]
 @startuml
-title Transfer System - Containers
+title Reporting System - Containers
 
 top to bottom direction
 
@@ -14,7 +22,41 @@ skinparam {
 
 hide stereotype
 
+skinparam rectangle<<ReportingSystem.DataReportingAuditing>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam rectangle<<DataWarehouse>> {
+  BackgroundColor #1168bd
+  FontColor #ffffff
+  BorderColor #0b4884
+}
+skinparam rectangle<<ReportingSystem.ReportingSystem>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+}
+skinparam person<<ResearchCenterUser>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+}
 
+rectangle "==Data Warehouse\n<size:10>[Software System]</size>\n\nSupports management and queries of data sets" <<DataWarehouse>> as DataWarehouse
+person "==Research Center User\n<size:10>[Person]</size>\n\nUser at ADRC or other research center" <<ResearchCenterUser>> as ResearchCenterUser
+
+package "Reporting System\n[Software System]" <<ReportingSystem>> {
+  skinparam PackageBorderColor<<ReportingSystem>> #444444
+  skinparam PackageFontColor<<ReportingSystem>> #444444
+
+  rectangle "==Reporting System\n<size:10>[Container]</size>\n\nSubsystem to generate reports about data" <<ReportingSystem.ReportingSystem>> as ReportingSystem.ReportingSystem
+  rectangle "==Data Reporting/Auditing\n<size:10>[Container]</size>\n\nSingle page interface for reporting on/auditing of data submissions" <<ReportingSystem.DataReportingAuditing>> as ReportingSystem.DataReportingAuditing
+}
+
+ReportingSystem.ReportingSystem .[#707070,thickness=2].> DataWarehouse : "<color:#707070>"
+ReportingSystem.DataReportingAuditing .[#707070,thickness=2].> ReportingSystem.ReportingSystem : "<color:#707070>"
+ResearchCenterUser .[#707070,thickness=2].> ReportingSystem.DataReportingAuditing : "<color:#707070>Views ADRC data and reports about submissions and errors\n<color:#707070><size:8>[HTTPS]</size>"
 @enduml
 
 PlantUML version 1.2022.12(Sun Oct 23 18:12:26 UTC 2022)
