@@ -1,18 +1,14 @@
 workspace {
     model {
         authorizationSystem = softwareSystem "Authorization Service" "Authentication and Authorization to Access Systems" "External System"
+
+
     
         enterprise "NACC" {
-
-
-          
 
             dataWarehouseSystem = softwareSystem "Data Warehouse" "Supports management and queries of data sets" {
 
                 dataWarehouseAPI = container "Data Warehouse API" "API for data access" "FW"
-
-
-
 
                 dataPipeline = container "<<Stereotype>> Project Pipeline" "Pipeline for QC, harmonization of project data" {
                     // see dataSubmissionSystem
@@ -44,11 +40,45 @@ workspace {
 
 
             }
+
+            userManangementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
+                directory = container "NACC Directory" "Allows users to view and edit the NACC directory" "REDCap" {
+                    directoryInterface = component "Directory Management Interface" "Interface to manage directory entries" "REDCap"
+                    directoryAPI = component "Directory API" "API for accessing NACC directory information" "JSON/HTTPS"
+                }
+
+                userManagementSynchonizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
+                    -> directoryAPI "User information" "JSON/HTTPS"
+                    -> dataWarehouseAPI "Create/Retire users"
+                }
+            }
+
+            projectManagementSystem = softwareSystem "Project Management" "Supports the management of projects within NACC systems" {
+                projectIntakeSystem = container "Project Intake" "Supports intake of project information" {
+                    projectIntakeInterface = component "Project Intake" "Interface for requesting new projects"  "REDCap"
+                    projectIntakeAPI = component "Project API" "Interface for access project intake requests"
+                }
+
+                projectManagementSynchronizer = container "Project Management Sync" "Synchronizes project definitions and user authorization" "FW Gear" {
+                    -> directoryAPI "Center information" "JSON/HTTPS"
+                    -> projectIntakeAPI "Project details" "JSON/HTTPS"
+                    -> dataWarehouseAPI "Create/update projects"
+                }
+
+                formManagementSystem = container "Form Management" "Supports management of metadata for projects and organizations" {
+                    formDefinitionDatabase = component "Form Definitions" "Database of form definitions and quality rules"
+                    formManagementInterface = component "Form Management" "Single page interface for managing form definitions and versions" {
+                        -> formDefinitionDatabase
+                    }
+                }
+            }
+
             dataSubmissionSystem = softwareSystem "Submission System" "Supports acquisition of data sets" {
                 // Form pipeline
                 group "Form pipeline" {
                     formValidator = container "Form Data Validator" "Service for validation of forms data" "Python/FW Gear" {
                         -> ingestProject "Record errors in forms" "JSON"
+                        -> formDefinitionDatabase "form definitions" "JSON/YAML"
                     }
                     formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap Project" {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
@@ -92,7 +122,18 @@ workspace {
             }
 
             dataTransferSystem = softwareSystem "Transfer System" "Supports pushing/pulling data to collaborating centers/projects" {
-                -> dataWarehouseAPI
+                bucketIngestor = container "Data Ingestor" "Pulls structured data from AWS bucket and places in appropriate project" "Python/FW Gear" {
+                    -> dataWarehouseAPI
+                }
+                ingestBucket = container "Ingest Bucket" "S3 bucket for ingest of data from external data centers" "AWS S3" {
+                    -> bucketIngestor
+                }
+                dataPuller = container "<<Stereotype>> Data Puller" "Service to pull data from external data center" "Python/FW Gear" {
+                    -> dataWarehouseAPI
+                }
+                dataPusher = container "<<Stereotype>> Data Pusher" "Service to push data to external data center" "Python/FW Gear" {
+                    -> dataWarehouseAPI
+                }
             }
 
             reportingSystem = softwareSystem "Reporting System" "Supports generation and presentation of reports" {
@@ -127,37 +168,7 @@ workspace {
                 }
             }
 
-            userManangementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
-                directory = container "NACC Directory" "Allows users to view and edit the NACC directory" {
-                    directoryInterface = component "Directory Management Interface" "Interface to manage directory entries" "REDCap"
-                    directoryAPI = component "Directory API" "API for accessing NACC directory information" "JSON/HTTPS"
-                }
 
-                userManagementSynchonizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
-                    -> directoryAPI "User information" "JSON/HTTPS"
-                    -> dataWarehouseAPI "Create/Retire users"
-                }
-            }
-
-            projectManagementSystem = softwareSystem "Project Management" "Supports the management of projects within NACC systems" {
-                projectIntakeSystem = container "Project Intake" "Supports intake of project information" {
-                    projectIntakeInterface = component "Project Intake" "Interface for requesting new projects"  "REDCap"
-                    projectIntakeAPI = component "Project API" "Interface for access project intake requests"
-                }
-
-                projectManagementSynchronizer = container "Project Management Sync" "Synchronizes project definitions and user authorization" "FW Gear" {
-                    -> directoryAPI "Center information" "JSON/HTTPS"
-                    -> projectIntakeAPI "Project details" "JSON/HTTPS"
-                    -> dataWarehouseAPI "Create/update projects"
-                }
-
-                formManagementSystem = container "Form Management" "Supports management of metadata for projects and organizations" {
-                    formDefinitionDatabase = component "Form Definitions" "Database of form definitions and quality rules"
-                    formManagementInterface = component "Form Management" "Single page interface for managing form definitions and versions" {
-                        -> formDefinitionDatabase
-                    }
-                }
-            }
         }
 
         //Users are split by role with the first user being a generalization of roles
@@ -222,8 +233,10 @@ workspace {
         externalDataCenterSystem = softwareSystem "<<stereotype>> External Data Center" "Represents linked repository of specialized data." "External System" {
             -> identifiersController "Request NACC ID for ADRC participant" "JSON/HTTPS"
             -> dataWarehouseAPI "Request data for participant" "JSON/HTTPS"
+            -> ingestBucket "Push data to NACC" "JSON/HTTPS"
         }
-        dataTransferSystem -> externalDataCenterSystem "Push/Pull data" "JSON/HTTPS"
+        dataPuller -> externalDataCenterSystem "Pull data" "JSON/HTTPS"
+        dataPusher -> externalDataCenterSystem "Push data" "JSON/HTTPS"
 
         adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System" {
             -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
@@ -325,6 +338,31 @@ workspace {
             exclude externalDataCenterSystem
             exclude researchCenterUser
             exclude projectUser
+            autoLayout
+        }
+
+        systemContext projectManagementSystem "ProjectManagementContext" {
+            include *
+            exclude projectInstigatorUser
+            autoLayout
+        }
+
+        container projectManagementSystem "ProjectManagementContainers" {
+            include *
+            exclude projectInstigatorUser
+            autoLayout
+        }
+
+        systemContext userManangementSystem "UserManagementContext" {
+            include *
+            exclude adrcOpsUser
+            autoLayout
+        }
+
+        container userManangementSystem "UserManagementContainers" {
+            include *
+            exclude adrcOpsUser
+            exclude projectManagementSystem
             autoLayout
         }
 
@@ -473,7 +511,7 @@ workspace {
             autoLayout 
         }
 
-        container dataTransferSystem "ReportingContainers" {
+        container reportingSystem "ReportingContainers" {
             include *
             exclude adrcDataSystem
             exclude ncradSystem
