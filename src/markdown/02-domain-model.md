@@ -8,8 +8,8 @@ The goal of this document is to help the reader understand the objects that occu
 
 ## Domain Objects
 
-The repository captures data for for a project the goal of which is to capture (longitudinal) standardized observations for the enrolled participants.
-A project consists of centers that enroll and observe participants, and a design which determines the observations that will be made.
+The repository captures data for for a project, the goal of which is to capture (longitudinal) standardized observations for the enrolled participants.
+A project consists of centers that enroll and observe participants, and a design that determines the observations made.
 
 ```mermaid
 classDiagram
@@ -21,12 +21,38 @@ classDiagram
         +String name
     }
     Project --> "n" Center
-    Project --> "0..n" Participant : enrollees
-    Project --> "1..n" Design
-    Project --> "0..n" Observation : dataset
+    Project --> Design
 ```
 
-Observations are captured at a project center where the participant is enrolled within the project.
+## Enrollment
+
+A participant is enrolled in a project at a particular center for a particular time period.
+
+```mermaid
+classDiagram
+    class Center
+    class Participant {
+        +ID participant_id
+    }
+    class ProjectEnrollment {
+        +ID project_id
+        +Date start_date
+        +Date end_date
+    }
+    Participant --> "n" ProjectEnrollment
+    ProjectEnrollment --> Center
+```
+
+Enrollment is not exclusive.
+A participant may end up enrolled at multiple centers for the same project, because participants move without telling centers, or go to other centers for second opinions.
+Or, may be enrolled in more than one project at the same center.
+
+Cases where the participant moves without telling anyone can result in the participant being assigned a new ID.
+But genetic tests will often catch these aliases from the simultaneous enrollments.
+
+## Observations
+
+Observations are captured at the center where the participant is enrolled.
 
 ```mermaid
 classDiagram
@@ -41,47 +67,8 @@ classDiagram
     Visit *-- "1..n" Observation
 ```
 
-*note: need to represent participant enrollment at a center being time dependent. diagram needs an association class*
-
 As determined by the project design, observations may be form responses, images, other forms of digital data, or biospecimens captured during the visit.
 
-```mermaid
-classDiagram
-    Observation <|-- FormResponses
-    Observation <|-- Image
-    Observation <|-- Biospecimen
-    Observation <|-- Digital Data
-```
+## Design
 
-All but biospecimens can be storied as files or other structured data.
-In the context of NACC, a biospecimen may be represented as a reference to a sample at a tissue repository (e.g., NCRAD).
-
-The data set for a project includes any files capturing observations, and *variables*, each of which is a value extracted or derived from an observation.
-
-```mermaid
-classDiagram
-    Variable --> "1" Observation : derived_from
-```
-
-Examples include
-
-1.  encoded form response for a question, 
-2.  a biomarker derived from a biospecimen,
-3.  a volumetric measure computed from an image series, or
-4.  a measure of cognition computed from tablet-based assessments.
-
-Observations must meet the project design
-
-```mermaid
-classDiagram
-    class FormSet {
-        +ValidationCriteria rules
-    }
-    Design <|-- FormSet
-    FormSet *-- "n" Form : required 
-    FormSet *-- "n" Form : optional
-    Design <|-- Biomarker
-    Design <|-- Genetic Observation
-
-    FormResponses --> "1" Form
-```
+> Leaving out the details of project design for now

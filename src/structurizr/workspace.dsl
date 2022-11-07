@@ -4,32 +4,15 @@ workspace {
     
         enterprise "NACC" {
 
-            userManangementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
-                directory = container "NACC Directory" "Allows users to view and edit the NACC directory" {
-                    directoryInterface = component "Directory Management Interface" "Interface to manage directory entries" "REDCap"
-                    directoryAPI = component "Directory API" "API for accessing NACC directory information" "JSON/HTTPS"
-                }
-            }
 
-            projectManagementSystem = softwareSystem "Project Management" "Supports the management of projects within NACC systems" {
-                projectIntakeSystem = container "Project Intake" "Supports intake of project information" {
-                    projectIntakeInterface = component "Project Intake" "Interface for requesting new projects"  "REDCap"
-                    projectIntakeAPI = component "Project API" "Interface for access project intake requests"
-                }
-            }
           
 
             dataWarehouseSystem = softwareSystem "Data Warehouse" "Supports management and queries of data sets" {
 
                 dataWarehouseAPI = container "Data Warehouse API" "API for data access" "FW"
 
-                userManagementSynchonizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
-                    -> directoryAPI "User information" "JSON/HTTPS"
-                }
-                projectManagementSynchronizer = container "Project Management Sync" "Synchronizes project definitions and user authorization" "FW Gear" {
-                    -> directoryAPI "Center information" "JSON/HTTPS"
-                    -> projectIntakeAPI "Project details" "JSON/HTTPS"
-                }
+
+
 
                 dataPipeline = container "<<Stereotype>> Project Pipeline" "Pipeline for QC, harmonization of project data" {
                     // see dataSubmissionSystem
@@ -38,7 +21,7 @@ workspace {
                         acceptedProject = component "<<Stereotype>> Accepted Forms" "Collection of data that has past QC and released by center" "FW Group"
                     }
                 }                
-                dataReleasePipeline = container "Pipeline for data release" {
+                dataReleasePipeline = container "Data Release Pipeline" "Pipeline for data release" {
                     dataReleaseProject = component "Release Data" "Collection of frozen data for release to researchers" "FW Group"
                     dataAggregator = component "Data Aggregator" "Aggregates project data across centers" "FW Gear" {
                         -> dataReleaseProject
@@ -58,12 +41,7 @@ workspace {
                 }
 
 
-                formManagementSystem = container "Form Management" "Supports management of metadata for projects and organizations" {
-                    formDefinitionDatabase = component "Form Definitions" "Database of form definitions and quality rules"
-                    formManagementInterface = component "Form Management" "Single page interface for managing form definitions and versions" {
-                        -> formDefinitionDatabase
-                    }
-                }
+
 
             }
             dataSubmissionSystem = softwareSystem "Submission System" "Supports acquisition of data sets" {
@@ -146,6 +124,38 @@ workspace {
                 documentationInterface = container "Documentation Interface" "Provide access to form and center documentation"
                 landingPage = container "Landing Page" "Landing page for website with routing to subsystems" {
 
+                }
+            }
+
+            userManangementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
+                directory = container "NACC Directory" "Allows users to view and edit the NACC directory" {
+                    directoryInterface = component "Directory Management Interface" "Interface to manage directory entries" "REDCap"
+                    directoryAPI = component "Directory API" "API for accessing NACC directory information" "JSON/HTTPS"
+                }
+
+                userManagementSynchonizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
+                    -> directoryAPI "User information" "JSON/HTTPS"
+                    -> dataWarehouseAPI "Create/Retire users"
+                }
+            }
+
+            projectManagementSystem = softwareSystem "Project Management" "Supports the management of projects within NACC systems" {
+                projectIntakeSystem = container "Project Intake" "Supports intake of project information" {
+                    projectIntakeInterface = component "Project Intake" "Interface for requesting new projects"  "REDCap"
+                    projectIntakeAPI = component "Project API" "Interface for access project intake requests"
+                }
+
+                projectManagementSynchronizer = container "Project Management Sync" "Synchronizes project definitions and user authorization" "FW Gear" {
+                    -> directoryAPI "Center information" "JSON/HTTPS"
+                    -> projectIntakeAPI "Project details" "JSON/HTTPS"
+                    -> dataWarehouseAPI "Create/update projects"
+                }
+
+                formManagementSystem = container "Form Management" "Supports management of metadata for projects and organizations" {
+                    formDefinitionDatabase = component "Form Definitions" "Database of form definitions and quality rules"
+                    formManagementInterface = component "Form Management" "Single page interface for managing form definitions and versions" {
+                        -> formDefinitionDatabase
+                    }
                 }
             }
         }
