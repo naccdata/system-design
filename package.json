@@ -3,6 +3,6 @@
   "author": "Ben Keller <bjkeller@uw.edu>",
   "license": "MIT",
   "dependencies": {
-    "@mermaid-js/mermaid-cli": "^8.13.10"
+    "@mermaid-js/mermaid-cli": "^10.0.2"
   }
 }
