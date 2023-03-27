@@ -1,5 +1,5 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/java
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/java
 {
 	"name": "Java",
 	"build": {
@@ -12,22 +12,23 @@
 			// Options
 			"INSTALL_MAVEN": "false",
 			"INSTALL_GRADLE": "true",
-			"NODE_VERSION": "16"
+			"NODE_VERSION": "lts/*"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"java.jdt.ls.java.home": "/docker-java-home"
+			},
+			"extensions": [
+				"vscjava.vscode-java-pack",
+				"ciarant.vscode-structurizr",
+				"yzhang.markdown-all-in-one",
+				"streetsidesoftware.code-spell-checker"
+			]
 		}
 	},
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"java.jdt.ls.java.home": "/docker-java-home"
-	},
-	
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"vscjava.vscode-java-pack",
-		"ciarant.vscode-structurizr",
-		"yzhang.markdown-all-in-one",
-		"streetsidesoftware.code-spell-checker"
-	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
