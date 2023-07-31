@@ -14,6 +14,6 @@ This document describes the model of the software systems supporting data submis
 
 ![Submission-Container-Diagram](images/structurizr-SubmissionContainers.svg)
 
-## Deployment
+<!-- ## Deployment
 
-![Submission-Deployment-Diagram](images/structurizr-ProductionSubmissionDeployment.svg)
+![Submission-Deployment-Diagram](images/structurizr-ProductionSubmissionDeployment.svg) -->
