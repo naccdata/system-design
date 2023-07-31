@@ -8,28 +8,35 @@ workspace {
 
             dataWarehouseSystem = softwareSystem "Data Warehouse" "Supports management and queries of data sets" {
 
-                dataWarehouseAPI = container "Data Warehouse API" "API for data access" "FW"
 
-                dataPipeline = container "<<Stereotype>> Project Pipeline" "Pipeline for QC, harmonization of project data" {
-                    // see dataSubmissionSystem
-                    group "Data Pipeline" {
-                        ingestProject = component "<<Stereotype>> Quarantine" "Collection of quarantined data" "FW Group"
-                        acceptedProject = component "<<Stereotype>> Accepted Forms" "Collection of data that has past QC and released by center" "FW Group"
+                group "Flywheel" {
+                    dataPipeline = container "<<Stereotype>> Project Pipeline" "Pipeline for QC, harmonization of project data" {
+                        // see dataSubmissionSystem
+                        group "Data Pipeline" {
+                            ingestProject = component "<<Stereotype>> Site Ingest" "Collection of quarantined data" "FW Group"
+                            acceptedProject = component "<<Stereotype>> Site Persistent" "Collection of data that has past QC and released by center" "FW Group"
+                        }
+                    }                
+                    dataReleasePipeline = container "Data Release Pipeline" "Pipeline for data release" {
+                        dataReleaseProject = component "Master Project" "Collection of frozen data for release to researchers" "FW Group"
+                        dataAggregator = component "Data Aggregator" "Aggregates project data across centers" "FW Gear" {
+                            -> dataReleaseProject
+                        }
+                        acceptedProject -> dataAggregator "Pull project data"
+
+                        // TODO: data needs to be pushed to leaf or data request bucket
+                        dataReleaseView = component "Data Release View" "Data view for release data" "FW View(s)"
+                        buildAndExportViews = component "Build & Export Release Views" "Builds data views for data releases" "Python/FW Gear" {
+                            -> dataReleaseView "create data view"
+                        }
+
                     }
-                }                
-                dataReleasePipeline = container "Data Release Pipeline" "Pipeline for data release" {
-                    dataReleaseProject = component "Release Data" "Collection of frozen data for release to researchers" "FW Group"
-                    dataAggregator = component "Data Aggregator" "Aggregates project data across centers" "FW Gear" {
+
+                    dataWarehouseAPI = container "Data Warehouse API" "API for data access" "FW" {
+                        -> ingestProject
+                        -> acceptedProject
                         -> dataReleaseProject
                     }
-                    acceptedProject -> dataAggregator "Pull project data"
-
-                    // TODO: data needs to be pushed to leaf or data request bucket
-                    dataReleaseView = component "Data Release View" "Data view for release data" "FW View(s)"
-                    buildAndExportViews = component "Build & Export Release Views" "Builds data views for data releases" "Python/FW Gear" {
-                        -> dataReleaseView "create data view"
-                    }
-
                 }
 
                 participantManagement = container "Participant Management" "Manages participant identifiers and center access" {
@@ -77,7 +84,7 @@ workspace {
                 // Form pipeline
                 group "Form pipeline" {
                     formValidator = container "Form Data Validator" "Service for validation of forms data" "Python/FW Gear" {
-                        -> ingestProject "Record errors in forms" "JSON"
+                        -> dataWarehouseAPI "Record errors in forms in ingest project" "JSON"
                         -> formDefinitionDatabase "form definitions" "JSON/YAML"
                     }
                     formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap Project" {
@@ -87,7 +94,7 @@ workspace {
                     transferService = container "Form Transfer" "Transfers valid forms" "Python" {
                         -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
                         -> formValidator "form data to be validated against project rules" "JSON/HTTPS"
-                        -> ingestProject "push validated data" "JSON/HTTPS"
+                        -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
                     }                   
 
                 }
@@ -148,7 +155,7 @@ workspace {
             sharingSystem = softwareSystem "Data Sharing System" "Supports access to data" {
                 searchInterface = container "Data Search" "Single page interface for search across all types of data" {
                     //TODO: this is wrong
-                    -> dataReleaseView
+                    -> dataWarehouseAPI
                 }
 
                 dataRequentIntake = container "Data Request Intake" "Supports requests of project data" {
