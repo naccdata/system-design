@@ -104,23 +104,6 @@ workspace {
                     }
                 }
 
-                // DICOM Image pipeline
-                dicomImagePipeline = container "Image Pipeline" "Receives, validates and transforms image headers" {
-                }
-
-                // File pipeline
-                filePipeline = container "File Pipeline" "Recieves, validates and transforms other data files" {
-                }
-
-                dataSubmissionAPI = container "Data Submission API" "API for data submission and access" {
-                    fileSubmissionController = component "(Non-form/image) File Submission Controller" "Accept general file submissions" {
-                        -> filePipeline
-                    }
-                    dicomImageSubmissionController = component "Image Submission Controller" "Accept image submissions" {
-                        -> dicomImagePipeline
-                    }
-                    //no form controller because use REDCap
-                }
 
                 submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Next.js" {
                     -> redcapTransferService "Initiate form data transfer" "JSON/HTTPS"
@@ -251,17 +234,9 @@ workspace {
         dataPuller -> externalDataCenterSystem "Pull data" "JSON/HTTPS"
         dataPusher -> externalDataCenterSystem "Push data" "JSON/HTTPS"
 
-        adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System" {
-            -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
-            -> dicomImageSubmissionController "Submit image data" "JSON/HTTPS"
-            -> fileSubmissionController "Submit file data" "JSON/HTTPS"
-        }
+        adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System"
         redcapTransferService -> adrcDataSystem "Pull project form data" "JSON/HTTPS"
-        centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System" {
-            -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
-            -> dicomImageSubmissionController "Submit image data" "JSON/HTTPS"
-            -> fileSubmissionController "Submit file data" "JSON/HTTPS"
-        }
+        centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System"
         redcapTransferService -> centerDataSystem "Pull project form data" "JSON/HTTPS"     
 
         group "Data Centers" {
@@ -313,11 +288,6 @@ workspace {
         #         }
         #         deploymentNode "Docker Container - Form Validator Service" "" "Docker" {
         #             formValidatorInstance = containerInstance formValidator
-        #         }
-        #         deploymentNode "Docker Container - Data Submission API" "" "Docker" {
-        #             deploymentNode "web server" "" "web server" {
-        #                 dataSubmissionAPIInstance = containerInstance dataSubmissionAPI
-        #             }
         #         }
         #         deploymentNode "Docker Container - Error Database" "" "Docker" {
         #             errorDatabaseInstance = containerInstance errorDatabase
