@@ -96,7 +96,12 @@ workspace {
                         -> formValidator "form data to be validated against project rules" "JSON/HTTPS"
                         -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
                     }                   
-
+                    redcapTransferService = container "REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
+                        -> formQuarantineProject "push center data to quarantine project" "JSON/HTTPS"
+                    }
+                    fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Javascript" {
+                        -> formQuarantineProject "push data to quarantine proect" "JSON/HTTPS"
+                    }
                 }
 
                 // DICOM Image pipeline
@@ -118,9 +123,10 @@ workspace {
                 }
 
                 submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Next.js" {
-                    -> formQuarantineProject "Push form data" "CSV/HTTPS"
-                    -> fileSubmissionController
-                    -> dicomImageSubmissionController
+                    -> redcapTransferService "Initiate form data transfer" "JSON/HTTPS"
+                    -> formQuarantineProject "Route to REDCap UI" "HTTPS"
+                    -> fileUploadService "Initiate upload process" "JSON/HTTPS"
+
                     -> ingestProject "Retrieve submission errors" "JSON/HTTPS"
                 }
                 submissionWebApplication = container "Submission Web App" "Delivers submission application to user" "nginx" {
@@ -250,11 +256,14 @@ workspace {
             -> dicomImageSubmissionController "Submit image data" "JSON/HTTPS"
             -> fileSubmissionController "Submit file data" "JSON/HTTPS"
         }
+        redcapTransferService -> adrcDataSystem "Pull project form data" "JSON/HTTPS"
         centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System" {
             -> formQuarantineProject "Submit forms data" "JSON/HTTPS"
             -> dicomImageSubmissionController "Submit image data" "JSON/HTTPS"
             -> fileSubmissionController "Submit file data" "JSON/HTTPS"
         }
+        redcapTransferService -> centerDataSystem "Pull project form data" "JSON/HTTPS"     
+
         group "Data Centers" {
             ncradSystem = softwareSystem "NCRAD" "Data systems of collaborating site" "External System" {
                 -> dataTransferSystem "Genomic data for transfer to ADRCs" 
