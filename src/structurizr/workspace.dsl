@@ -91,12 +91,12 @@ workspace {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
                         formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
                     }
-                    transferService = container "Form Transfer" "Transfers valid forms" "Python" {
+                    transferService = container "REDCap-Ingest Transfer" "Transfers valid forms to ingest" "Python" {
                         -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
                         -> formValidator "form data to be validated against project rules" "JSON/HTTPS"
                         -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
                     }                   
-                    redcapTransferService = container "REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
+                    redcapTransferService = container "REDCap-REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
                         -> formQuarantineProject "push center data to quarantine project" "JSON/HTTPS"
                     }
                     fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Javascript" {
