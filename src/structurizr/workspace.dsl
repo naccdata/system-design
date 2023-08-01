@@ -414,6 +414,7 @@ workspace {
 
         container dataSubmissionSystem "SubmissionContainers" {
             include *
+            exclude submissionWebApplication
             exclude adrcDataSystem
             exclude ncradSystem
             exclude niagadsSystem
