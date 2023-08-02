@@ -83,21 +83,26 @@ workspace {
             dataSubmissionSystem = softwareSystem "Submission System" "Supports acquisition of data sets" {
                 // Form pipeline
                 group "Form pipeline" {
+
+
                     formValidator = container "Form Data Validator" "Service for validation of forms data" "Python/FW Gear" {
-                        -> dataWarehouseAPI "Record errors in forms in ingest project" "JSON"
                         -> formDefinitionDatabase "form definitions" "JSON/YAML"
                     }
+                    transferService = container "REDCap-Ingest Transfer" "Transfers valid forms to ingest" "Python" {
+                        # -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
+                        -> formValidator "check data against QC rules" "JSON/HTTPS"
+                        -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
+                    }
+                }
+
+                group "Form Submission"
                     formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap Project" {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
                         formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
                     }
-                    transferService = container "REDCap-Ingest Transfer" "Transfers valid forms to ingest" "Python" {
-                        -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
-                        -> formValidator "form data to be validated against project rules" "JSON/HTTPS"
-                        -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
-                    }                   
+                    transferService -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
                     redcapTransferService = container "REDCap-REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
-                        -> formQuarantineProject "push center data to quarantine project" "JSON/HTTPS"
+                        -> formQuarantineProject "push center data/errors to quarantine project" "JSON/HTTPS"
                     }
                     fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Javascript" {
                         -> formQuarantineProject "push data to quarantine proect" "JSON/HTTPS"
@@ -110,7 +115,7 @@ workspace {
                     -> formQuarantineProject "Route to REDCap UI" "HTTPS"
                     -> fileUploadService "Initiate upload process" "JSON/HTTPS"
 
-                    -> ingestProject "Retrieve submission errors" "JSON/HTTPS"
+                    # -> ingestProject "Retrieve submission errors" "JSON/HTTPS"
                 }
                 submissionWebApplication = container "Submission Web App" "Delivers submission application to user" "nginx" {
                     -> submissionApplication "Delivers app to user's browser"
@@ -172,36 +177,47 @@ workspace {
             -> website "Accesses website for information about NACC, data, and events"
         }
 
-        //Research Centers/ADRCs - users at centers collecting data
-        researchCenterUser = person "Research Center User" "User at ADRC or other research center" "External User" {
-            -> calculatorInterface "Use calculators for completing forms" "HTTPS"
-            -> directoryInterface  "Adds/Removes Members Of Adrc" "HTTPS"
-            -> documentationInterface "Get information about NACC resources" "HTTPS"
-            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-            -> submissionApplication "Uploads data and corrects errors" "HTTPS"
-            # -> trainingInterface "Learn about using NACC resources" "HTTPS"
+        group "Research Center" {
+
+
+            //Research Centers/ADRCs - users at centers collecting data
+            researchCenterUser = person "Research Center User" "User at ADRC or other research center" "External User" {
+                -> calculatorInterface "Use calculators for completing forms" "HTTPS"
+                -> directoryInterface  "Adds/Removes Members Of Adrc" "HTTPS"
+                -> documentationInterface "Get information about NACC resources" "HTTPS"
+                -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+                -> submissionApplication "Uploads data and corrects errors" "HTTPS"
+                # -> trainingInterface "Learn about using NACC resources" "HTTPS"
+            }
+            centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System"
+            redcapTransferService -> centerDataSystem "Pull project form data" "JSON/HTTPS"   
         }
-        adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User" {
-            -> submissionApplication "Uploads data and corrects errors" "HTTPS"
-            -> calculatorInterface  "Use calculators for completing forms" "HTTPS"
-            -> documentationInterface "Get information about NACC resources" "HTTPS"
-            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-            # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
-        }
-        adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
-            -> directoryInterface "Adds/Removes Members Of Adrc" "HTTPS"
-            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-            # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
-        }
-        adrcClinicalUser = person "ADRC Clinical User" "ADRC user responsible for data collection" "External User" {
-            # -> trainingInterface "Learn about using forms" "HTTPS"
-            -> calculatorInterface "Use calculators for completing forms" "HTTPS"
-            -> documentationInterface "Get information about use of forms"  "HTTPS"
-        }
-        adrcLeader = person "ADRC Leader" "ADRC leadership member" "External User" {
-            -> documentationInterface "Get information about ADRC use of NACC" "HTTPS"
-            -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-            # -> trainingInterface "Learn about using NACC resources" "HTTPS"
+
+        group "ADRC" {
+            adrcDataUser = person "ADRC Data User" "ADRC user uploading and managing data" "External User" {
+                -> submissionApplication "Uploads data and corrects errors" "HTTPS"
+                -> calculatorInterface  "Use calculators for completing forms" "HTTPS"
+                -> documentationInterface "Get information about NACC resources" "HTTPS"
+                -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+                # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
+            }
+            adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
+                -> directoryInterface "Adds/Removes Members Of Adrc" "HTTPS"
+                -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+                # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
+            }
+            adrcClinicalUser = person "ADRC Clinical User" "ADRC user responsible for data collection" "External User" {
+                # -> trainingInterface "Learn about using forms" "HTTPS"
+                -> calculatorInterface "Use calculators for completing forms" "HTTPS"
+                -> documentationInterface "Get information about use of forms"  "HTTPS"
+            }
+            adrcLeader = person "ADRC Leader" "ADRC leadership member" "External User" {
+                -> documentationInterface "Get information about ADRC use of NACC" "HTTPS"
+                -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
+                # -> trainingInterface "Learn about using NACC resources" "HTTPS"
+            }
+            adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System"
+            redcapTransferService -> adrcDataSystem "Pull project form data" "JSON/HTTPS"
         }
 
         // Project users -- users within groups running research projects
@@ -234,10 +250,7 @@ workspace {
         dataPuller -> externalDataCenterSystem "Pull data" "JSON/HTTPS"
         dataPusher -> externalDataCenterSystem "Push data" "JSON/HTTPS"
 
-        adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System"
-        redcapTransferService -> adrcDataSystem "Pull project form data" "JSON/HTTPS"
-        centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System"
-        redcapTransferService -> centerDataSystem "Pull project form data" "JSON/HTTPS"     
+    
 
         group "Data Centers" {
             ncradSystem = softwareSystem "NCRAD" "Data systems of collaborating site" "External System" {
