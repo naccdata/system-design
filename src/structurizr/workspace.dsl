@@ -95,7 +95,7 @@ workspace {
                     }
                 }
 
-                group "Form Submission"
+                group "Form Submission" {
                     formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap Project" {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
                         formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
