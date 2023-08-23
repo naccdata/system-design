@@ -100,12 +100,15 @@ workspace {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
                         formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
                     }
-                    transferService -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
+                    formTransformService = container "Form Transformer" "Maps columns, fills in default values" "Python" {
+                        -> formQuarantineProject "push transformed data" "JSON/HTTPS"
+                    }
+                    transferService -> formQuarantineProject "pull form data" "CSV/HTTPS"
                     redcapTransferService = container "REDCap-REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
-                        -> formQuarantineProject "push center data/errors to quarantine project" "JSON/HTTPS"
+                        -> formTransformService "push center data/errors" "JSON/HTTPS"
                     }
                     fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Javascript" {
-                        -> formQuarantineProject "push data to quarantine proect" "JSON/HTTPS"
+                        -> formTransformService "push data" "JSON/HTTPS"
                     }
                 }
 
@@ -169,6 +172,9 @@ workspace {
                 }
             }
 
+            formManagerUser = person "Forms Manager" "Manages forms and form versions" "NACC User" {
+                -> formManagementInterface "Modify form definitions and versions" "HTTPS"
+            }
 
         }
 
@@ -230,9 +236,7 @@ workspace {
         projectAdminUser = person "Project Coordinator" "Manages project meta data including forms and other collected data" "External User"{
             
         }
-        formManagerUser = person "Forms Manager" "Manages forms and form versions" "External User" {
-            -> formManagementInterface "Modify form definitions and versions" "HTTPS"
-        }
+
 
         researchUser = person "Research User" "Research user of NACC managed data" "External User" {
             -> searchInterface "Search for data/resources relevant to query" "HTTPS"
@@ -315,6 +319,7 @@ workspace {
             include *
             exclude authorizationSystem
             exclude adrcDataSystem
+            exclude formManagerUser
             exclude ncradSystem
             exclude niagadsSystem
             exclude loniSystem
