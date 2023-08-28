@@ -53,8 +53,7 @@ tasks.register("buildDocs") {
         val baseDir = "$buildDir/markdown"
         mkdir(baseDir)
         val sourceFiles = fileTree("src/markdown") {
-            include("**/*.md")
-            exclude("decisions")
+            include("*.md")
         }
         sourceFiles.visit( Action<FileVisitDetails> {
             val srcFile = this.getFile()
@@ -67,9 +66,17 @@ tasks.register("buildDocs") {
     }
 }
 
+tasks.register<Copy>("copyDecisions"){
+    from(layout.projectDirectory.dir("src/markdown")) {
+        include("decisions/**")
+    }
+    into(layout.buildDirectory.dir("markdown"))
+}
+
 tasks.register("build") {
     dependsOn("buildImages")
     dependsOn("buildDocs")
+    dependsOn("copyDecisions")
 }
 
 /*
