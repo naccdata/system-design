@@ -106,5 +106,5 @@ docs
 This repository is setup to be run in a VSCode devcontainer.
 Environment dependencies are set in `.devcontainer/Dockerfile`, which uses a Java image as the base.
 
-If building the documents fails due to lack of Chromium or other puppeteer messages, check whether mermaid-js is out of date or installed correctly.
-Check the version using `yarn outdated`, and use `yarn upgrade` to move to the latest version.
+Building the documents may fails due to an issue with puppeteer configuration for mermaid-js. 
+In this case, run `yarn upgrade`, which should patch issues with the puppeteer configuration.
