@@ -85,10 +85,10 @@ workspace {
                 group "Form pipeline" {
 
 
-                    formValidator = container "Form Data Validator" "Service for validation of forms data" "Python/FW Gear" {
+                    formValidator = container "Form Data Validator" "Service for validation of forms data" "Python" {
                         -> formDefinitionDatabase "form definitions" "JSON/YAML"
                     }
-                    transferService = container "REDCap-Ingest Transfer" "Transfers valid forms to ingest" "Python" {
+                    transferService = container "Transfer to Ingest" "Transfers valid forms to ingest" "Python" {
                         # -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
                         -> formValidator "check data against QC rules" "JSON/HTTPS"
                         -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
@@ -104,16 +104,16 @@ workspace {
                         -> formQuarantineProject "push transformed data" "JSON/HTTPS"
                     }
                     transferService -> formQuarantineProject "pull form data" "CSV/HTTPS"
-                    redcapTransferService = container "REDCap-REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
+                    redcapTransferService = container "REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
                         -> formTransformService "push center data/errors" "JSON/HTTPS"
                     }
-                    fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Javascript" {
+                    fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Python" {
                         -> formTransformService "push data" "JSON/HTTPS"
                     }
                 }
 
 
-                submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Next.js" {
+                submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Javascript" {
                     -> redcapTransferService "Initiate form data transfer" "JSON/HTTPS"
                     -> formQuarantineProject "Route to REDCap UI" "HTTPS"
                     -> fileUploadService "Initiate upload process" "JSON/HTTPS"
