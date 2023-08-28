@@ -54,6 +54,7 @@ tasks.register("buildDocs") {
         mkdir(baseDir)
         val sourceFiles = fileTree("src/markdown") {
             include("**/*.md")
+            exclude("decisions")
         }
         sourceFiles.visit( Action<FileVisitDetails> {
             val srcFile = this.getFile()
