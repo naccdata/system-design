@@ -48,20 +48,20 @@ The NACC system setting with interfaces with external users and systems are show
 
 To support NACC’s role, there are five key subsystems of the NACC system:
 
-1. *Submission System*: Data can be received from centers in three ways, through an online form interface, a batch submission interface, and by direct transfer.
+1. [*Submission System*](06-submission.md): Data can be received from centers in three ways, through an online form interface, a batch submission interface, and by direct transfer.
    Data quality is ensured before the data is stored.
-2. *Data Sharing System*: Users may browse or search for data as permitted by data ownership and authorization. 
+2. [*Data Sharing System*](10-sharing.md): Users may browse or search for data as permitted by data ownership and authorization. 
    Data may also be accessed via API.
-3. *Data Warehouse*: All NACC supported data types can be stored with sufficient indexing to support efficient searches.
+3. [*Data Warehouse*](05-warehouse.md): All NACC supported data types can be stored with sufficient indexing to support efficient searches.
    All data has provenance indicating where it came from and whether it has been transformed.
    Externally accessible data is also indexed.
-4. *Transfer System*: NACC pushes data to or pulls data from other centers. 
-5. *Reporting System*: Reports may be generated that reflect the data available, status of data, and audits of data quality.
+4. [*Transfer System*](07-transfer.md): NACC pushes data to or pulls data from other centers. 
+5. [*Reporting System*](08-reporting.md): Reports may be generated that reflect the data available, status of data, and audits of data quality.
 
 In addition, there are management subsystems:
 
-1. *Project Management*: managing metadata related to research studies supported by NACC.
-2. *User Management*: managing the directory of study personnel, and NACC system users.
+1. [*Project Management*](03-project-management.md): managing metadata related to research studies supported by NACC.
+2. [*User Management*](04-user-management.md): managing the directory of study personnel, and NACC system users.
 
 ## External Interactions
 
