@@ -38,4 +38,8 @@ RUN yarn install
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
-# TODO: add ADR tools: https://github.com/npryce/adr-tools
+# ADR tools: https://github.com/npryce/adr-tools
+WORKDIR /home/vscode
+RUN wget -O /home/vscode/adr3.0.0.zip https://github.com/npryce/adr-tools/archive/refs/tags/3.0.0.zip \
+ && unzip -q adr3.0.0.zip \
+ && echo "export PATH=\$PATH:/home/vscode/adr-tools-3.0.0/src" >> /home/vscode/.bashrc
