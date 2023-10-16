@@ -100,12 +100,21 @@ workspace {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
                         formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
                     }
-                    formTransformService = container "Form Transformer" "Maps columns, fills in default values" "Python" {
-                        -> formQuarantineProject "push transformed data" "JSON/HTTPS"
+                    formTransformService = container "Form Transformer" "Maps columns, fills missing values" "Python" {
+                        transformationStore = component "Transformation Store" "Contains transformation rules" "Object Store"
+                        transformerFunction = component "Form Transformer" "Maps columns, fills missing values" "Python Lambda" {
+                            -> transformationStore "pull transformation rules" "JSON/HTTPS"
+                            -> formQuarantineProject "push transformed data" "JSON/HTTPS"
+                        }
                     }
                     transferService -> formQuarantineProject "pull form data" "CSV/HTTPS"
                     redcapTransferService = container "REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
-                        -> formTransformService "push center data/errors" "JSON/HTTPS"
+                        centerREDCapMap = component "Center REDCap Mapping" "Stores center REDCap details" "Object Store"
+                        redcapTransferFunction = component "REDCap Transfer Function" "Transfers form data from center REDCap instance" "Python Lambda" {
+                            -> formTransformService "push center data/errors" "JSON/HTTPS"
+                            -> centerREDCapMap "pull center REDCap instance access details" "JSON/HTTPS"
+                        }
+
                     }
                     fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Python" {
                         -> formTransformService "push data" "JSON/HTTPS"
@@ -115,6 +124,7 @@ workspace {
 
                 submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Javascript" {
                     -> redcapTransferService "Initiate form data transfer" "JSON/HTTPS"
+                    -> transferService "Initiate form validation and transfer to pipeline" "JSON/HTTPS"
                     -> formQuarantineProject "Route to REDCap UI" "HTTPS"
                     -> fileUploadService "Initiate upload process" "JSON/HTTPS"
 
