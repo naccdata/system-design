@@ -16,7 +16,8 @@ workspace {
                             ingestProject = component "<<Stereotype>> Site Ingest" "Collection of quarantined data" "FW Group"
                             acceptedProject = component "<<Stereotype>> Site Persistent" "Collection of data that has past QC and released by center" "FW Group"
                         }
-                    }                
+                    }
+
                     dataReleasePipeline = container "Data Release Pipeline" "Pipeline for data release" {
                         dataReleaseProject = component "Master Project" "Collection of frozen data for release to researchers" "FW Group"
                         dataAggregator = component "Data Aggregator" "Aggregates project data across centers" "FW Gear" {
@@ -36,6 +37,9 @@ workspace {
                         -> ingestProject
                         -> acceptedProject
                         -> dataReleaseProject
+                    }
+                    dataWarehouseUploader = container "Data Warehouse Uploader" "Uploader for project data" "FW" {
+                        -> ingestProject
                     }
                 }
 
@@ -89,8 +93,7 @@ workspace {
                         -> formDefinitionDatabase "form definitions" "JSON/YAML"
                     }
                     transferService = container "Transfer to Ingest" "Transfers valid forms to ingest" "Python" {
-                        # -> formQuarantineProject "pull form data from quarantine" "CSV/HTTPS"
-                        -> formValidator "check data against QC rules" "JSON/HTTPS"
+                        #-> formValidator "check data against QC rules" "JSON/HTTPS"
                         -> dataWarehouseAPI "push validated data to ingest project" "JSON/HTTPS"
                     }
                 }
@@ -98,39 +101,17 @@ workspace {
                 group "Form Submission" {
                     formQuarantineProject = container "<<stereotype>> Form Quarantine Project" "Accepts form submissions" "REDCap Project" {
                         formEntryInterface = component "Form Entry Interface" "Interface for direct entry of data" "REDCap"
-                        formQuarantineAPI = component "Form API" "API for submission of form data" "CSV/HTTPS"
-                    }
-                    formTransformService = container "Form Transformer" "Maps columns, fills missing values" "Python" {
-                        transformationStore = component "Transformation Store" "Contains transformation rules" "Object Store"
-                        transformerFunction = component "Form Transformer" "Maps columns, fills missing values" "Python Lambda" {
-                            -> transformationStore "pull transformation rules" "JSON/HTTPS"
-                            -> formQuarantineProject "push transformed data" "JSON/HTTPS"
-                        }
                     }
                     transferService -> formQuarantineProject "pull form data" "CSV/HTTPS"
-                    redcapTransferService = container "REDCap Transfer" "Transfers form data from center REDCap instance" "Python" {
-                        centerREDCapMap = component "Center REDCap Mapping" "Stores center REDCap details" "Object Store"
-                        redcapTransferFunction = component "REDCap Transfer Function" "Transfers form data from center REDCap instance" "Python Lambda" {
-                            -> formTransformService "push center data/errors" "JSON/HTTPS"
-                            -> centerREDCapMap "pull center REDCap instance access details" "JSON/HTTPS"
-                        }
-
-                    }
-                    fileUploadService = container "File Uploader" "Accepts uploaded data and pushes to quarantine project" "Python" {
-                        -> formTransformService "push data" "JSON/HTTPS"
-                    }
                 }
 
 
-                submissionApplication = container "Data Submission" "Single page interface for submission of all types of data" "Javascript" {
-                    -> redcapTransferService "Initiate form data transfer" "JSON/HTTPS"
-                    -> transferService "Initiate form validation and transfer to pipeline" "JSON/HTTPS"
-                    -> formQuarantineProject "Route to REDCap UI" "HTTPS"
-                    -> fileUploadService "Initiate upload process" "JSON/HTTPS"
-
-                    # -> ingestProject "Retrieve submission errors" "JSON/HTTPS"
+                submissionApplication = container "Form Data Submission" "Single page interface for submission form data" "Javascript" {
+                    -> transferService "Initiate form transfer" "JSON/HTTPS"
+                    -> formEntryInterface "Route to REDCap Data Entry UI" "HTTPS"
+                    -> dataWarehouseUploader "Initiate upload process" "HTTPS"
                 }
-                submissionWebApplication = container "Submission Web App" "Delivers submission application to user" "nginx" {
+                submissionWebApplication = container "Submission Web App" "Delivers submission application to user" "FW UI Extension" {
                     -> submissionApplication "Delivers app to user's browser"
                 }                
             }
