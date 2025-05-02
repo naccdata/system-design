@@ -7,7 +7,7 @@
  */
 
 plugins {
-  id("pl.zalas.structurizr-cli") version "1.4.0"
+  id("pl.zalas.structurizr-cli") version "1.9.0"
 }
 
 repositories {
@@ -41,26 +41,43 @@ tasks.register<Copy>("copyWorkspacePlantUML") {
 
 tasks.register<JavaExec>("buildImages") {
     dependsOn("copyWorkspacePlantUML")
-    val srcFiles = "$buildDir/workspace/structurizr-*.puml"
-    val outDir = "$buildDir/images"
+    val srcFiles = layout.buildDirectory.files("workspace/structurizr-*.puml")
+    val outDir = layout.buildDirectory.dir("images")
     group = "plantuml"
     classpath = configurations["plantuml"]
     args(listOf(srcFiles, "-o", outDir, "-tsvg"))
 }
 
-tasks.register("buildDocs") {
+interface InjectedExecOps {
+    @get:Inject val execOps: ExecOperations
+}
+
+tasks.register("ensureMarkdownDirectory") {
+    val directory = layout.buildDirectory.file("markdown")
+
     doLast {
-        val baseDir = "$buildDir/markdown"
-        mkdir(baseDir)
+        mkdir(directory)
+    }
+}
+
+tasks.register("buildDocs") {
+    dependsOn("ensureMarkdownDirectory")
+
+    val injected = project.objects.newInstance<InjectedExecOps>()
+
+    doLast {
+        val baseDir = layout.buildDirectory.dir("markdown").get().asFile
         val sourceFiles = fileTree("src/markdown") {
             include("*.md")
         }
         sourceFiles.visit( Action<FileVisitDetails> {
             val srcFile = this.getFile()
             val fileName = this.getName()
+            val outFile = file("${baseDir}/${fileName}.svg")
+            
 
-            exec {
-                commandLine("./node_modules/.bin/mmdc", "-p", "puppeteer-config.json", "-i", "${srcFile}", "-o", "$baseDir/${fileName}")
+            injected.execOps.exec {
+                commandLine("./node_modules/.bin/mmdc", "-p", "puppeteer-config.json", "-i", "${srcFile}", "-o", "${outFile}")
             }
         })
     }
