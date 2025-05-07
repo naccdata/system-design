@@ -13,9 +13,13 @@
         "GAAIN",
         "genotyped",
         "genotyping",
+        "Ingestor",
         "LONI",
+        "mmdc",
         "NACC",
         "naccdata",
+        "NACCID",
+        "naccids",
         "NCRAD",
         "Neuroimaging",
         "Neuropathology",
@@ -23,7 +27,11 @@
         "ORCID",
         "phenotyping",
         "structurizr",
+        "systemlandscape",
+        "tsvg",
         "vscjava",
-        "yzhang"
+        "workspacepuml",
+        "yzhang",
+        "zalas"
     ]
 }
