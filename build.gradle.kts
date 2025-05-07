@@ -19,7 +19,7 @@ val workspace by configurations.creating
 val workspacepuml by configurations.creating
 
 dependencies {
-    "plantuml"("net.sourceforge.plantuml:plantuml:1.2023.5")
+    "plantuml"("net.sourceforge.plantuml:plantuml:1.2023.7")
     "workspace"(files("src/structurizr/workspace.dsl"))
 }
 
@@ -27,22 +27,25 @@ structurizrCli {
     export {
         format = "plantuml"
         workspace = "src/structurizr/workspace.dsl"
+        output = layout.buildDirectory.dir("workspace").get().asFile.absolutePath
     }
 }
 tasks.named("structurizrCliExport") { dependsOn(configurations["workspace"])}
 
-tasks.register<Copy>("copyWorkspacePlantUML") {
-    dependsOn("structurizrCliExport")
-    from("src/structurizr") {
-        include("*.puml")
+tasks.register("ensureImageDirectory") {
+    val directory = layout.buildDirectory.file("images")
+
+    doLast {
+        mkdir(directory)
     }
-    into(layout.buildDirectory.dir("workspace"))
 }
 
 tasks.register<JavaExec>("buildImages") {
-    dependsOn("copyWorkspacePlantUML")
-    val srcFiles = layout.buildDirectory.files("workspace/structurizr-*.puml")
-    val outDir = layout.buildDirectory.dir("images")
+    dependsOn("structurizrCliExport")
+    dependsOn("ensureImageDirectory")
+    val srcFiles = layout.buildDirectory.files("workspace/structurizr-*.puml").getAsPath()
+    val outDir = layout.buildDirectory.dir("images").get()
+    outputs.dir(outDir)
     group = "plantuml"
     classpath = configurations["plantuml"]
     args(listOf(srcFiles, "-o", outDir, "-tsvg"))
@@ -124,9 +127,6 @@ tasks.register("publish") {
 /*
     Clean tasks
 */
-tasks.register<Delete>("cleanStructurizr"){
-    delete(files("src/structurizr/structurizr-*.puml"))
-}
 
 tasks.register<Delete>("cleanImages"){
     delete(layout.buildDirectory.dir("images"))
@@ -141,7 +141,6 @@ tasks.register<Delete>("cleanDocs"){
 }
 
 tasks.register("clean") {
-    dependsOn("cleanStructurizr")
     dependsOn("cleanImages")
     dependsOn("cleanWorkspace")
     dependsOn("cleanDocs")
