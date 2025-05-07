@@ -52,13 +52,13 @@ workspace {
 
             }
 
-            userManangementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
+            userManagementSystem = softwareSystem "User Management" "Allows centers or projects to manage their own users and access rights" {
                 directory = container "NACC Directory" "Allows users to view and edit the NACC directory" "REDCap" {
                     directoryInterface = component "Directory Management Interface" "Interface to manage directory entries" "REDCap"
                     directoryAPI = component "Directory API" "API for accessing NACC directory information" "JSON/HTTPS"
                 }
 
-                userManagementSynchonizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
+                userManagementSynchronizer = container "User Management Synchronizer" "Synchronizes user accounts with NACC Directory" "FW Gear" {
                     -> directoryAPI "User information" "JSON/HTTPS"
                     -> dataWarehouseAPI "Create/Retire users"
                 }
@@ -146,7 +146,7 @@ workspace {
                     -> dataWarehouseAPI
                 }
 
-                dataRequentIntake = container "Data Request Intake" "Supports requests of project data" {
+                dataRequestIntake = container "Data Request Intake" "Supports requests of project data" {
                     dataRequestInterface = component "Data Request Interface" "Interface for requesting data" "REDCap"
                     dataRequestAPI = component "Data Request API" "API for accessing data request information" "JSON/HTTPS"
                 }
@@ -187,7 +187,7 @@ workspace {
                 # -> trainingInterface "Learn about using NACC resources" "HTTPS"
             }
             centerDataSystem = softwareSystem "Research Center Data System" "Data system of research center participating in project" "External System"
-            redcapTransferService -> centerDataSystem "Pull project form data" "JSON/HTTPS"   
+            # redcapTransferService -> centerDataSystem "Pull project form data" "JSON/HTTPS"   
         }
 
         group "ADRC" {
@@ -196,12 +196,12 @@ workspace {
                 -> calculatorInterface  "Use calculators for completing forms" "HTTPS"
                 -> documentationInterface "Get information about NACC resources" "HTTPS"
                 -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-                # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
+                # -> trainingInterface "Learn about using NACC resources" "HTTPS"
             }
             adrcOpsUser = person "ADRC Admin User" "ADRC user responsible for administration tasks" "External User" {
                 -> directoryInterface "Adds/Removes Members Of Adrc" "HTTPS"
                 -> reportingInterface "Views ADRC data and reports about submissions and errors" "HTTPS"
-                # -> trainingInterface "Learn about usng NACC resources" "HTTPS"
+                # -> trainingInterface "Learn about using NACC resources" "HTTPS"
             }
             adrcClinicalUser = person "ADRC Clinical User" "ADRC user responsible for data collection" "External User" {
                 # -> trainingInterface "Learn about using forms" "HTTPS"
@@ -214,7 +214,7 @@ workspace {
                 # -> trainingInterface "Learn about using NACC resources" "HTTPS"
             }
             adrcDataSystem = softwareSystem "ADRC Data System" "Data system of ADRC" "External System"
-            redcapTransferService -> adrcDataSystem "Pull project form data" "JSON/HTTPS"
+            # redcapTransferService -> adrcDataSystem "Pull project form data" "JSON/HTTPS"
         }
 
         // Project users -- users within groups running research projects
@@ -348,13 +348,13 @@ workspace {
             autoLayout
         }
 
-        systemContext userManangementSystem "UserManagementContext" {
+        systemContext userManagementSystem "UserManagementContext" {
             include *
             exclude adrcOpsUser
             autoLayout
         }
 
-        container userManangementSystem "UserManagementContainers" {
+        container userManagementSystem "UserManagementContainers" {
             include *
             exclude adrcOpsUser
             exclude projectManagementSystem
