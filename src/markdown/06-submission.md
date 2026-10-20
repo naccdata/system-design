@@ -71,6 +71,8 @@ sequenceDiagram
 
 ## Code
 
+- [flywheel-ui-extension-server](https://github.com/naccdata/flywheel-ui-extension-server): the ADRC Portal, which runs inside Flywheel. It is the submission interface: center staff upload forms and imaging files, then follow QC results. It also shows reporting dashboards and serves data freeze downloads.
+
 <!-- ## Deployment
 
 ![Submission-Deployment-Diagram](images/structurizr-ProductionSubmissionDeployment.svg) -->
